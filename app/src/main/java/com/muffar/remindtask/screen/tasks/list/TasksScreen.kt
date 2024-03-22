@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.muffar.remindtask.screen.tasks.list.component.TaskHeader
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
-import com.muffar.remindtask.screen.tasks.list.component.TaskWeekCalendar
 import com.muffar.remindtask.ui.theme.spacing
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -26,10 +26,14 @@ fun TasksScreen(
     val state by viewModel.state
 
     Column {
-        TaskWeekCalendar(
+        TaskHeader(
+            status = state.status,
             headerType = state.headerType,
             selectedDate = state.selectedDate,
             selectedTime = state.selectedTime,
+            onStatusSelected = {
+                viewModel.onEvent(TasksEvent.OnStatusSelected(it))
+            },
             onSelectedDay = {
                 viewModel.onEvent(TasksEvent.OnDateSelected(it))
             },

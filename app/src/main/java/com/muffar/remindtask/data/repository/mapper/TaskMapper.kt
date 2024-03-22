@@ -10,7 +10,8 @@ object TaskMapper {
             title = title,
             description = description,
             deadline = deadline,
-            priority = priority
+            priority = priority,
+            status = status
         )
     }
 
@@ -19,7 +20,8 @@ object TaskMapper {
             title = title,
             description = description,
             deadline = deadline,
-            priority = priority
+            priority = priority,
+            status = status
         )
     }
 

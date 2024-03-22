@@ -14,7 +14,6 @@ import com.muffar.remindtask.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.Instant
-import java.time.LocalDate
 import java.time.ZoneId
 import javax.inject.Inject
 
@@ -33,58 +32,60 @@ class TasksViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            userUseCase.getHeaderType().let {
-                _state.value = _state.value.copy(headerType = it)
-            }
-
-            taskUseCase.getTasks().collect {
-                tasks = it
-                filterTasksByDate(state.value.selectedDate)
+            taskUseCase.getTasks().collect { listTasks ->
+                tasks = listTasks
+                userUseCase.getHeaderType().let {
+                    _state.value = _state.value.copy(headerType = it)
+                }
+                filterTasks()
             }
         }
     }
 
     fun onEvent(event: TasksEvent) {
         when (event) {
+
+            is TasksEvent.OnStatusSelected -> {
+                _state.value = _state.value.copy(status = event.status)
+                filterTasks()
+            }
+
             is TasksEvent.OnDateSelected -> {
                 _state.value = _state.value.copy(selectedDate = event.date)
-                filterTasksByDate(state.value.selectedDate)
+                filterTasks()
             }
 
             is TasksEvent.OnTimeSelected -> {
                 _state.value = _state.value.copy(selectedTime = event.timeType)
-                filterTasksByTime(state.value.selectedTime)
+                filterTasks()
             }
 
             is TasksEvent.OnHeaderTypeChanged -> {
-                viewModelScope.launch {
-                    val headerType =
-                        if (event.headerType == HeaderType.CALENDAR) HeaderType.CHIPS else HeaderType.CALENDAR
-                    userUseCase.saveHeaderType(headerType)
-
-                    _state.value = _state.value.copy(headerType = headerType)
-
-                    if (headerType == HeaderType.CALENDAR) {
-                        filterTasksByDate(state.value.selectedDate)
-                    } else {
-                        filterTasksByTime(state.value.selectedTime)
-                    }
-                }
+                onHeaderTypeChanged(event.headerType)
             }
         }
     }
 
-    private fun filterTasksByDate(date: LocalDate) {
+    private fun filterTasks() {
+        if (_state.value.headerType == HeaderType.CALENDAR) {
+            filterTasksByDate()
+        } else {
+            filterTasksByTime()
+        }
+        filterTasksByStatus()
+    }
+
+    private fun filterTasksByDate() {
         val filteredTasks = tasks.filter {
             val instant = Instant.ofEpochMilli(it.deadline)
             val zoneId = ZoneId.systemDefault()
             val localDate = instant.atZone(zoneId).toLocalDate()
-            localDate == date
+            localDate == _state.value.selectedDate
         }
         _state.value = _state.value.copy(tasks = filteredTasks)
     }
 
-    private fun filterTasksByTime(timeType: TimeType) {
+    private fun filterTasksByTime() {
         val currentTimeMillis = System.currentTimeMillis()
         val currentDate =
             Instant.ofEpochMilli(currentTimeMillis).atZone(ZoneId.systemDefault()).toLocalDate()
@@ -93,7 +94,7 @@ class TasksViewModel @Inject constructor(
             val inputDate =
                 Instant.ofEpochMilli(it.deadline).atZone(ZoneId.systemDefault()).toLocalDate()
 
-            when (timeType) {
+            when (_state.value.selectedTime) {
                 TimeType.TODAY -> inputDate == currentDate
                 TimeType.PAST -> inputDate < currentDate
                 TimeType.SOON -> inputDate.isAfter(currentDate)
@@ -101,5 +102,26 @@ class TasksViewModel @Inject constructor(
             }
         }
         _state.value = _state.value.copy(tasks = filteredTasks)
+    }
+
+    private fun filterTasksByStatus() {
+        val status = _state.value.status
+        val filteredTasks = _state.value.tasks.filter {
+            when (status) {
+                null -> true
+                else -> it.status == status
+            }
+        }
+        _state.value = _state.value.copy(tasks = filteredTasks)
+    }
+
+    private fun onHeaderTypeChanged(headerType: HeaderType) {
+        viewModelScope.launch {
+            val type =
+                if (headerType == HeaderType.CALENDAR) HeaderType.CHIPS else HeaderType.CALENDAR
+            userUseCase.saveHeaderType(type)
+            _state.value = _state.value.copy(headerType = type)
+            filterTasks()
+        }
     }
 }

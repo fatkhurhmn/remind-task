@@ -3,6 +3,7 @@ package com.muffar.remindtask.screen.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.usecase.TaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,7 +49,8 @@ class MainViewModel @Inject constructor(
                     title = titles[i],
                     description = descriptions[i],
                     deadline = System.currentTimeMillis() + Random.nextLong(86400000 * 7),
-                    priority = PriorityType.entries.toTypedArray().random()
+                    priority = PriorityType.entries.toTypedArray().random(),
+                    status = StatusType.entries.toTypedArray().random()
                 )
 //                taskUseCase.saveTask(task)
             }

@@ -25,6 +25,7 @@ import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.yearMonth
 import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.TimeType
 import com.muffar.remindtask.ui.theme.spacing
 import com.muffar.remindtask.utils.CalendarUtils.displayText
@@ -34,11 +35,13 @@ import java.time.LocalDate
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun TaskWeekCalendar(
+fun TaskHeader(
     modifier: Modifier = Modifier,
+    status : StatusType?,
     headerType: HeaderType,
     selectedDate: LocalDate,
     selectedTime: TimeType,
+    onStatusSelected: (StatusType?) -> Unit = {},
     onSelectedDay: (LocalDate) -> Unit = {},
     onSelectedTime: (TimeType) -> Unit = {},
     onHeaderTypeChange: () -> Unit = {},
@@ -68,13 +71,18 @@ fun TaskWeekCalendar(
                 )
             },
             actions = {
+                StatusFilterMenu(
+                    currentStatus = status,
+                    onStatusSelected = { onStatusSelected(it) }
+                )
+
                 IconButton(
                     onClick = { onHeaderTypeChange() }
                 ) {
                     if (headerType == HeaderType.CALENDAR) {
-                        FaIcon(FaIcons.EllipsisH)
+                        FaIcon(faIcon = FaIcons.EllipsisH, size = 20.dp)
                     } else {
-                        FaIcon(FaIcons.Calendar)
+                        FaIcon(faIcon = FaIcons.Calendar, size = 20.dp)
                     }
                 }
             }
