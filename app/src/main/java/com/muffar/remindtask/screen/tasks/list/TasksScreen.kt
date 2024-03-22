@@ -15,9 +15,9 @@ import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.model.TimeType
 import com.muffar.remindtask.screen.tasks.list.component.DeleteTaskDialog
-import com.muffar.remindtask.screen.tasks.list.component.EmptyTasks
 import com.muffar.remindtask.screen.tasks.list.component.TaskHeader
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
+import com.muffar.remindtask.ui.common.EmptyResult
 import com.muffar.remindtask.ui.theme.spacing
 import java.time.LocalDate
 import java.util.UUID
@@ -35,7 +35,7 @@ fun TasksScreen(
     onTaskDelete: (UUID?) -> Unit,
     onShowDialog: (Boolean, Task?) -> Unit,
     onShowSearchBar: (Boolean) -> Unit,
-    onQueryChange: (String) -> Unit
+    onQueryChange: (String) -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -81,7 +81,7 @@ fun TasksScreen(
                 }
             }
         } else {
-            EmptyTasks()
+            EmptyResult(message = "No tasks found")
         }
     }
 

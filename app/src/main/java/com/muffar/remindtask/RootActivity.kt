@@ -61,8 +61,6 @@ class RootActivity : ComponentActivity() {
                 arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
                 1
             )
-        } else {
-            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
         }
     }
 }

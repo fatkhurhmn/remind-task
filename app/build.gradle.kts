@@ -92,6 +92,9 @@ dependencies {
     //desugar
     coreLibraryDesugaring(libs.desugar.jdk)
 
+    //lottie
+    implementation(libs.lottie)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
