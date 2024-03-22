@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.Task
-import com.muffar.remindtask.domain.model.TimeType
-import com.muffar.remindtask.domain.usecase.TaskUseCase
-import com.muffar.remindtask.domain.usecase.UserUseCase
+import com.muffar.remindtask.domain.usecase.task.TaskUseCase
+import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.time.Instant
-import java.time.ZoneId
 import javax.inject.Inject
 
 
@@ -29,12 +27,12 @@ class TasksViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            taskUseCase.getTasks().collect { listTasks ->
-                tasks = listTasks
-                userUseCase.getHeaderType().let {
+            taskUseCase.getTasks().collectLatest { tasksList ->
+                tasks = tasksList
+                userUseCase.getHeaderType().collectLatest {
                     _state.value = _state.value.copy(headerType = it)
+                    filterTasks()
                 }
-                filterTasks()
             }
         }
     }
@@ -64,51 +62,13 @@ class TasksViewModel @Inject constructor(
     }
 
     private fun filterTasks() {
-        if (_state.value.headerType == HeaderType.CALENDAR) {
-            filterTasksByDate()
-        } else {
-            filterTasksByTime()
-        }
-        filterTasksByStatus()
-    }
-
-    private fun filterTasksByDate() {
-        val filteredTasks = tasks.filter {
-            val instant = Instant.ofEpochMilli(it.deadline)
-            val zoneId = ZoneId.systemDefault()
-            val localDate = instant.atZone(zoneId).toLocalDate()
-            localDate == _state.value.selectedDate
-        }
-        _state.value = _state.value.copy(tasks = filteredTasks)
-    }
-
-    private fun filterTasksByTime() {
-        val currentTimeMillis = System.currentTimeMillis()
-        val currentDate =
-            Instant.ofEpochMilli(currentTimeMillis).atZone(ZoneId.systemDefault()).toLocalDate()
-
-        val filteredTasks = tasks.filter {
-            val inputDate =
-                Instant.ofEpochMilli(it.deadline).atZone(ZoneId.systemDefault()).toLocalDate()
-
-            when (_state.value.selectedTime) {
-                TimeType.TODAY -> inputDate == currentDate
-                TimeType.PAST -> inputDate < currentDate
-                TimeType.SOON -> inputDate.isAfter(currentDate)
-                TimeType.ALL -> true
-            }
-        }
-        _state.value = _state.value.copy(tasks = filteredTasks)
-    }
-
-    private fun filterTasksByStatus() {
-        val status = _state.value.status
-        val filteredTasks = _state.value.tasks.filter {
-            when (status) {
-                null -> true
-                else -> it.status == status
-            }
-        }
+        val filteredTasks = taskUseCase.getTasks.filter(
+            tasks = tasks,
+            headerType = _state.value.headerType,
+            selectedDate = _state.value.selectedDate,
+            status = _state.value.status,
+            timeType = _state.value.selectedTime
+        )
         _state.value = _state.value.copy(tasks = filteredTasks)
     }
 

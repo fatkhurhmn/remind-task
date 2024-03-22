@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
-import com.muffar.remindtask.domain.usecase.TaskUseCase
+import com.muffar.remindtask.domain.usecase.task.TaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -52,7 +52,7 @@ class MainViewModel @Inject constructor(
                     priority = PriorityType.entries.toTypedArray().random(),
                     status = StatusType.entries.toTypedArray().random()
                 )
-//                taskUseCase.saveTask(task)
+//                tasksUseCase.saveTask(task)
             }
         }
     }
