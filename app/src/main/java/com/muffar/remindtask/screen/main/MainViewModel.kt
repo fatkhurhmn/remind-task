@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
-import com.muffar.remindtask.domain.usecase.task.TaskUseCase
+import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,7 +13,7 @@ import kotlin.random.Random
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val taskUseCase: TaskUseCase,
+    private val taskUseCases: TaskUseCases,
 ) : ViewModel() {
     fun init() {
         viewModelScope.launch {

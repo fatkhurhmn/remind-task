@@ -4,7 +4,9 @@ import androidx.compose.ui.graphics.Color
 import com.muffar.remindtask.ui.theme.color.MainColor
 
 enum class PriorityType {
-    HIGH, MEDIUM, LOW;
+    LOW,
+    MEDIUM,
+    HIGH;
 
     companion object {
         fun PriorityType.toColor(): Color {
@@ -13,6 +15,10 @@ enum class PriorityType {
                 MEDIUM -> MainColor.Yellow.kindaLight
                 LOW -> MainColor.Green.kindaLight
             }
+        }
+
+        fun getList(): List<PriorityType> {
+            return listOf(LOW, MEDIUM, HIGH)
         }
     }
 }

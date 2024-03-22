@@ -1,5 +1,6 @@
 package com.muffar.remindtask.domain.usecase.task
 
-data class TaskUseCase(
+data class TaskUseCases(
     val getTasks: GetTasks,
+    val addTask: AddTask
 )

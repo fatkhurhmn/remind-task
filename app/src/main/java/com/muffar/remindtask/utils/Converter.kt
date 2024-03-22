@@ -1,6 +1,7 @@
 package com.muffar.remindtask.utils
 
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -9,5 +10,15 @@ object Converter {
         val date = Date(timeMillis)
         val sdf = SimpleDateFormat(format, Locale.getDefault())
         return sdf.format(date)
+    }
+
+    fun combineTimeMillis(date:Long, hour:Int, minute:Int): Long {
+        val mDate = Date(date)
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = date
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute)
+        }
+        return calendar.timeInMillis
     }
 }

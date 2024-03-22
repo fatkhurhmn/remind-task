@@ -10,8 +10,9 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.muffar.remindtask.screen.main.MainScreen
+import androidx.navigation.compose.rememberNavController
 import com.muffar.remindtask.screen.main.MainViewModel
+import com.muffar.remindtask.ui.navigation.MainNavigation
 import com.muffar.remindtask.ui.theme.RemindTaskTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +23,7 @@ class RootActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         viewModel.init()
         setContent {
+            val mainNavController = rememberNavController()
             RemindTaskTheme {
                 Surface(
                     modifier = Modifier
@@ -30,7 +32,7 @@ class RootActivity : ComponentActivity() {
                         .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    MainNavigation(navController = mainNavController)
                 }
             }
         }

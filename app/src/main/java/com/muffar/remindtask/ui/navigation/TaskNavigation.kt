@@ -7,7 +7,7 @@ import com.muffar.remindtask.screen.tasks.list.TasksEvent
 import com.muffar.remindtask.screen.tasks.list.TasksScreen
 import com.muffar.remindtask.screen.tasks.list.TasksViewModel
 
-fun NavGraphBuilder.taskGraph() {
+fun NavGraphBuilder.tasksScreen() {
     composable(route = Screens.Tasks.route) {
         val viewModel = hiltViewModel<TasksViewModel>()
         val state = viewModel.state.value

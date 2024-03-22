@@ -47,6 +47,7 @@ fun MainBottomBar(
     contentHeight: Dp = 80.dp,
     windowInsets: WindowInsets = BottomAppBarDefaults.windowInsets,
     navController: NavHostController,
+    onAddClick: () -> Unit,
 ) {
     Surface(
         color = containerColor,
@@ -90,7 +91,7 @@ fun MainBottomBar(
                         shape = MaterialTheme.shapes.medium
                     )
                     .clip(MaterialTheme.shapes.medium)
-                    .clickable { },
+                    .clickable { onAddClick() },
                 contentAlignment = Alignment.Center
             ) {
                 FaIcon(
@@ -118,6 +119,9 @@ fun MainBottomBar(
 @Composable
 fun MainBottomBarPreview() {
     RemindTaskTheme {
-        MainBottomBar(navController = NavHostController(LocalContext.current))
+        MainBottomBar(
+            navController = NavHostController(LocalContext.current),
+            onAddClick = {}
+        )
     }
 }

@@ -6,24 +6,31 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.muffar.remindtask.screen.main.component.MainBottomBar
 import com.muffar.remindtask.ui.navigation.Screens
-import com.muffar.remindtask.ui.navigation.taskGraph
+import com.muffar.remindtask.ui.navigation.tasksScreen
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
+    navController: NavHostController,
 ) {
     val localNavController = rememberNavController()
     Scaffold(
-        bottomBar = { MainBottomBar(navController = localNavController) }
+        bottomBar = {
+            MainBottomBar(
+                navController = localNavController,
+                onAddClick = { navController.navigate(Screens.AddTask.route) }
+            )
+        }
     ) {
         Box(modifier = modifier.padding(it)) {
             NavHost(navController = localNavController, startDestination = Screens.Tasks.route) {
-                taskGraph()
+                tasksScreen()
                 composable(Screens.Notes.route) { Text(text = "Notes") }
             }
         }

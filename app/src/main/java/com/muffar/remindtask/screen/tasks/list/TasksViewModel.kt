@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.Task
-import com.muffar.remindtask.domain.usecase.task.TaskUseCase
+import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TasksViewModel @Inject constructor(
-    private val taskUseCase: TaskUseCase,
+    private val taskUseCases: TaskUseCases,
     private val userUseCase: UserUseCase,
 ) : ViewModel() {
 
@@ -27,7 +27,7 @@ class TasksViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            taskUseCase.getTasks().collectLatest { tasksList ->
+            taskUseCases.getTasks().collectLatest { tasksList ->
                 tasks = tasksList
                 userUseCase.getHeaderType().collectLatest {
                     _state.value = _state.value.copy(headerType = it)
@@ -62,7 +62,7 @@ class TasksViewModel @Inject constructor(
     }
 
     private fun filterTasks() {
-        val filteredTasks = taskUseCase.getTasks.filter(
+        val filteredTasks = taskUseCases.getTasks.filter(
             tasks = tasks,
             headerType = _state.value.headerType,
             selectedDate = _state.value.selectedDate,

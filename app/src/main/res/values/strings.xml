@@ -3,4 +3,15 @@
     <string name="tasks_menu">Tasks</string>
     <string name="notes_menu">Notes</string>
     <string name="no_tasks">No tasks</string>
+    <string name="new_task">New Task</string>
+    <string name="close">Close</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="select_date">Select date</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="select_time">Select time</string>
+    <string name="add_title">Add title</string>
+    <string name="add_description">Add description</string>
 </resources>

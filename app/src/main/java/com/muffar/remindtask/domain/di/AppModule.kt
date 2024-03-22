@@ -2,8 +2,9 @@ package com.muffar.remindtask.domain.di
 
 import com.muffar.remindtask.domain.repository.TaskRepository
 import com.muffar.remindtask.domain.repository.UserRepository
+import com.muffar.remindtask.domain.usecase.task.AddTask
 import com.muffar.remindtask.domain.usecase.task.GetTasks
-import com.muffar.remindtask.domain.usecase.task.TaskUseCase
+import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.domain.usecase.user.GetHeaderType
 import com.muffar.remindtask.domain.usecase.user.SaveHeaderType
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
@@ -19,8 +20,9 @@ object AppModule {
     @Provides
     fun provideTasksUseCase(
         taskRepository: TaskRepository,
-    ): TaskUseCase = TaskUseCase(
-        getTasks = GetTasks(taskRepository)
+    ): TaskUseCases = TaskUseCases(
+        getTasks = GetTasks(taskRepository),
+        addTask = AddTask(taskRepository)
     )
 
     @Provides
