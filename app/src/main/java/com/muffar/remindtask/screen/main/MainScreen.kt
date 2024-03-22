@@ -12,8 +12,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.muffar.remindtask.screen.main.component.MainBottomBar
-import com.muffar.remindtask.screen.tasks.list.TasksScreen
 import com.muffar.remindtask.ui.navigation.Screens
+import com.muffar.remindtask.ui.navigation.taskGraph
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -26,7 +26,7 @@ fun MainScreen(
     ) {
         Box(modifier = modifier.padding(it)) {
             NavHost(navController = localNavController, startDestination = Screens.Tasks.route) {
-                composable(Screens.Tasks.route) { TasksScreen() }
+                taskGraph()
                 composable(Screens.Notes.route) { Text(text = "Notes") }
             }
         }

@@ -44,7 +44,7 @@ fun TaskHeader(
     onStatusSelected: (StatusType?) -> Unit = {},
     onSelectedDay: (LocalDate) -> Unit = {},
     onSelectedTime: (TimeType) -> Unit = {},
-    onHeaderTypeChange: () -> Unit = {},
+    onHeaderTypeChange: (HeaderType) -> Unit = {},
 ) {
     val currentDate = remember { LocalDate.now() }
     val startDate = remember { currentDate.minusDays(500) }
@@ -77,7 +77,7 @@ fun TaskHeader(
                 )
 
                 IconButton(
-                    onClick = { onHeaderTypeChange() }
+                    onClick = { onHeaderTypeChange(headerType) }
                 ) {
                     if (headerType == HeaderType.CALENDAR) {
                         FaIcon(faIcon = FaIcons.EllipsisH, size = 20.dp)
