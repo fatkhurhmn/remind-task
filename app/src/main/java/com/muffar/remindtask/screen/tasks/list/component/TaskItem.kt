@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,6 +27,7 @@ import com.guru.fontawesomecomposelib.FaIcon
 import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.domain.model.PriorityType.Companion.toColor
+import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.ui.theme.spacing
 import com.muffar.remindtask.utils.Converter
 
@@ -35,6 +37,7 @@ fun TaskItem(
     title: String,
     deadline: Long,
     priority: PriorityType,
+    status: StatusType,
 ) {
     Box(
         modifier = modifier
@@ -70,9 +73,12 @@ fun TaskItem(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp),
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontSize = 18.sp,
+                    textDecoration = if (status == StatusType.COMPLETED) TextDecoration.LineThrough else TextDecoration.None
+                ),
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             Row {

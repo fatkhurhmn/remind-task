@@ -2,4 +2,5 @@
     <string name="app_name">RemindTask</string>
     <string name="tasks_menu">Tasks</string>
     <string name="notes_menu">Notes</string>
+    <string name="no_tasks">No tasks</string>
 </resources>

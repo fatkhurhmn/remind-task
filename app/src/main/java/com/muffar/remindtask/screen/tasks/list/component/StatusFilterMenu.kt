@@ -1,7 +1,9 @@
 package com.muffar.remindtask.screen.tasks.list.component
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.IconButton
@@ -19,6 +21,7 @@ import com.guru.fontawesomecomposelib.FaIcon
 import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.StatusType.Companion.toValue
+import com.muffar.remindtask.ui.theme.color.MainColor
 import com.muffar.remindtask.ui.theme.spacing
 
 @Composable
@@ -28,8 +31,23 @@ fun StatusFilterMenu(
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
-    IconButton(onClick = { showMenu = !showMenu }) {
-        FaIcon(faIcon = FaIcons.Filter, size = 20.dp)
+    Box(modifier = Modifier.wrapContentSize()) {
+        IconButton(
+            onClick = { showMenu = !showMenu },
+            modifier = Modifier.align(Alignment.Center)
+        ) {
+            FaIcon(faIcon = FaIcons.Filter, size = 20.dp)
+        }
+        if (currentStatus != null) {
+            FaIcon(
+                faIcon = FaIcons.Circle,
+                size = 10.dp,
+                tint = MainColor.Red.primary,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(8.dp)
+            )
+        }
     }
 
     DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
