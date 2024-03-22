@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.collectLatest
 fun AddTaskScreen(
     modifier: Modifier = Modifier,
     state: AddTaskState,
-    eventFlow : SharedFlow<AddTaskViewModel.UiEvent>,
+    eventFlow: SharedFlow<AddTaskViewModel.UiEvent>,
     onSaveClick: () -> Unit,
     onTitleChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
@@ -42,6 +42,7 @@ fun AddTaskScreen(
         eventFlow.collectLatest {
             when (it) {
                 is AddTaskViewModel.UiEvent.SaveTask -> onNavigationBack()
+
                 is AddTaskViewModel.UiEvent.ShowSnackbar -> {
                     snackbarHost.showSnackbar(message = it.message)
                 }

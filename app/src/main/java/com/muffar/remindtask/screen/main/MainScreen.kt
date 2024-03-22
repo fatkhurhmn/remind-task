@@ -25,7 +25,7 @@ fun MainScreen(
         bottomBar = {
             MainBottomBar(
                 navController = localNavController,
-                onAddClick = { navController.navigate(Screens.AddTask.route) }
+                onAddClick = { navController.toAddTask() }
             )
         }
     ) {

@@ -5,9 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
+import com.muffar.remindtask.service.TaskNotification
+import com.muffar.remindtask.service.scheduler.TaskScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,6 +22,8 @@ import javax.inject.Inject
 class TasksViewModel @Inject constructor(
     private val taskUseCases: TaskUseCases,
     private val userUseCase: UserUseCase,
+    private val taskScheduler: TaskScheduler,
+    private val notificationManager: TaskNotification,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(TasksState())
@@ -97,11 +102,18 @@ class TasksViewModel @Inject constructor(
         viewModelScope.launch {
             taskUseCases.checkTask(task)
         }
+
+        if (task.status == StatusType.UNCOMPLETED) {
+            taskScheduler.cancelTask(task.id ?: UUID.randomUUID())
+            notificationManager.cancelNotification(task.id.hashCode())
+        }
     }
 
     private fun deleteTask(id: UUID?) {
         viewModelScope.launch {
             taskUseCases.deleteTask(id)
         }
+        taskScheduler.cancelTask(id ?: UUID.randomUUID())
+        notificationManager.cancelNotification(id.hashCode())
     }
 }

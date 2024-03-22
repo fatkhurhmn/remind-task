@@ -1,6 +1,5 @@
 package com.muffar.remindtask.screen.tasks.add
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -9,16 +8,19 @@ import com.muffar.remindtask.domain.model.InvalidTaskException
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
+import com.muffar.remindtask.service.scheduler.TaskScheduler
 import com.muffar.remindtask.utils.Converter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
 class AddTaskViewModel @Inject constructor(
     private val taskUseCases: TaskUseCases,
+    private val taskScheduler: TaskScheduler,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(AddTaskState())
@@ -67,6 +69,7 @@ class AddTaskViewModel @Inject constructor(
     private fun saveTask() {
         viewModelScope.launch {
             try {
+                val id = UUID.randomUUID()
                 val deadline = Converter.combineTimeMillis(
                     state.value.selectedDate,
                     state.value.selectedHour,
@@ -74,7 +77,7 @@ class AddTaskViewModel @Inject constructor(
                 )
 
                 val task = Task(
-                    id = state.value.id,
+                    id = state.value.id ?: id,
                     title = state.value.title,
                     description = state.value.description,
                     deadline = deadline ?: 0,
@@ -82,7 +85,8 @@ class AddTaskViewModel @Inject constructor(
                     status = StatusType.UNCOMPLETED
                 )
                 taskUseCases.addTask(task)
-                _eventFlow.emit(UiEvent.SaveTask)
+                taskScheduler.setTask(task)
+                _eventFlow.emit(UiEvent.SaveTask(task))
             } catch (e: InvalidTaskException) {
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message.toString()))
             }
@@ -90,7 +94,6 @@ class AddTaskViewModel @Inject constructor(
     }
 
     private fun initState(task: Task) {
-        Log.d("TaskRepo VM", "save: id: ${task.id}")
         _state.value = state.value.copy(
             id = task.id,
             title = task.title,
@@ -104,6 +107,6 @@ class AddTaskViewModel @Inject constructor(
 
     sealed class UiEvent {
         data class ShowSnackbar(val message: String) : UiEvent()
-        data object SaveTask : UiEvent()
+        data class SaveTask(val task: Task) : UiEvent()
     }
 }

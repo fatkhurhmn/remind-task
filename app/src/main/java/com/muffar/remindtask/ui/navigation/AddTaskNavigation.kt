@@ -45,7 +45,7 @@ fun NavGraphBuilder.addTaskScreen(
     }
 }
 
-fun NavController.toAddTask(task: Task) {
+fun NavController.toAddTask(task: Task? = null) {
     currentBackStackEntry?.savedStateHandle?.set(Screens.AddTask.TASK, task)
     navigate(route = Screens.AddTask.route)
 }
