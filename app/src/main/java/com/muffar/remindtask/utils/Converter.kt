@@ -12,7 +12,10 @@ object Converter {
         return sdf.format(date)
     }
 
-    fun combineTimeMillis(date:Long, hour:Int, minute:Int): Long {
+    fun combineTimeMillis(date: Long?, hour: Int?, minute: Int?): Long? {
+        if (date == null || hour == null || minute == null) {
+            return null
+        }
         val calendar = Calendar.getInstance().apply {
             timeInMillis = date
             set(Calendar.HOUR_OF_DAY, hour)

@@ -40,7 +40,6 @@ class TasksViewModel @Inject constructor(
 
     fun onEvent(event: TasksEvent) {
         when (event) {
-
             is TasksEvent.OnStatusSelected -> {
                 _state.value = _state.value.copy(status = event.status)
                 filterTasks()
@@ -57,9 +56,7 @@ class TasksViewModel @Inject constructor(
             }
 
             is TasksEvent.OnHeaderTypeChanged -> onHeaderTypeChanged(event.headerType)
-
             is TasksEvent.OnTaskClick -> checkTask(event.task)
-
             is TasksEvent.OnTaskDelete -> deleteTask(event.id)
         }
     }

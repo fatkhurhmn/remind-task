@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.muffar.remindtask.domain.model.InvalidTaskException
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
@@ -64,21 +65,21 @@ class AddTaskViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val deadline = Converter.combineTimeMillis(
-                    state.value.selectedDate!!,
-                    state.value.selectedHour!!,
-                    state.value.selectedMinute!!
+                    state.value.selectedDate,
+                    state.value.selectedHour,
+                    state.value.selectedMinute
                 )
 
                 val task = Task(
                     title = state.value.title,
                     description = state.value.description,
-                    deadline = deadline,
+                    deadline = deadline ?: 0,
                     priority = state.value.priorityType,
                     status = StatusType.UNCOMPLETED
                 )
                 taskUseCases.addTask(task)
                 _eventFlow.emit(UiEvent.SaveTask)
-            } catch (e: Exception) {
+            } catch (e: InvalidTaskException) {
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message.toString()))
             }
         }
