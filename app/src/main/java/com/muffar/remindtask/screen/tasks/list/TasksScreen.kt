@@ -1,6 +1,5 @@
 package com.muffar.remindtask.screen.tasks.list
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -60,9 +59,7 @@ fun TasksScreen(
 
         if (state.tasks.isNotEmpty()) {
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .animateContentSize(),
+                modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(
                     horizontal = MaterialTheme.spacing.medium,
                     vertical = MaterialTheme.spacing.small
