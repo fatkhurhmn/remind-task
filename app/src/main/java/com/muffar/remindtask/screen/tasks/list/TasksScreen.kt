@@ -15,6 +15,7 @@ import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.model.TimeType
+import com.muffar.remindtask.screen.tasks.list.component.DeleteTaskDialog
 import com.muffar.remindtask.screen.tasks.list.component.EmptyTasks
 import com.muffar.remindtask.screen.tasks.list.component.TaskHeader
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
@@ -33,6 +34,7 @@ fun TasksScreen(
     onTaskClick: (Task) -> Unit,
     onTaskCheck: (Task) -> Unit,
     onTaskDelete: (UUID?) -> Unit,
+    onShowDialog: (Boolean, Task?) -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -71,12 +73,19 @@ fun TasksScreen(
                         status = task.status,
                         onClick = { onTaskClick(task) },
                         onCheck = { onTaskCheck(task) },
-                        onDelete = { onTaskDelete(task.id) }
+                        onDelete = { onShowDialog(true, task) }
                     )
                 }
             }
         } else {
             EmptyTasks()
         }
+    }
+
+    if (state.showDialog) {
+        DeleteTaskDialog(
+            onConfirm = { onTaskDelete(state.selectedTask?.id) },
+            onDismissRequest = { onShowDialog(false, null) }
+        )
     }
 }

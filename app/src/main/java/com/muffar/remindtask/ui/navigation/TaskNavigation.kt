@@ -9,7 +9,7 @@ import com.muffar.remindtask.screen.tasks.list.TasksScreen
 import com.muffar.remindtask.screen.tasks.list.TasksViewModel
 
 fun NavGraphBuilder.tasksScreen(
-    toAddTask : (Task) -> Unit
+    toAddTask: (Task) -> Unit,
 ) {
     composable(route = Screens.Tasks.route) {
         val viewModel = hiltViewModel<TasksViewModel>()
@@ -24,7 +24,8 @@ fun NavGraphBuilder.tasksScreen(
             onHeaderTypeChange = { event(TasksEvent.OnHeaderTypeChanged(it)) },
             onTaskClick = { toAddTask(it) },
             onTaskCheck = { event(TasksEvent.OnTaskClick(it)) },
-            onTaskDelete = { event(TasksEvent.OnTaskDelete(it)) }
+            onTaskDelete = { event(TasksEvent.OnTaskDelete(it)) },
+            onShowDialog = { isShow, task -> event(TasksEvent.OnShowDialog(isShow, task)) }
         )
     }
 }

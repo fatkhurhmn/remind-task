@@ -58,6 +58,8 @@ class TasksViewModel @Inject constructor(
             is TasksEvent.OnHeaderTypeChanged -> onHeaderTypeChanged(event.headerType)
             is TasksEvent.OnTaskClick -> checkTask(event.task)
             is TasksEvent.OnTaskDelete -> deleteTask(event.id)
+            is TasksEvent.OnShowDialog -> _state.value =
+                _state.value.copy(showDialog = event.show, selectedTask = event.task)
         }
     }
 

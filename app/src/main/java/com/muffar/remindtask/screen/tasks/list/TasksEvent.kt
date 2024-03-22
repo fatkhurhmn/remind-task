@@ -14,4 +14,5 @@ sealed class TasksEvent {
     data class OnHeaderTypeChanged(val headerType: HeaderType) : TasksEvent()
     data class OnTaskClick(val task: Task) : TasksEvent()
     data class OnTaskDelete(val id: UUID?) : TasksEvent()
+    data class OnShowDialog(val show: Boolean, val task: Task? = null) : TasksEvent()
 }

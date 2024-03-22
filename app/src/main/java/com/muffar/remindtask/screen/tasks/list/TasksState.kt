@@ -12,4 +12,6 @@ data class TasksState(
     val selectedDate: LocalDate = LocalDate.now(),
     val selectedTime: TimeType = TimeType.TODAY,
     val headerType: HeaderType = HeaderType.CALENDAR,
+    val showDialog : Boolean = false,
+    val selectedTask: Task? = null
 )
