@@ -15,13 +15,13 @@ import androidx.core.view.WindowCompat
 import com.muffar.remindtask.ui.theme.color.MainColor
 
 private val DarkColorScheme = darkColorScheme(
-    primary = MainColor.Blue.primary,
+    primary = MainColor.Blue.dark,
     onPrimary = MainColor.White,
     primaryContainer = MainColor.Blue.light,
     onPrimaryContainer = MainColor.White,
-    inversePrimary = MainColor.Blue.dark,
+    inversePrimary = MainColor.Blue.primary,
 
-    secondary = MainColor.Yellow.primary,
+    secondary = MainColor.Yellow.kindaDark,
     onSecondary = MainColor.White,
     secondaryContainer = MainColor.Yellow.light,
     onSecondaryContainer = MainColor.White,
@@ -52,13 +52,13 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = MainColor.Blue.primary,
+    primary = MainColor.Blue.dark,
     onPrimary = MainColor.White,
     primaryContainer = MainColor.Blue.light,
     onPrimaryContainer = MainColor.White,
-    inversePrimary = MainColor.Blue.dark,
+    inversePrimary = MainColor.Blue.primary,
 
-    secondary = MainColor.Yellow.primary,
+    secondary = MainColor.Yellow.kindaDark,
     onSecondary = MainColor.White,
     secondaryContainer = MainColor.Yellow.light,
     onSecondaryContainer = MainColor.White,

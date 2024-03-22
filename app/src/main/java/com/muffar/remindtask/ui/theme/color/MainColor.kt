@@ -58,7 +58,7 @@ object MainColor {
         primary = Color(0xFF2196F3),
         kindaDark = Color(0xFF1976D2),
         dark = Color(0xFF1565C0),
-        extraDark = Color(0xFF0D47A1)
+        extraDark = Color(0xFF003566)
     )
 
     val Green = ColorShades(
@@ -76,7 +76,7 @@ object MainColor {
         light = Color(0xFFFFF59D),
         kindaLight = Color(0xFFFFF176),
         primary = Color(0xFFFFEB3B),
-        kindaDark = Color(0xFFFBC02D),
+        kindaDark = Color(0xFFFFC300),
         dark = Color(0xFFF9A825),
         extraDark = Color(0xFFF57F17)
     )
