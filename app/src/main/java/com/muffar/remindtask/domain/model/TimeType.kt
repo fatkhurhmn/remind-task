@@ -1,33 +1,33 @@
 package com.muffar.remindtask.domain.model
 
 enum class TimeType {
-    PAST,
+    EXPIRED,
     TODAY,
-    SOON,
+    UPCOMING,
     ALL;
 
     companion object {
         fun TimeType.toValue(): String {
             return when (this) {
-                PAST -> "Past"
+                EXPIRED -> "Expired"
                 TODAY -> "Today"
-                SOON -> "Soon"
+                UPCOMING -> "Upcoming"
                 ALL -> "All"
             }
         }
 
         fun String.toTimeType(): TimeType {
             return when (this) {
-                "Past" -> PAST
+                "Expired" -> EXPIRED
                 "Today" -> TODAY
-                "Soon" -> SOON
+                "Upcoming" -> UPCOMING
                 "All" -> ALL
                 else -> TODAY
             }
         }
 
         fun getAllTimeTypes(): List<TimeType> {
-            return listOf(PAST, TODAY, SOON, ALL)
+            return listOf(EXPIRED, TODAY, UPCOMING, ALL)
         }
     }
 }

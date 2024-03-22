@@ -56,8 +56,8 @@ class GetTasks(
 
         return when (selectedTime) {
             TimeType.TODAY -> inputDate == currentDate
-            TimeType.PAST -> inputDate < currentDate
-            TimeType.SOON -> inputDate.isAfter(currentDate)
+            TimeType.EXPIRED -> inputDate < currentDate
+            TimeType.UPCOMING -> inputDate.isAfter(currentDate)
             TimeType.ALL -> true
         }
     }
