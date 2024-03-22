@@ -26,60 +26,50 @@ class GetTasks(
         timeType: TimeType,
         searchQuery: String,
     ): List<Task> {
-        val filteredTasks = arrayListOf<Task>()
-        if (headerType == HeaderType.CALENDAR) {
-            filteredTasks.addAll(filterTasksByDate(tasks, selectedDate))
-        } else {
-            filteredTasks.addAll(filterTasksByTime(tasks, timeType))
-        }
-        return filterTasksByStatus(filteredTasks, status).filter {
-            it.title.contains(searchQuery, ignoreCase = true)
+        return tasks.filter {
+            if (headerType == HeaderType.CALENDAR) {
+                filterTasksByDate(it, selectedDate)
+            } else {
+                filterTasksByTime(it, timeType)
+            }
+        }.filter {
+            filterTasksByStatus(it, status)
+        }.filter {
+            filterTasksByQuery(it, searchQuery)
         }
     }
 
-    private fun filterTasksByDate(tasks: List<Task>, selectedDate: LocalDate): List<Task> {
-        val filteredTasks = tasks.filter {
-            val instant = Instant.ofEpochMilli(it.deadline)
-            val zoneId = ZoneId.systemDefault()
-            val localDate = instant.atZone(zoneId).toLocalDate()
-            localDate == selectedDate
-        }
-        return filteredTasks
+    private fun filterTasksByDate(task: Task, selectedDate: LocalDate): Boolean {
+        val instant = Instant.ofEpochMilli(task.deadline)
+        val zoneId = ZoneId.systemDefault()
+        val localDate = instant.atZone(zoneId).toLocalDate()
+        return localDate == selectedDate
     }
 
-    private fun filterTasksByTime(tasks: List<Task>, selectedTime: TimeType): List<Task> {
+    private fun filterTasksByTime(task: Task, selectedTime: TimeType): Boolean {
         val currentTimeMillis = System.currentTimeMillis()
         val currentDate =
             Instant.ofEpochMilli(currentTimeMillis).atZone(ZoneId.systemDefault()).toLocalDate()
 
-        val filteredTasks = tasks.filter {
-            val inputDate =
-                Instant.ofEpochMilli(it.deadline).atZone(ZoneId.systemDefault()).toLocalDate()
+        val inputDate =
+            Instant.ofEpochMilli(task.deadline).atZone(ZoneId.systemDefault()).toLocalDate()
 
-            when (selectedTime) {
-                TimeType.TODAY -> inputDate == currentDate
-                TimeType.PAST -> inputDate < currentDate
-                TimeType.SOON -> inputDate.isAfter(currentDate)
-                TimeType.ALL -> true
-            }
+        return when (selectedTime) {
+            TimeType.TODAY -> inputDate == currentDate
+            TimeType.PAST -> inputDate < currentDate
+            TimeType.SOON -> inputDate.isAfter(currentDate)
+            TimeType.ALL -> true
         }
-        return filteredTasks
     }
 
-    private fun filterTasksByStatus(tasks: List<Task>, status: StatusType?): List<Task> {
-        val filteredTasks = tasks.filter {
-            when (status) {
-                null -> true
-                else -> it.status == status
-            }
+    private fun filterTasksByStatus(task: Task, status: StatusType?): Boolean {
+        return when (status) {
+            null -> true
+            else -> task.status == status
         }
-        return filteredTasks
     }
 
-    private fun filterTasksBySearch(tasks: List<Task>, searchQuery: String): List<Task> {
-        val filteredTasks = tasks.filter {
-            it.title.contains(searchQuery, ignoreCase = true)
-        }
-        return filteredTasks
+    private fun filterTasksByQuery(task: Task, searchQuery: String): Boolean {
+        return task.title.contains(searchQuery, ignoreCase = true)
     }
 }
