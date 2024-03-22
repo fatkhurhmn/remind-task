@@ -1,6 +1,7 @@
 package com.muffar.remindtask.screen.tasks.add
 
 import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.Task
 
 sealed class AddTaskEvent {
     data class OnTitleChange(val title: String) : AddTaskEvent()
@@ -11,4 +12,5 @@ sealed class AddTaskEvent {
     data class OnTimeSelected(val hour: Int, val minute: Int) : AddTaskEvent()
     data class OnPrioritySelect(val priority: PriorityType) : AddTaskEvent()
     data object OnSaveClick : AddTaskEvent()
+    data class OnInitState(val task: Task) : AddTaskEvent()
 }

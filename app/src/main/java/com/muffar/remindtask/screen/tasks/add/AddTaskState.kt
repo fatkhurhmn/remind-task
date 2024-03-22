@@ -1,8 +1,10 @@
 package com.muffar.remindtask.screen.tasks.add
 
 import com.muffar.remindtask.domain.model.PriorityType
+import java.util.UUID
 
 data class AddTaskState(
+    val id : UUID? = null,
     val title: String = "",
     val description : String = "",
     val isDatePickerOpen: Boolean = false,

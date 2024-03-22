@@ -1,5 +1,6 @@
 package com.muffar.remindtask.screen.tasks.add
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -58,6 +59,8 @@ class AddTaskViewModel @Inject constructor(
             }
 
             is AddTaskEvent.OnSaveClick -> saveTask()
+
+            is AddTaskEvent.OnInitState -> initState(event.task)
         }
     }
 
@@ -71,6 +74,7 @@ class AddTaskViewModel @Inject constructor(
                 )
 
                 val task = Task(
+                    id = state.value.id,
                     title = state.value.title,
                     description = state.value.description,
                     deadline = deadline ?: 0,
@@ -83,6 +87,19 @@ class AddTaskViewModel @Inject constructor(
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message.toString()))
             }
         }
+    }
+
+    private fun initState(task: Task) {
+        Log.d("TaskRepo VM", "save: id: ${task.id}")
+        _state.value = state.value.copy(
+            id = task.id,
+            title = task.title,
+            description = task.description ?: "",
+            selectedDate = task.deadline,
+            selectedHour = Converter.formattedDate(task.deadline, "HH").toInt(),
+            selectedMinute = Converter.formattedDate(task.deadline, "mm").toInt(),
+            priorityType = task.priority
+        )
     }
 
     sealed class UiEvent {

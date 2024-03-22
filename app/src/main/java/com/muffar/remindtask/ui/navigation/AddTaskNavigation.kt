@@ -1,13 +1,17 @@
 package com.muffar.remindtask.ui.navigation
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.screen.tasks.add.AddTaskEvent
 import com.muffar.remindtask.screen.tasks.add.AddTaskScreen
 import com.muffar.remindtask.screen.tasks.add.AddTaskViewModel
 
 fun NavGraphBuilder.addTaskScreen(
+    navController: NavController,
     onNavigationBack: () -> Unit,
 ) {
     composable(route = Screens.AddTask.route) {
@@ -15,6 +19,15 @@ fun NavGraphBuilder.addTaskScreen(
         val state = viewModel.state.value
         val event = viewModel::onEvent
         val eventFlow = viewModel.eventFlow
+
+        val task =
+            navController.previousBackStackEntry?.savedStateHandle?.get<Task>(Screens.AddTask.TASK)
+
+        LaunchedEffect(task) {
+            if (task != null) {
+                event(AddTaskEvent.OnInitState(task))
+            }
+        }
 
         AddTaskScreen(
             state = state,
@@ -30,4 +43,9 @@ fun NavGraphBuilder.addTaskScreen(
             onNavigationBack = { onNavigationBack() }
         )
     }
+}
+
+fun NavController.toAddTask(task: Task) {
+    currentBackStackEntry?.savedStateHandle?.set(Screens.AddTask.TASK, task)
+    navigate(route = Screens.AddTask.route)
 }

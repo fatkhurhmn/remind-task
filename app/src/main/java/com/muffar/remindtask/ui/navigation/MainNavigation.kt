@@ -13,6 +13,7 @@ fun MainNavigation(
     NavHost(navController = navController, startDestination = Screens.Main.route) {
         composable(Screens.Main.route) { MainScreen(navController = navController) }
         addTaskScreen(
+            navController = navController,
             onNavigationBack = { navController.navigateUp() }
         )
     }

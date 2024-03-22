@@ -16,13 +16,24 @@ object TaskMapper {
     }
 
     fun Task.toEntity(): TaskEntity {
-        return TaskEntity(
-            title = title,
-            description = description,
-            deadline = deadline,
-            priority = priority,
-            status = status
-        )
+        return if (this.id == null) {
+            TaskEntity(
+                title = title,
+                description = description,
+                deadline = deadline,
+                priority = priority,
+                status = status
+            )
+        } else {
+            TaskEntity(
+                id = this.id,
+                title = title,
+                description = description,
+                deadline = deadline,
+                priority = priority,
+                status = status
+            )
+        }
     }
 
     fun List<TaskEntity>.toDomain(): List<Task> {
