@@ -55,9 +55,9 @@ class TasksViewModel @Inject constructor(
                 filterTasks()
             }
 
-            is TasksEvent.OnHeaderTypeChanged -> {
-                onHeaderTypeChanged(event.headerType)
-            }
+            is TasksEvent.OnHeaderTypeChanged -> onHeaderTypeChanged(event.headerType)
+
+            is TasksEvent.OnTaskClick -> checkTask(event.task)
         }
     }
 
@@ -79,6 +79,12 @@ class TasksViewModel @Inject constructor(
             userUseCase.saveHeaderType(type)
             _state.value = _state.value.copy(headerType = type)
             filterTasks()
+        }
+    }
+
+    private fun checkTask(task: Task) {
+        viewModelScope.launch {
+            taskUseCases.checkTask(task)
         }
     }
 }

@@ -9,4 +9,5 @@ interface TaskRepository {
     suspend fun save(task: Task)
     suspend fun deleteById(id: UUID)
     suspend fun getById(id: UUID): Task?
+    suspend fun checkTask(task: Task)
 }

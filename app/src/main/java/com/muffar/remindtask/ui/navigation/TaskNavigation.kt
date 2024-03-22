@@ -19,7 +19,8 @@ fun NavGraphBuilder.tasksScreen() {
             onTimeSelected = { event(TasksEvent.OnTimeSelected(it)) },
             onDateSelected = { event(TasksEvent.OnDateSelected(it)) },
             onHeaderTypeChange = { event(TasksEvent.OnHeaderTypeChanged(it)) },
-            onTaskClick = {}
+            onTaskClick = {},
+            onTaskCheck = { event(TasksEvent.OnTaskClick(it)) }
         )
     }
 }

@@ -13,7 +13,6 @@ object Converter {
     }
 
     fun combineTimeMillis(date:Long, hour:Int, minute:Int): Long {
-        val mDate = Date(date)
         val calendar = Calendar.getInstance().apply {
             timeInMillis = date
             set(Calendar.HOUR_OF_DAY, hour)

@@ -29,6 +29,7 @@ fun TasksScreen(
     onDateSelected: (LocalDate) -> Unit,
     onHeaderTypeChange: (HeaderType) -> Unit,
     onTaskClick: (Task) -> Unit,
+    onTaskCheck: (Task) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -63,7 +64,8 @@ fun TasksScreen(
                         deadline = task.deadline,
                         priority = task.priority,
                         status = task.status,
-                        onClick = { onTaskClick(task) }
+                        onClick = { onTaskClick(task) },
+                        onCheck = { onTaskCheck(task) }
                     )
                 }
             }

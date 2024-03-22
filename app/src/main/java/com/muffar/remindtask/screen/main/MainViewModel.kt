@@ -52,7 +52,7 @@ class MainViewModel @Inject constructor(
                     priority = PriorityType.entries.toTypedArray().random(),
                     status = StatusType.entries.toTypedArray().random()
                 )
-//                tasksUseCase.saveTask(task)
+//                taskUseCases.addTask(task)
             }
         }
     }

@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +32,7 @@ import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.domain.model.PriorityType.Companion.toColor
 import com.muffar.remindtask.domain.model.StatusType
+import com.muffar.remindtask.ui.theme.color.MainColor
 import com.muffar.remindtask.ui.theme.spacing
 import com.muffar.remindtask.utils.Converter
 
@@ -40,6 +44,7 @@ fun TaskItem(
     priority: PriorityType,
     status: StatusType,
     onClick: () -> Unit,
+    onCheck: () -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -65,59 +70,77 @@ fun TaskItem(
                     .background(priority.toColor())
             )
         }
-        Column(
+        Row(
             modifier = Modifier
                 .clip(MaterialTheme.shapes.small)
                 .fillMaxWidth()
                 .padding(
                     horizontal = MaterialTheme.spacing.medium,
                     vertical = MaterialTheme.spacing.small
-                )
-        ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = 18.sp,
-                    textDecoration = if (status == StatusType.COMPLETED) TextDecoration.LineThrough else TextDecoration.None
                 ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-            Row {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
-                ) {
-                    FaIcon(
-                        faIcon = FaIcons.CalendarRegular,
-                        size = 16.dp,
-                        tint = MaterialTheme.colorScheme.outline
-                    )
-                    Text(
-                        text = Converter.formattedDate(deadline, "dd MMM yyyy"),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.outline
-                    )
-                }
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontSize = 18.sp,
+                        textDecoration = if (status == StatusType.COMPLETED) TextDecoration.LineThrough else TextDecoration.None
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+                Row {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
+                    ) {
+                        FaIcon(
+                            faIcon = FaIcons.CalendarRegular,
+                            size = 16.dp,
+                            tint = MaterialTheme.colorScheme.outline
+                        )
+                        Text(
+                            text = Converter.formattedDate(deadline, "dd MMM yyyy"),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    }
 
-                Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
+                    Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
-                ) {
-                    FaIcon(
-                        faIcon = FaIcons.ClockRegular,
-                        size = 16.dp,
-                        tint = MaterialTheme.colorScheme.outline
-                    )
-                    Text(
-                        text = Converter.formattedDate(deadline, "hh:mm a"),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.outline
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
+                    ) {
+                        FaIcon(
+                            faIcon = FaIcons.ClockRegular,
+                            size = 16.dp,
+                            tint = MaterialTheme.colorScheme.outline
+                        )
+                        Text(
+                            text = Converter.formattedDate(deadline, "hh:mm a"),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    }
                 }
+            }
+
+            IconButton(
+                onClick = { onCheck() },
+                colors = IconButtonDefaults.iconButtonColors(
+                    containerColor = if (status == StatusType.COMPLETED) MainColor.Green.primary else MainColor.LightGray
+                ),
+                modifier = Modifier.size(22.dp)
+            ) {
+                FaIcon(
+                    faIcon = FaIcons.Check,
+                    tint = MaterialTheme.colorScheme.onPrimary,
+                    size = 16.dp
+                )
             }
         }
     }
