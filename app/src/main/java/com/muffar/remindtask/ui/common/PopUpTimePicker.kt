@@ -5,15 +5,23 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import com.muffar.remindtask.R
+import java.util.Calendar
 
 @Composable
 fun PopUpTimePicker(
     onDismiss: () -> Unit,
     onConfirm: (hour: Int, minute: Int) -> Unit,
 ) {
-    val state = rememberTimePickerState()
+    val calendar = remember { Calendar.getInstance() }
+
+    val state = rememberTimePickerState(
+        initialHour = calendar.get(Calendar.HOUR_OF_DAY),
+        initialMinute = calendar.get(Calendar.MINUTE),
+    )
+
     TimePickerDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
