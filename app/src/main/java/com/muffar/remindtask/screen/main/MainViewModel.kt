@@ -8,6 +8,7 @@ import com.muffar.remindtask.domain.usecase.TaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
@@ -15,30 +16,42 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
     fun init() {
         viewModelScope.launch {
-            val taskList = listOf(
-                Task(
-                    title = "Mengerjakan Tugas Akhir",
-                    description = "Menyelesaikan implementasi fitur-fitur utama aplikasi",
-                    deadline = System.currentTimeMillis(),
-                    priority = PriorityType.HIGH
-                ),
-                Task(
-                    title = "Belanja Bulanan",
-                    description = "Membeli keperluan makanan dan barang-barang rumah tangga",
-                    deadline = System.currentTimeMillis(),
-                    priority = PriorityType.LOW
-                ),
-                Task(
-                    title = "Janjian dengan Klien",
-                    description = "Bertemu dengan klien untuk presentasi proyek",
-                    deadline = System.currentTimeMillis(),
-                    priority = PriorityType.MEDIUM,
-                )
+            val titles = listOf(
+                "Mengerjakan Tugas Akhir",
+                "Belanja Bulanan",
+                "Janjian dengan Klien",
+                "Mengurus Surat-surat",
+                "Berolahraga",
+                "Membaca Buku",
+                "Menonton Film",
+                "Mengikuti Workshop",
+                "Berkebun",
+                "Mendengarkan Musik"
             )
 
-//            taskList.forEach {
-//                taskUseCase.saveTask(it)
-//            }
+            val descriptions = listOf(
+                "Menyelesaikan implementasi fitur-fitur utama aplikasi",
+                "Membeli keperluan makanan dan barang-barang rumah tangga",
+                "Bertemu dengan klien untuk presentasi proyek",
+                "Mengurus berkas administrasi",
+                "Melakukan latihan fisik rutin",
+                "Membaca buku tentang sejarah",
+                "Menonton film komedi terbaru",
+                "Mengikuti workshop pemrograman",
+                "Merawat tanaman-tanaman di kebun",
+                "Mendengarkan musik klasik"
+            )
+
+
+            for (i in titles.indices) {
+                val task = Task(
+                    title = titles[i],
+                    description = descriptions[i],
+                    deadline = System.currentTimeMillis() + Random.nextLong(86400000 * 7),
+                    priority = PriorityType.entries.toTypedArray().random()
+                )
+//                taskUseCase.saveTask(task)
+            }
         }
     }
 }

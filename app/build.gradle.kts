@@ -80,6 +80,9 @@ dependencies {
     //hilt navigation compose
     implementation(libs.hilt.navigation.compose)
 
+    //calendar
+    implementation(libs.calendar)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -24,6 +24,6 @@ abstract class RemindTaskDatabase : RoomDatabase() {
                 .build()
         }
 
-        const val DATABASE_NAME = "remind_task.db"
+        private const val DATABASE_NAME = "remind_task.db"
     }
 }

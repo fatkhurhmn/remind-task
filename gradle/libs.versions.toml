@@ -12,7 +12,8 @@ awesome-compose = "1.0.0"
 compose-navigation = "2.5.3"
 room = "2.6.1"
 dagger-hilt = "2.50"
-hilt-nav-compose = "1.0.0"
+hilt-nav-compose = "1.2.0"
+calendar = "2.4.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -37,6 +38,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger-hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-nav-compose" }
+calendar = { group = "com.kizitonwose.calendar", name = "compose", version.ref = "calendar" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
