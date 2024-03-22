@@ -35,19 +35,25 @@ fun TasksScreen(
     onTaskCheck: (Task) -> Unit,
     onTaskDelete: (UUID?) -> Unit,
     onShowDialog: (Boolean, Task?) -> Unit,
+    onShowSearchBar: (Boolean) -> Unit,
+    onQueryChange: (String) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
         TaskHeader(
             status = state.status,
+            showSearchBar = state.showSearchBar,
+            searchQuery = state.searchQuery,
             headerType = state.headerType,
             selectedDate = state.selectedDate,
             selectedTime = state.selectedTime,
             onStatusSelected = { onStatusSelected(it) },
             onSelectedDay = { onDateSelected(it) },
             onSelectedTime = { onTimeSelected(it) },
-            onHeaderTypeChange = { onHeaderTypeChange(it) }
+            onHeaderTypeChange = { onHeaderTypeChange(it) },
+            onShowSearchBar = { onShowSearchBar(it) },
+            onQueryChange = { onQueryChange(it) }
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))

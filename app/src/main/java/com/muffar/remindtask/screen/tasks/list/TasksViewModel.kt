@@ -60,6 +60,14 @@ class TasksViewModel @Inject constructor(
             is TasksEvent.OnTaskDelete -> deleteTask(event.id)
             is TasksEvent.OnShowDialog -> _state.value =
                 _state.value.copy(showDialog = event.show, selectedTask = event.task)
+
+            is TasksEvent.OnShowSearchBar -> _state.value =
+                _state.value.copy(showSearchBar = event.show)
+
+            is TasksEvent.OnQueryChange -> {
+                _state.value = _state.value.copy(searchQuery = event.query)
+                filterTasks()
+            }
         }
     }
 
@@ -69,7 +77,8 @@ class TasksViewModel @Inject constructor(
             headerType = _state.value.headerType,
             selectedDate = _state.value.selectedDate,
             status = _state.value.status,
-            timeType = _state.value.selectedTime
+            timeType = _state.value.selectedTime,
+            searchQuery = _state.value.searchQuery
         )
         _state.value = _state.value.copy(tasks = filteredTasks)
     }

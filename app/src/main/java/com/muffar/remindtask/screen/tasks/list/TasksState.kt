@@ -13,5 +13,7 @@ data class TasksState(
     val selectedTime: TimeType = TimeType.TODAY,
     val headerType: HeaderType = HeaderType.CALENDAR,
     val showDialog : Boolean = false,
-    val selectedTask: Task? = null
+    val selectedTask: Task? = null,
+    val showSearchBar : Boolean = false,
+    val searchQuery : String = ""
 )

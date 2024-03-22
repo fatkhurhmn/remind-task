@@ -24,6 +24,7 @@ class GetTasks(
         selectedDate: LocalDate,
         status: StatusType?,
         timeType: TimeType,
+        searchQuery: String,
     ): List<Task> {
         val filteredTasks = arrayListOf<Task>()
         if (headerType == HeaderType.CALENDAR) {
@@ -31,7 +32,9 @@ class GetTasks(
         } else {
             filteredTasks.addAll(filterTasksByTime(tasks, timeType))
         }
-        return filterTasksByStatus(filteredTasks, status)
+        return filterTasksByStatus(filteredTasks, status).filter {
+            it.title.contains(searchQuery, ignoreCase = true)
+        }
     }
 
     private fun filterTasksByDate(tasks: List<Task>, selectedDate: LocalDate): List<Task> {
@@ -69,6 +72,13 @@ class GetTasks(
                 null -> true
                 else -> it.status == status
             }
+        }
+        return filteredTasks
+    }
+
+    private fun filterTasksBySearch(tasks: List<Task>, searchQuery: String): List<Task> {
+        val filteredTasks = tasks.filter {
+            it.title.contains(searchQuery, ignoreCase = true)
         }
         return filteredTasks
     }

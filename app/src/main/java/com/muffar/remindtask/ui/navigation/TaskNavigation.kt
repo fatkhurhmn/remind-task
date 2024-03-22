@@ -25,7 +25,9 @@ fun NavGraphBuilder.tasksScreen(
             onTaskClick = { toAddTask(it) },
             onTaskCheck = { event(TasksEvent.OnTaskClick(it)) },
             onTaskDelete = { event(TasksEvent.OnTaskDelete(it)) },
-            onShowDialog = { isShow, task -> event(TasksEvent.OnShowDialog(isShow, task)) }
+            onShowDialog = { isShow, task -> event(TasksEvent.OnShowDialog(isShow, task)) },
+            onShowSearchBar = { event(TasksEvent.OnShowSearchBar(it)) },
+            onQueryChange = { event(TasksEvent.OnQueryChange(it)) }
         )
     }
 }
