@@ -14,10 +14,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -33,8 +29,7 @@ fun TaskPriorityButton(
     cornerRadius: Int = 24,
     onItemSelection: (PriorityType) -> Unit,
 ) {
-    var selectedItem by remember { mutableIntStateOf(selected.ordinal) }
-    var itemIndex by remember { mutableIntStateOf(selected.ordinal) }
+    var selectedItem = selected.ordinal
 
     Card(
         modifier = Modifier
@@ -52,7 +47,6 @@ fun TaskPriorityButton(
             horizontalArrangement = Arrangement.Center
         ) {
             items.forEachIndexed { index, item ->
-                itemIndex = index
                 val containerButton = if (selectedItem == index) {
                     MaterialTheme.colorScheme.background
                 } else {
