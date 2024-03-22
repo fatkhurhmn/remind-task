@@ -90,7 +90,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun RemindTaskTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = false,
     content: @Composable () -> Unit,
 ) {
 

@@ -1,4 +1,4 @@
-package com.muffar.remindtask.screen.main
+package com.muffar.remindtask.screen.main.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable

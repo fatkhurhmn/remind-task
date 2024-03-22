@@ -1,7 +1,7 @@
-package com.muffar.remindtask.screen.main
+package com.muffar.remindtask.screen.main.component
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -82,16 +81,21 @@ fun MainBottomBar(
                     .weight(0.3f)
             )
 
-            Box(modifier = Modifier
-                .clip(MaterialTheme.shapes.large)
-                .clickable { }
-                .background(animateColor.value)
-                .size(48.dp),
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .border(
+                        width = 1.dp,
+                        color = animateColor.value,
+                        shape = MaterialTheme.shapes.medium
+                    )
+                    .clip(MaterialTheme.shapes.medium)
+                    .clickable { },
                 contentAlignment = Alignment.Center
             ) {
                 FaIcon(
                     faIcon = FaIcons.Plus,
-                    tint = MaterialTheme.colorScheme.background,
+                    tint = animateColor.value,
                     size = 20.dp
                 )
             }

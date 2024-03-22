@@ -6,9 +6,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.muffar.remindtask.screen.main.component.MainBottomBar
+import com.muffar.remindtask.screen.main.component.MainTopBar
+import com.muffar.remindtask.screen.tasks.list.TasksScreen
 import com.muffar.remindtask.ui.navigation.Screens
 
 @Composable
@@ -17,11 +21,12 @@ fun MainScreen(
 ) {
     val localNavController = rememberNavController()
     Scaffold(
+        topBar = { MainTopBar(modifier = Modifier.padding(16.dp)) },
         bottomBar = { MainBottomBar(navController = localNavController) }
     ) {
         Box(modifier = modifier.padding(it)) {
             NavHost(navController = localNavController, startDestination = Screens.Tasks.route) {
-                composable(Screens.Tasks.route) { Text(text = "Task") }
+                composable(Screens.Tasks.route) { TasksScreen() }
                 composable(Screens.Notes.route) { Text(text = "Notes") }
             }
         }
