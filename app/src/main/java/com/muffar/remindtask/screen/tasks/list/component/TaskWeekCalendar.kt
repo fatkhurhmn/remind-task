@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -14,7 +15,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,6 +26,7 @@ import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.yearMonth
 import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.TimeType
+import com.muffar.remindtask.ui.theme.spacing
 import com.muffar.remindtask.utils.CalendarUtils.displayText
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -83,10 +84,10 @@ fun TaskWeekCalendar(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(60.dp),
-            contentAlignment = Alignment.Center
         ) {
             if (headerType == HeaderType.CHIPS) {
                 TimeRadioButton(
+                    modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
                     selectedOption = selectedTime,
                     onOptionSelected = { onSelectedTime(it) }
                 )

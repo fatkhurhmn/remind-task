@@ -60,8 +60,15 @@ class TasksViewModel @Inject constructor(
                 viewModelScope.launch {
                     val headerType =
                         if (event.headerType == HeaderType.CALENDAR) HeaderType.CHIPS else HeaderType.CALENDAR
-                    _state.value = _state.value.copy(headerType = headerType)
                     userUseCase.saveHeaderType(headerType)
+
+                    _state.value = _state.value.copy(headerType = headerType)
+
+                    if (headerType == HeaderType.CALENDAR) {
+                        filterTasksByDate(state.value.selectedDate)
+                    } else {
+                        filterTasksByTime(state.value.selectedTime)
+                    }
                 }
             }
         }
@@ -79,10 +86,12 @@ class TasksViewModel @Inject constructor(
 
     private fun filterTasksByTime(timeType: TimeType) {
         val currentTimeMillis = System.currentTimeMillis()
-        val currentDate = Instant.ofEpochMilli(currentTimeMillis).atZone(ZoneId.systemDefault()).toLocalDate()
+        val currentDate =
+            Instant.ofEpochMilli(currentTimeMillis).atZone(ZoneId.systemDefault()).toLocalDate()
 
         val filteredTasks = tasks.filter {
-            val inputDate = Instant.ofEpochMilli(it.deadline).atZone(ZoneId.systemDefault()).toLocalDate()
+            val inputDate =
+                Instant.ofEpochMilli(it.deadline).atZone(ZoneId.systemDefault()).toLocalDate()
 
             when (timeType) {
                 TimeType.TODAY -> inputDate == currentDate
