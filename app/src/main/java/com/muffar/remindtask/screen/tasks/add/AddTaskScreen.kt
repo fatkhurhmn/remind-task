@@ -10,31 +10,38 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskForm
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskTopBar
 import com.muffar.remindtask.ui.common.PopUpDatePicker
 import com.muffar.remindtask.ui.common.PopUpTimePicker
 import com.muffar.remindtask.ui.theme.spacing
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun AddTaskScreen(
     modifier: Modifier = Modifier,
-    navController: NavController,
-    viewModel: AddTaskViewModel = hiltViewModel(),
+    state: AddTaskState,
+    eventFlow : SharedFlow<AddTaskViewModel.UiEvent>,
+    onSaveClick: () -> Unit,
+    onTitleChange: (String) -> Unit,
+    onDescriptionChange: (String) -> Unit,
+    onDatePickerClick: (Boolean) -> Unit,
+    onTimePickerClick: (Boolean) -> Unit,
+    onDateSelected: (Long?) -> Unit,
+    onTimeSelected: (hour: Int, minute: Int) -> Unit,
+    onPrioritySelected: (PriorityType) -> Unit,
+    onNavigationBack: () -> Unit,
 ) {
-    val state by viewModel.state
     val snackbarHost = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
-        viewModel.eventFlow.collectLatest {
+        eventFlow.collectLatest {
             when (it) {
-                is AddTaskViewModel.UiEvent.SaveTask -> navController.navigateUp()
+                is AddTaskViewModel.UiEvent.SaveTask -> onNavigationBack()
                 is AddTaskViewModel.UiEvent.ShowSnackbar -> {
                     snackbarHost.showSnackbar(message = it.message)
                 }
@@ -47,8 +54,8 @@ fun AddTaskScreen(
         snackbarHost = { SnackbarHost(hostState = snackbarHost) },
         topBar = {
             AddTaskTopBar(
-                onCloseClick = { navController.navigateUp() },
-                onSaveClick = { viewModel.onEvent(AddTaskEvent.OnSaveClick) }
+                onCloseClick = { onNavigationBack() },
+                onSaveClick = { onSaveClick() }
             )
         }
     ) {
@@ -65,34 +72,26 @@ fun AddTaskScreen(
                 selectedHour = state.selectedHour,
                 selectedMinute = state.selectedMinute,
                 priorityType = state.priorityType,
-                onTitleChange = { value -> viewModel.onEvent(AddTaskEvent.OnTitleChange(value)) },
-                onDescriptionChange = { value ->
-                    viewModel.onEvent(
-                        AddTaskEvent.OnDescriptionChange(
-                            value
-                        )
-                    )
-                },
-                onDatePickerOpen = { viewModel.onEvent(AddTaskEvent.OnDatePickerClick(!state.isDatePickerOpen)) },
-                onTimePickerOpen = { viewModel.onEvent(AddTaskEvent.OnTimePickerClick(!state.isTimePickerOpen)) },
-                onPrioritySelect = { value -> viewModel.onEvent(AddTaskEvent.OnPrioritySelect(value)) }
+                onTitleChange = { value -> onTitleChange(value) },
+                onDescriptionChange = { value -> onDescriptionChange(value) },
+                onDatePickerOpen = { onDatePickerClick(!state.isDatePickerOpen) },
+                onTimePickerOpen = { onTimePickerClick(!state.isTimePickerOpen) },
+                onPrioritySelect = { value -> onPrioritySelected(value) }
             )
         }
 
         if (state.isDatePickerOpen) {
             PopUpDatePicker(
-                onDismiss = { viewModel.onEvent(AddTaskEvent.OnDatePickerClick(false)) },
-                onConfirm = { result ->
-                    viewModel.onEvent(AddTaskEvent.OnDateSelected(result))
-                }
+                onDismiss = { onDatePickerClick(false) },
+                onConfirm = { result -> onDateSelected(result) }
             )
         }
 
         if (state.isTimePickerOpen) {
             PopUpTimePicker(
-                onDismiss = { viewModel.onEvent(AddTaskEvent.OnTimePickerClick(false)) },
+                onDismiss = { onTimePickerClick(false) },
                 onConfirm = { hour, minute ->
-                    viewModel.onEvent(AddTaskEvent.OnTimeSelected(hour, minute))
+                    onTimeSelected(hour, minute)
                 }
             )
         }
