@@ -12,14 +12,18 @@ import java.util.Calendar
 
 @Composable
 fun PopUpTimePicker(
+    hour: Int?,
+    minute: Int?,
     onDismiss: () -> Unit,
     onConfirm: (hour: Int, minute: Int) -> Unit,
 ) {
     val calendar = remember { Calendar.getInstance() }
+    val currentSelectedHour = hour ?: calendar.get(Calendar.HOUR_OF_DAY)
+    val currentSelectedMinute = minute ?: calendar.get(Calendar.MINUTE)
 
     val state = rememberTimePickerState(
-        initialHour = calendar.get(Calendar.HOUR_OF_DAY),
-        initialMinute = calendar.get(Calendar.MINUTE),
+        initialHour = currentSelectedHour,
+        initialMinute = currentSelectedMinute,
     )
 
     TimePickerDialog(

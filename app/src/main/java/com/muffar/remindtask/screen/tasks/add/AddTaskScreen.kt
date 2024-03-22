@@ -82,6 +82,7 @@ fun AddTaskScreen(
 
         if (state.isDatePickerOpen) {
             PopUpDatePicker(
+                selectedDate = state.selectedDate,
                 onDismiss = { onDatePickerClick(false) },
                 onConfirm = { result -> onDateSelected(result) }
             )
@@ -89,6 +90,8 @@ fun AddTaskScreen(
 
         if (state.isTimePickerOpen) {
             PopUpTimePicker(
+                hour = state.selectedHour,
+                minute = state.selectedMinute,
                 onDismiss = { onTimePickerClick(false) },
                 onConfirm = { hour, minute ->
                     onTimeSelected(hour, minute)

@@ -15,14 +15,17 @@ import java.time.LocalDate
 
 @Composable
 fun PopUpDatePicker(
+    selectedDate: Long?,
     onDismiss: () -> Unit,
     onConfirm: (Long?) -> Unit,
 ) {
     val currentDate by remember { mutableStateOf(LocalDate.now()) }
+    val initialDateMillis = selectedDate ?: (currentDate.toEpochDay() * 24 * 60 * 60 * 1000)
     val state = rememberDatePickerState(
-        initialSelectedDateMillis = currentDate.toEpochDay() * 24 * 60 * 60 * 1000,
-        initialDisplayedMonthMillis = currentDate.toEpochDay() * 24 * 60 * 60 * 1000,
+        initialSelectedDateMillis = initialDateMillis,
+        initialDisplayedMonthMillis = initialDateMillis,
     )
+
     DatePickerDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
