@@ -11,6 +11,7 @@ import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 
@@ -58,6 +59,8 @@ class TasksViewModel @Inject constructor(
             is TasksEvent.OnHeaderTypeChanged -> onHeaderTypeChanged(event.headerType)
 
             is TasksEvent.OnTaskClick -> checkTask(event.task)
+
+            is TasksEvent.OnTaskDelete -> deleteTask(event.id)
         }
     }
 
@@ -85,6 +88,12 @@ class TasksViewModel @Inject constructor(
     private fun checkTask(task: Task) {
         viewModelScope.launch {
             taskUseCases.checkTask(task)
+        }
+    }
+
+    private fun deleteTask(id: UUID?) {
+        viewModelScope.launch {
+            taskUseCases.deleteTask(id)
         }
     }
 }

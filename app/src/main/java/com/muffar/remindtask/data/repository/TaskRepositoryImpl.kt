@@ -7,10 +7,7 @@ import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.repository.TaskRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
 import java.util.UUID
 import javax.inject.Inject
 

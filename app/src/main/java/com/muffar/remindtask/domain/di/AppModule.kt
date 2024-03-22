@@ -4,6 +4,7 @@ import com.muffar.remindtask.domain.repository.TaskRepository
 import com.muffar.remindtask.domain.repository.UserRepository
 import com.muffar.remindtask.domain.usecase.task.AddTask
 import com.muffar.remindtask.domain.usecase.task.CheckTask
+import com.muffar.remindtask.domain.usecase.task.DeleteTask
 import com.muffar.remindtask.domain.usecase.task.GetTasks
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.domain.usecase.user.GetHeaderType
@@ -24,7 +25,8 @@ object AppModule {
     ): TaskUseCases = TaskUseCases(
         getTasks = GetTasks(taskRepository),
         addTask = AddTask(taskRepository),
-        checkTask = CheckTask(taskRepository)
+        checkTask = CheckTask(taskRepository),
+        deleteTask = DeleteTask(taskRepository)
     )
 
     @Provides

@@ -1,5 +1,6 @@
 package com.muffar.remindtask.screen.tasks.list
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,6 +20,7 @@ import com.muffar.remindtask.screen.tasks.list.component.TaskHeader
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
 import com.muffar.remindtask.ui.theme.spacing
 import java.time.LocalDate
+import java.util.UUID
 
 @Composable
 fun TasksScreen(
@@ -29,7 +31,8 @@ fun TasksScreen(
     onDateSelected: (LocalDate) -> Unit,
     onHeaderTypeChange: (HeaderType) -> Unit,
     onTaskClick: (Task) -> Unit,
-    onTaskCheck: (Task) -> Unit
+    onTaskCheck: (Task) -> Unit,
+    onTaskDelete: (UUID?) -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -49,7 +52,9 @@ fun TasksScreen(
 
         if (state.tasks.isNotEmpty()) {
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .animateContentSize(),
                 contentPadding = PaddingValues(
                     horizontal = MaterialTheme.spacing.medium,
                     vertical = MaterialTheme.spacing.small
@@ -65,7 +70,8 @@ fun TasksScreen(
                         priority = task.priority,
                         status = task.status,
                         onClick = { onTaskClick(task) },
-                        onCheck = { onTaskCheck(task) }
+                        onCheck = { onTaskCheck(task) },
+                        onDelete = { onTaskDelete(task.id) }
                     )
                 }
             }

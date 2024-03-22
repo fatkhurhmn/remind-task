@@ -5,6 +5,7 @@ import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.model.TimeType
 import java.time.LocalDate
+import java.util.UUID
 
 sealed class TasksEvent {
     data class OnStatusSelected(val status: StatusType?) : TasksEvent()
@@ -12,4 +13,5 @@ sealed class TasksEvent {
     data class OnTimeSelected(val timeType: TimeType) : TasksEvent()
     data class OnHeaderTypeChanged(val headerType: HeaderType) : TasksEvent()
     data class OnTaskClick(val task: Task) : TasksEvent()
+    data class OnTaskDelete(val id: UUID?) : TasksEvent()
 }
