@@ -1,7 +1,5 @@
 package com.muffar.remindtask.screen.tasks.list.component
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,7 +26,6 @@ import com.muffar.remindtask.utils.CalendarUtils.displayText
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DayCalendarItem(
     date: LocalDate,

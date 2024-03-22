@@ -35,9 +35,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
     }
     buildFeatures {
         compose = true
@@ -85,6 +87,9 @@ dependencies {
 
     //data store
     implementation(libs.datastore.preferences)
+
+    //desugar
+    coreLibraryDesugaring(libs.desugar.jdk)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

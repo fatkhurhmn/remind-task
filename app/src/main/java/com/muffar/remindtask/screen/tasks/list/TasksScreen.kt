@@ -1,7 +1,5 @@
 package com.muffar.remindtask.screen.tasks.list
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -22,7 +20,6 @@ import com.muffar.remindtask.screen.tasks.list.component.TaskItem
 import com.muffar.remindtask.ui.theme.spacing
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TasksScreen(
     modifier: Modifier = Modifier,
@@ -59,7 +56,7 @@ fun TasksScreen(
                 verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
             ) {
                 val tasks = state.tasks
-                items(tasks.size) {
+                items(tasks.size, key = { tasks[it].id.toString() }) {
                     val task = tasks[it]
                     TaskItem(
                         title = task.title,

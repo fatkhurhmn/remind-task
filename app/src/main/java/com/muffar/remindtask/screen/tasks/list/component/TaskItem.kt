@@ -49,6 +49,7 @@ fun TaskItem(
                 shape = MaterialTheme.shapes.small
             )
             .fillMaxWidth()
+            .clip(MaterialTheme.shapes.small)
             .clickable { onClick() }
     ) {
         Box(
@@ -60,7 +61,6 @@ fun TaskItem(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(10.dp)
-
                     .align(Alignment.CenterEnd)
                     .background(priority.toColor())
             )

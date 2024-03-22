@@ -1,14 +1,11 @@
 package com.muffar.remindtask.screen.tasks.list.component
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,8 +29,6 @@ import com.muffar.remindtask.utils.CalendarUtils.displayText
 import java.time.DayOfWeek
 import java.time.LocalDate
 
-@OptIn(ExperimentalMaterial3Api::class)
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TaskHeader(
     modifier: Modifier = Modifier,
@@ -119,7 +114,6 @@ fun TaskHeader(
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun getWeekPageTitle(week: Week): String {
     val firstDate = week.days.first().date
     val lastDate = week.days.last().date

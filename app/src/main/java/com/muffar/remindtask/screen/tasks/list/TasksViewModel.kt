@@ -1,7 +1,5 @@
 package com.muffar.remindtask.screen.tasks.list
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -18,7 +16,6 @@ import java.time.ZoneId
 import javax.inject.Inject
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class TasksViewModel @Inject constructor(
     private val taskUseCase: TaskUseCase,

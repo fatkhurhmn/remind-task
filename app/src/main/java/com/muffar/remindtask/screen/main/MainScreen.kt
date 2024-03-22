@@ -1,7 +1,5 @@
 package com.muffar.remindtask.screen.main
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -15,7 +13,6 @@ import com.muffar.remindtask.screen.main.component.MainBottomBar
 import com.muffar.remindtask.ui.navigation.Screens
 import com.muffar.remindtask.ui.navigation.taskGraph
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,

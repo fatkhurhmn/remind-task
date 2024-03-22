@@ -1,14 +1,11 @@
 package com.muffar.remindtask.utils
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.DayOfWeek
 import java.time.Month
 import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
 
-@RequiresApi(Build.VERSION_CODES.O)
 object CalendarUtils {
     fun YearMonth.displayText(short: Boolean = false): String {
         return "${this.month.displayText(short = short)} ${this.year}"
