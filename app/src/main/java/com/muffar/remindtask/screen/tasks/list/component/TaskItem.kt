@@ -104,7 +104,7 @@ fun TaskItem(
                         tint = MaterialTheme.colorScheme.outline
                     )
                     Text(
-                        text = Converter.formattedDate(deadline, "hh:mm"),
+                        text = Converter.formattedDate(deadline, "hh:mm a"),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.outline
                     )

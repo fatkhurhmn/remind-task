@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
@@ -22,12 +23,21 @@ fun TasksScreen(
     modifier: Modifier = Modifier,
     viewModel: TasksViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state
+    val state by viewModel.state
 
     Column {
         TaskWeekCalendar(
+            headerType = state.headerType,
+            selectedDate = state.selectedDate,
+            selectedTime = state.selectedTime,
             onSelectedDay = {
-                viewModel.onEvent(TasksEvent.SelectDate(it))
+                viewModel.onEvent(TasksEvent.OnDateSelected(it))
+            },
+            onSelectedTime = {
+                viewModel.onEvent(TasksEvent.OnTimeSelected(it))
+            },
+            onHeaderTypeChange = {
+                viewModel.onEvent(TasksEvent.OnHeaderTypeChanged(state.headerType))
             }
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
@@ -39,7 +49,7 @@ fun TasksScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
         ) {
-            val tasks = state.value.tasks
+            val tasks = state.tasks
             items(tasks.size) {
                 val task = tasks[it]
                 TaskItem(

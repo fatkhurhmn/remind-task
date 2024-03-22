@@ -3,23 +3,29 @@ package com.muffar.remindtask.screen.tasks.list.component
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.guru.fontawesomecomposelib.FaIcon
+import com.guru.fontawesomecomposelib.FaIcons
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.yearMonth
+import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.TimeType
 import com.muffar.remindtask.utils.CalendarUtils.displayText
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -29,12 +35,16 @@ import java.time.LocalDate
 @Composable
 fun TaskWeekCalendar(
     modifier: Modifier = Modifier,
+    headerType: HeaderType,
+    selectedDate: LocalDate,
+    selectedTime: TimeType,
     onSelectedDay: (LocalDate) -> Unit = {},
+    onSelectedTime: (TimeType) -> Unit = {},
+    onHeaderTypeChange: () -> Unit = {},
 ) {
     val currentDate = remember { LocalDate.now() }
     val startDate = remember { currentDate.minusDays(500) }
     val endDate = remember { currentDate.plusDays(500) }
-    var selection by remember { mutableStateOf(currentDate) }
 
     Column(
         modifier = modifier
@@ -56,22 +66,46 @@ fun TaskWeekCalendar(
                     style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
                 )
             },
-        )
-
-        WeekCalendar(
-            state = weekCalendarState,
-            dayContent = { day ->
-                DayCalendarItem(
-                    date = day.date,
-                    isSelected = selection == day.date
-                ) { localDate ->
-                    if (selection != localDate) {
-                        selection = localDate
-                        onSelectedDay(localDate)
+            actions = {
+                IconButton(
+                    onClick = { onHeaderTypeChange() }
+                ) {
+                    if (headerType == HeaderType.CALENDAR) {
+                        FaIcon(FaIcons.EllipsisH)
+                    } else {
+                        FaIcon(FaIcons.Calendar)
                     }
                 }
-            },
+            }
         )
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            if (headerType == HeaderType.CHIPS) {
+                TimeRadioButton(
+                    selectedOption = selectedTime,
+                    onOptionSelected = { onSelectedTime(it) }
+                )
+            } else {
+                WeekCalendar(
+                    state = weekCalendarState,
+                    dayContent = { day ->
+                        DayCalendarItem(
+                            date = day.date,
+                            isSelected = selectedDate == day.date
+                        ) { localDate ->
+                            if (selectedDate != localDate) {
+                                onSelectedDay(localDate)
+                            }
+                        }
+                    },
+                )
+            }
+        }
     }
 }
 

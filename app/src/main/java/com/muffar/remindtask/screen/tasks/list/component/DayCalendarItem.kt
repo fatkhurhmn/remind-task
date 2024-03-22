@@ -2,6 +2,7 @@ package com.muffar.remindtask.screen.tasks.list.component
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +35,10 @@ fun DayCalendarItem(
     isSelected: Boolean,
     onClick: (LocalDate) -> Unit,
 ) {
+    val animatedColor by animateColorAsState(
+        targetValue = if (isSelected) MainColor.Blue.primary else Color.Transparent,
+        label = ""
+    )
     Box(
         modifier = Modifier
             .padding(MaterialTheme.spacing.extraSmall)
@@ -40,7 +46,7 @@ fun DayCalendarItem(
             .fillMaxWidth()
             .wrapContentHeight()
             .clickable { onClick(date) }
-            .background(if (isSelected) MainColor.Blue.primary else Color.Transparent),
+            .background(animatedColor),
         contentAlignment = Alignment.Center,
     ) {
         Column(
@@ -50,7 +56,7 @@ fun DayCalendarItem(
             Text(
                 text = date.dayOfWeek.displayText(),
                 style = MaterialTheme.typography.bodySmall,
-                color = if (isSelected) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.onBackground
+                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onBackground
             )
             Text(
                 text = DateTimeFormatter.ofPattern("dd").format(date),
@@ -58,7 +64,7 @@ fun DayCalendarItem(
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 ),
-                color = if (isSelected) MaterialTheme.colorScheme.background else MaterialTheme.colorScheme.onBackground
+                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onBackground
             )
         }
 
