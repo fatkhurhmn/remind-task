@@ -99,6 +99,7 @@ fun TaskHeader(
                         FaIcon(faIcon = FaIcons.Search, size = 20.dp)
                     }
                 }
+
                 StatusFilterMenu(
                     currentStatus = status,
                     onStatusSelected = { onStatusSelected(it) }

@@ -22,13 +22,19 @@ fun NotesScreen(
     modifier: Modifier = Modifier,
     state: NotesState,
     onNotesTypeChange: (NotesType) -> Unit,
+    onSearchQueryChange: (String) -> Unit,
+    onShowSearchBar: (Boolean) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
         NotesHeader(
             notesType = state.notesType,
-            onNotesTypeChange = onNotesTypeChange
+            searchQuery = state.searchQuery,
+            showSearchBar = state.showSearchBar,
+            onNotesTypeChange = onNotesTypeChange,
+            onQueryChange = onSearchQueryChange,
+            onShowSearchBar = onShowSearchBar
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))

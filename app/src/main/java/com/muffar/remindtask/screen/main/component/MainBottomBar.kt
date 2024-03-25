@@ -1,6 +1,5 @@
 package com.muffar.remindtask.screen.main.component
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,7 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.guru.fontawesomecomposelib.FaIcon
 import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.R
@@ -64,18 +61,12 @@ fun MainBottomBar(
             horizontalArrangement = Arrangement.Absolute.SpaceAround,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentRoute = navBackStackEntry?.destination?.route
-            val activeColor =
-                if (currentRoute == Screens.Notes.route) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary
-            val animateColor = animateColorAsState(targetValue = activeColor, label = "")
-
+            val activeColor = MaterialTheme.colorScheme.primary
             BottomBarItem(
                 navController = navController,
                 icon = FaIcons.Tasks,
                 label = stringResource(R.string.tasks_menu),
-                activeColor = animateColor.value,
+                activeColor = activeColor,
                 route = Screens.Tasks.route,
                 modifier = Modifier
                     .padding(MaterialTheme.spacing.small)
@@ -87,7 +78,7 @@ fun MainBottomBar(
                     .size(48.dp)
                     .border(
                         width = 1.dp,
-                        color = animateColor.value,
+                        color = activeColor,
                         shape = MaterialTheme.shapes.medium
                     )
                     .clip(MaterialTheme.shapes.medium)
@@ -96,7 +87,7 @@ fun MainBottomBar(
             ) {
                 FaIcon(
                     faIcon = FaIcons.Plus,
-                    tint = animateColor.value,
+                    tint = activeColor,
                     size = 20.dp
                 )
             }
@@ -105,7 +96,7 @@ fun MainBottomBar(
                 navController = navController,
                 icon = FaIcons.StickyNote,
                 label = stringResource(R.string.notes_menu),
-                activeColor = animateColor.value,
+                activeColor = activeColor,
                 route = Screens.Notes.route,
                 modifier = Modifier
                     .padding(MaterialTheme.spacing.small)

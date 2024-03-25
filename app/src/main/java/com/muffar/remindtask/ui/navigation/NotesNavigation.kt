@@ -15,7 +15,9 @@ fun NavGraphBuilder.notesScreen() {
 
         NotesScreen(
             state = state,
-            onNotesTypeChange = { event(NotesEvent.OnNotesTypeChange(it)) }
+            onNotesTypeChange = { event(NotesEvent.OnNotesTypeChange(it)) },
+            onSearchQueryChange = { event(NotesEvent.OnSearchQueryChange(it)) },
+            onShowSearchBar = { event(NotesEvent.OnShowSearchBarChange(it)) }
         )
     }
 }
