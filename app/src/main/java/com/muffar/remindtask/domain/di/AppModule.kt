@@ -13,7 +13,9 @@ import com.muffar.remindtask.domain.usecase.task.DeleteTask
 import com.muffar.remindtask.domain.usecase.task.GetTasks
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.domain.usecase.user.GetHeaderType
+import com.muffar.remindtask.domain.usecase.user.GetNotesType
 import com.muffar.remindtask.domain.usecase.user.SaveHeaderType
+import com.muffar.remindtask.domain.usecase.user.SaveNotesType
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import dagger.Module
 import dagger.Provides
@@ -39,7 +41,9 @@ object AppModule {
         userRepository: UserRepository,
     ): UserUseCase = UserUseCase(
         getHeaderType = GetHeaderType(userRepository),
-        saveHeaderType = SaveHeaderType(userRepository)
+        saveHeaderType = SaveHeaderType(userRepository),
+        getNotesType = GetNotesType(userRepository),
+        saveNotesType = SaveNotesType(userRepository)
     )
 
     @Provides

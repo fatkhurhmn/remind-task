@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.ui.theme.spacing
 
 @Composable
@@ -20,6 +20,7 @@ fun NoteItem(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
+    notesType : NotesType,
     onClick: () -> Unit,
 ) {
 
@@ -46,10 +47,8 @@ fun NoteItem(
         )
         Text(
             text = description,
-            style = MaterialTheme.typography.bodyLarge.copy(
-                lineHeight = 22.sp
-            ),
-            maxLines = 3,
+            style = MaterialTheme.typography.bodyMedium,
+            maxLines = if (notesType == NotesType.GRID) 7 else 3,
             overflow = TextOverflow.Ellipsis,
         )
     }

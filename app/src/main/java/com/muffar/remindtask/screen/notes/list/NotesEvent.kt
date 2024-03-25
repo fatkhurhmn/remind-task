@@ -1,0 +1,7 @@
+package com.muffar.remindtask.screen.notes.list
+
+import com.muffar.remindtask.domain.model.NotesType
+
+sealed class NotesEvent {
+    data class OnNotesTypeChange(val notesType: NotesType) : NotesEvent()
+}
