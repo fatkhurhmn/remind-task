@@ -21,4 +21,7 @@ object RoomDbModule {
 
     @Provides
     fun provideTaskDao(remindTaskDatabase: RemindTaskDatabase) = remindTaskDatabase.taskDao
+
+    @Provides
+    fun provideNoteDao(remindTaskDatabase: RemindTaskDatabase) = remindTaskDatabase.noteDao
 }

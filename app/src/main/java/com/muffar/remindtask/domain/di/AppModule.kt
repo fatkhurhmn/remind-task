@@ -1,7 +1,12 @@
 package com.muffar.remindtask.domain.di
 
+import com.muffar.remindtask.domain.repository.NoteRepository
 import com.muffar.remindtask.domain.repository.TaskRepository
 import com.muffar.remindtask.domain.repository.UserRepository
+import com.muffar.remindtask.domain.usecase.note.AddNote
+import com.muffar.remindtask.domain.usecase.note.DeleteNote
+import com.muffar.remindtask.domain.usecase.note.GetNotes
+import com.muffar.remindtask.domain.usecase.note.NoteUseCases
 import com.muffar.remindtask.domain.usecase.task.AddTask
 import com.muffar.remindtask.domain.usecase.task.CheckTask
 import com.muffar.remindtask.domain.usecase.task.DeleteTask
@@ -35,5 +40,14 @@ object AppModule {
     ): UserUseCase = UserUseCase(
         getHeaderType = GetHeaderType(userRepository),
         saveHeaderType = SaveHeaderType(userRepository)
+    )
+
+    @Provides
+    fun provideNotesUseCase(
+        noteRepository: NoteRepository,
+    ): NoteUseCases = NoteUseCases(
+        getNotes = GetNotes(noteRepository),
+        addNote = AddNote(noteRepository),
+        deleteNote = DeleteNote(noteRepository)
     )
 }
