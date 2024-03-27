@@ -2,7 +2,10 @@ package com.muffar.remindtask.screen.notes.list.component
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.GridView
+import androidx.compose.material.icons.outlined.ViewAgenda
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -10,10 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIcons
+import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.ui.common.SearchBar
 
@@ -25,7 +28,7 @@ fun NotesHeader(
     showSearchBar: Boolean,
     onNotesTypeChange: (NotesType) -> Unit,
     onQueryChange: (String) -> Unit,
-    onShowSearchBar: (Boolean) -> Unit
+    onShowSearchBar: (Boolean) -> Unit,
 ) {
     TopAppBar(
         modifier = modifier,
@@ -36,7 +39,7 @@ fun NotesHeader(
                 }
             } else {
                 Text(
-                    text = "Notes",
+                    text = stringResource(R.string.notes_menu),
                     style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
                 )
             }
@@ -52,23 +55,32 @@ fun NotesHeader(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.notes_menu),
                         modifier = Modifier.size(20.dp)
                     )
                 }
             } else {
                 IconButton(onClick = { onShowSearchBar(true) }) {
-                    FaIcon(faIcon = FaIcons.Search, size = 20.dp)
+                    Icon(
+                        imageVector = Icons.Rounded.Search,
+                        contentDescription = stringResource(R.string.search)
+                    )
                 }
             }
 
             if (notesType == NotesType.LIST) {
                 IconButton(onClick = { onNotesTypeChange(NotesType.GRID) }) {
-                    FaIcon(faIcon = FaIcons.Bars, size = 20.dp)
+                    Icon(
+                        imageVector = Icons.Outlined.GridView,
+                        contentDescription = stringResource(R.string.search)
+                    )
                 }
             } else {
                 IconButton(onClick = { onNotesTypeChange(NotesType.LIST) }) {
-                    FaIcon(faIcon = FaIcons.GripVertical, size = 20.dp)
+                    Icon(
+                        imageVector = Icons.Outlined.ViewAgenda,
+                        contentDescription = stringResource(R.string.search)
+                    )
                 }
             }
         }
