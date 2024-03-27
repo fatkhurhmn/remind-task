@@ -30,6 +30,8 @@ class AddTaskViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    private var currentTask: Task? = null
+
     fun onEvent(event: AddTaskEvent) {
         when (event) {
             is AddTaskEvent.OnTitleChange -> onTitleChange(event.title)
@@ -42,6 +44,10 @@ class AddTaskViewModel @Inject constructor(
             is AddTaskEvent.OnSaveTaskClick -> onSaveTaskClick()
             is AddTaskEvent.OnEditTaskClick -> onEditTaskClick()
             is AddTaskEvent.OnInitState -> initState(event.task)
+            is AddTaskEvent.OnRestoreTask -> onRestoreTask()
+            is AddTaskEvent.OnShowDeleteDialog -> onDeleteShowDialog(event.show)
+            is AddTaskEvent.OnShowDiscardDialog -> onShowDiscardDialog(event.show)
+            is AddTaskEvent.OnDeleteTaskClick -> onDeleteTaskClick()
         }
     }
 
@@ -109,6 +115,7 @@ class AddTaskViewModel @Inject constructor(
     }
 
     private fun initState(task: Task?) {
+        currentTask = task
         if (task != null) {
             _state.value = state.value.copy(
                 id = task.id,
@@ -129,8 +136,41 @@ class AddTaskViewModel @Inject constructor(
         }
     }
 
+    private fun onDeleteTaskClick() {
+        _state.value.id?.let {
+            viewModelScope.launch {
+                taskUseCases.deleteTask(it)
+                _eventFlow.emit(UiEvent.DeleteTask)
+            }
+        }
+    }
+
+    private fun onRestoreTask() {
+        currentTask?.let { task ->
+            _state.value = AddTaskState(
+                id = task.id,
+                title = task.title,
+                description = task.description ?: "",
+                selectedDate = task.deadline,
+                selectedHour = Converter.formattedDate(task.deadline, "HH").toInt(),
+                selectedMinute = Converter.formattedDate(task.deadline, "mm").toInt(),
+                priorityType = task.priority,
+                isReadOnly = true
+            )
+        }
+    }
+
+    private fun onDeleteShowDialog(show: Boolean) {
+        _state.value = state.value.copy(showDeleteDialog = show)
+    }
+
+    private fun onShowDiscardDialog(show: Boolean) {
+        _state.value = state.value.copy(showDiscardDialog = show)
+    }
+
     sealed class UiEvent {
         data class ShowSnackbar(val message: String) : UiEvent()
         data object SaveTask : UiEvent()
+        data object DeleteTask : UiEvent()
     }
 }

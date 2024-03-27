@@ -14,4 +14,8 @@ sealed class AddTaskEvent {
     data object OnSaveTaskClick : AddTaskEvent()
     data object OnEditTaskClick : AddTaskEvent()
     data class OnInitState(val task: Task?) : AddTaskEvent()
+    data object OnRestoreTask : AddTaskEvent()
+    data class OnShowDeleteDialog(val show: Boolean) : AddTaskEvent()
+    data class OnShowDiscardDialog(val show: Boolean) : AddTaskEvent()
+    data object OnDeleteTaskClick : AddTaskEvent()
 }

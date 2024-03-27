@@ -37,7 +37,7 @@ class AddNoteViewModel @Inject constructor(
             is AddNoteEvent.OnDeleteNoteClick -> onDeleteNoteClick()
             is AddNoteEvent.OnRestoreNote -> onRestoreNote()
             is AddNoteEvent.OnShowDeleteDialog -> onDeleteShowDialog(event.show)
-            is AddNoteEvent.OnDiscardDialog -> onShowDiscardDialog(event.show)
+            is AddNoteEvent.OnShowDiscardDialog -> onShowDiscardDialog(event.show)
         }
     }
 
@@ -104,7 +104,6 @@ class AddNoteViewModel @Inject constructor(
                 _eventFlow.emit(UiEvent.DeleteNote)
             }
         }
-
     }
 
     private fun onRestoreNote() {

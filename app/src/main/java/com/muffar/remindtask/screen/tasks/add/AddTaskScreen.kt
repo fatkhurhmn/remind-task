@@ -1,5 +1,6 @@
 package com.muffar.remindtask.screen.tasks.add
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -12,9 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskForm
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskTopBar
+import com.muffar.remindtask.ui.common.AlertDialog
 import com.muffar.remindtask.ui.common.PopUpDatePicker
 import com.muffar.remindtask.ui.common.PopUpTimePicker
 import com.muffar.remindtask.ui.theme.spacing
@@ -26,8 +30,6 @@ fun AddTaskScreen(
     modifier: Modifier = Modifier,
     state: AddTaskState,
     eventFlow: SharedFlow<AddTaskViewModel.UiEvent>,
-    onSaveTaskClick: () -> Unit,
-    onEditNoteClick: () -> Unit,
     onTitleChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
     onDatePickerClick: (Boolean) -> Unit,
@@ -36,6 +38,12 @@ fun AddTaskScreen(
     onTimeSelected: (hour: Int, minute: Int) -> Unit,
     onPrioritySelected: (PriorityType) -> Unit,
     onNavigationBack: () -> Unit,
+    onSaveTaskClick: () -> Unit,
+    onEditNoteClick: () -> Unit,
+    onDeleteNoteClick: () -> Unit,
+    onRestoreNoteClick: () -> Unit,
+    onShowDeleteDialog: (Boolean) -> Unit,
+    onShowDiscardDialog: (Boolean) -> Unit,
 ) {
     val snackbarHost = remember { SnackbarHostState() }
 
@@ -43,7 +51,7 @@ fun AddTaskScreen(
         eventFlow.collectLatest {
             when (it) {
                 is AddTaskViewModel.UiEvent.SaveTask -> onNavigationBack()
-
+                is AddTaskViewModel.UiEvent.DeleteTask -> onNavigationBack()
                 is AddTaskViewModel.UiEvent.ShowSnackbar -> {
                     snackbarHost.showSnackbar(message = it.message)
                 }
@@ -61,9 +69,11 @@ fun AddTaskScreen(
                 onCloseClick = {
                     if (state.isAddMode) {
                         onNavigationBack()
+                    } else {
+                        onShowDiscardDialog(true)
                     }
                 },
-                onDeleteClick = { },
+                onDeleteClick = { onShowDeleteDialog(true) },
                 onSaveClick = { onSaveTaskClick() },
                 onEditClick = { onEditNoteClick() }
             )
@@ -108,6 +118,32 @@ fun AddTaskScreen(
                     onTimeSelected(hour, minute)
                 }
             )
+        }
+
+        if (state.showDeleteDialog) {
+            AlertDialog(
+                title = stringResource(R.string.delete_task_title),
+                message = stringResource(R.string.delete_task_message),
+                positiveButtonText = stringResource(R.string.delete),
+                negativeButtonText = stringResource(R.string.cancel),
+                onConfirm = { onDeleteNoteClick() },
+                onDismissRequest = { onShowDeleteDialog(false) }
+            )
+        }
+
+        if (state.showDiscardDialog) {
+            AlertDialog(
+                title = stringResource(R.string.discard_task_title),
+                message = stringResource(R.string.discard_task_message),
+                positiveButtonText = stringResource(R.string.discard),
+                negativeButtonText = stringResource(R.string.cancel),
+                onConfirm = { onRestoreNoteClick() },
+                onDismissRequest = { onShowDiscardDialog(false) }
+            )
+        }
+
+        if (!state.isAddMode && !state.isReadOnly) {
+            BackHandler { onShowDiscardDialog(true) }
         }
     }
 }

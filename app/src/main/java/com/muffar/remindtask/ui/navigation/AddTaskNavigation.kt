@@ -30,8 +30,6 @@ fun NavGraphBuilder.addTaskScreen(
         AddTaskScreen(
             state = state,
             eventFlow = eventFlow,
-            onSaveTaskClick = { event(AddTaskEvent.OnSaveTaskClick) },
-            onEditNoteClick = { event(AddTaskEvent.OnEditTaskClick) },
             onTitleChange = { event(AddTaskEvent.OnTitleChange(it)) },
             onDescriptionChange = { event(AddTaskEvent.OnDescriptionChange(it)) },
             onDatePickerClick = { event(AddTaskEvent.OnDatePickerClick(it)) },
@@ -39,7 +37,13 @@ fun NavGraphBuilder.addTaskScreen(
             onDateSelected = { event(AddTaskEvent.OnDateSelected(it)) },
             onTimeSelected = { hour, minute -> event(AddTaskEvent.OnTimeSelected(hour, minute)) },
             onPrioritySelected = { event(AddTaskEvent.OnPrioritySelect(it)) },
-            onNavigationBack = { onNavigationBack() }
+            onNavigationBack = { onNavigationBack() },
+            onSaveTaskClick = { event(AddTaskEvent.OnSaveTaskClick) },
+            onEditNoteClick = { event(AddTaskEvent.OnEditTaskClick) },
+            onDeleteNoteClick = { event(AddTaskEvent.OnDeleteTaskClick) },
+            onRestoreNoteClick = { event(AddTaskEvent.OnRestoreTask) },
+            onShowDeleteDialog = { event(AddTaskEvent.OnShowDeleteDialog(it)) },
+            onShowDiscardDialog = { event(AddTaskEvent.OnShowDiscardDialog(it)) }
         )
     }
 }
