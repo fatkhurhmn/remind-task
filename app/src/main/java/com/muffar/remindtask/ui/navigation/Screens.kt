@@ -7,4 +7,7 @@ sealed class Screens(val route: String) {
         const val TASK = "task"
     }
     data object Notes : Screens("main/notes")
+    data object AddNote : Screens("note/add") {
+        const val NOTE = "note"
+    }
 }

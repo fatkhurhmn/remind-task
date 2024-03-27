@@ -7,3 +7,5 @@ data class Note(
     val title: String,
     val description: String
 )
+
+class InvalidNoteException(message: String) : Exception(message)

@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TaskTitleField(
+fun TitleTextField(
     value: String,
     hint: String,
     modifier: Modifier = Modifier,

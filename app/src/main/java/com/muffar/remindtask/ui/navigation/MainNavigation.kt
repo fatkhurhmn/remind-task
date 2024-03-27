@@ -16,5 +16,9 @@ fun MainNavigation(
             navController = navController,
             onNavigationBack = { navController.navigateUp() }
         )
+        addNoteScreen(
+            navController = navController,
+            onNavigationBack = { navController.navigateUp() }
+        )
     }
 }

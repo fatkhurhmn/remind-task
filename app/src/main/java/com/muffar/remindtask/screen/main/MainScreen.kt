@@ -12,6 +12,7 @@ import com.muffar.remindtask.screen.main.component.MainBottomBar
 import com.muffar.remindtask.ui.navigation.Screens
 import com.muffar.remindtask.ui.navigation.notesScreen
 import com.muffar.remindtask.ui.navigation.tasksScreen
+import com.muffar.remindtask.ui.navigation.toAddNote
 import com.muffar.remindtask.ui.navigation.toAddTask
 
 @Composable
@@ -20,11 +21,18 @@ fun MainScreen(
     navController: NavHostController,
 ) {
     val localNavController = rememberNavController()
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
     Scaffold(
         bottomBar = {
             MainBottomBar(
                 navController = localNavController,
-                onAddClick = { navController.toAddTask() }
+                onAddClick = {
+                    if (currentRoute == Screens.Tasks.route) {
+                        navController.toAddTask()
+                    } else {
+                        navController.toAddNote()
+                    }
+                }
             )
         }
     ) {

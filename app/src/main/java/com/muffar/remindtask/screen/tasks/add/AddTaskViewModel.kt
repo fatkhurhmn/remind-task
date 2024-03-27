@@ -26,8 +26,8 @@ class AddTaskViewModel @Inject constructor(
     private val _state = mutableStateOf(AddTaskState())
     val state: State<AddTaskState> = _state
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
+        private val _eventFlow = MutableSharedFlow<UiEvent>()
+        val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: AddTaskEvent) {
         when (event) {

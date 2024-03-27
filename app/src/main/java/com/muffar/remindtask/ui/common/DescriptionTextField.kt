@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TaskDescriptionField(
+fun DescriptionTextField(
     value: String,
     hint: String,
     modifier: Modifier = Modifier,
