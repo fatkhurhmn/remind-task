@@ -58,7 +58,13 @@ fun AddNoteScreen(
             AddNoteTopBar(
                 isAddMode = state.isAddMode,
                 isReadOnly = state.isReadOnly,
-                onCloseClick = { onShowDiscardDialog(true) },
+                onCloseClick = {
+                    if (state.isAddMode) {
+                        onNavigateBack()
+                    } else {
+                        onShowDiscardDialog(true)
+                    }
+                },
                 onDeleteClick = { onShowDeleteDialog(true) },
                 onSaveClick = { onSaveNoteClick() },
                 onEditClick = { onEditNoteClick() }
@@ -98,13 +104,7 @@ fun AddNoteScreen(
             message = stringResource(R.string.discard_note_message),
             positiveButtonText = stringResource(R.string.discard),
             negativeButtonText = stringResource(R.string.cancel),
-            onConfirm = {
-                if (state.isAddMode) {
-                    onNavigateBack()
-                } else {
-                    onRestoreNoteClick()
-                }
-            },
+            onConfirm = { onRestoreNoteClick() },
             onDismissRequest = { onShowDiscardDialog(false) }
         )
     }
