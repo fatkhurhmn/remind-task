@@ -36,7 +36,8 @@ class AddNoteViewModel @Inject constructor(
             is AddNoteEvent.OnEditNoteClick -> onEditNoteClick()
             is AddNoteEvent.OnDeleteNoteClick -> onDeleteNoteClick()
             is AddNoteEvent.OnRestoreNote -> onRestoreNote()
-            is AddNoteEvent.OnShowDialog -> onShowDialog(event.show)
+            is AddNoteEvent.OnShowDeleteDialog -> onDeleteShowDialog(event.show)
+            is AddNoteEvent.OnDiscardDialog -> onShowDiscardDialog(event.show)
         }
     }
 
@@ -116,8 +117,12 @@ class AddNoteViewModel @Inject constructor(
         }
     }
 
-    private fun onShowDialog(show: Boolean) {
-        _state.value = state.value.copy(showDialog = show)
+    private fun onDeleteShowDialog(show: Boolean) {
+        _state.value = state.value.copy(showDeleteDialog = show)
+    }
+
+    private fun onShowDiscardDialog(show: Boolean) {
+        _state.value = state.value.copy(showDiscardDialog = show)
     }
 
     sealed class UiEvent {

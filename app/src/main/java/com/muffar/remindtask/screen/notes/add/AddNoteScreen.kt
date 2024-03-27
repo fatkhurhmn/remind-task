@@ -1,5 +1,6 @@
 package com.muffar.remindtask.screen.notes.add
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -33,7 +34,8 @@ fun AddNoteScreen(
     onEditNoteClick: () -> Unit,
     onDeleteNoteClick: () -> Unit,
     onRestoreNoteClick: () -> Unit,
-    onShowDialog: (Boolean) -> Unit,
+    onShowDeleteDialog: (Boolean) -> Unit,
+    onShowDiscardDialog: (Boolean) -> Unit,
 ) {
     val snackbarHost = remember { SnackbarHostState() }
 
@@ -56,14 +58,8 @@ fun AddNoteScreen(
             AddNoteTopBar(
                 isAddMode = state.isAddMode,
                 isReadOnly = state.isReadOnly,
-                onCloseClick = {
-                    if (state.isAddMode) {
-                        onNavigateBack()
-                    } else {
-                        onRestoreNoteClick()
-                    }
-                },
-                onDeleteClick = { onShowDialog(true) },
+                onCloseClick = { onShowDiscardDialog(true) },
+                onDeleteClick = { onShowDeleteDialog(true) },
                 onSaveClick = { onSaveNoteClick() },
                 onEditClick = { onEditNoteClick() }
             )
@@ -85,14 +81,35 @@ fun AddNoteScreen(
         }
     }
 
-    if (state.showDialog) {
+    if (state.showDeleteDialog) {
         AlertDialog(
             title = stringResource(R.string.delete_note_title),
             message = stringResource(R.string.delete_note_message),
             positiveButtonText = stringResource(R.string.delete),
             negativeButtonText = stringResource(R.string.cancel),
             onConfirm = { onDeleteNoteClick() },
-            onDismissRequest = { onShowDialog(false) }
+            onDismissRequest = { onShowDeleteDialog(false) }
         )
+    }
+
+    if (state.showDiscardDialog) {
+        AlertDialog(
+            title = stringResource(R.string.discard_note_title),
+            message = stringResource(R.string.discard_note_message),
+            positiveButtonText = stringResource(R.string.discard),
+            negativeButtonText = stringResource(R.string.cancel),
+            onConfirm = {
+                if (state.isAddMode) {
+                    onNavigateBack()
+                } else {
+                    onRestoreNoteClick()
+                }
+            },
+            onDismissRequest = { onShowDiscardDialog(false) }
+        )
+    }
+
+    if (!state.isAddMode && !state.isReadOnly) {
+        BackHandler { onShowDiscardDialog(true) }
     }
 }

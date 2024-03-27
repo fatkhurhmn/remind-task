@@ -37,7 +37,8 @@ fun NavGraphBuilder.addNoteScreen(
             onEditNoteClick = { event(AddNoteEvent.OnEditNoteClick) },
             onDeleteNoteClick = { event(AddNoteEvent.OnDeleteNoteClick) },
             onRestoreNoteClick = { event(AddNoteEvent.OnRestoreNote) },
-            onShowDialog = { event(AddNoteEvent.OnShowDialog(it)) },
+            onShowDeleteDialog = { event(AddNoteEvent.OnShowDeleteDialog(it)) },
+            onShowDiscardDialog = { event(AddNoteEvent.OnDiscardDialog(it)) }
         )
     }
 }
