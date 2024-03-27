@@ -99,16 +99,25 @@ class AddTaskViewModel @Inject constructor(
         }
     }
 
-    private fun initState(task: Task) {
-        _state.value = state.value.copy(
-            id = task.id,
-            title = task.title,
-            description = task.description ?: "",
-            selectedDate = task.deadline,
-            selectedHour = Converter.formattedDate(task.deadline, "HH").toInt(),
-            selectedMinute = Converter.formattedDate(task.deadline, "mm").toInt(),
-            priorityType = task.priority
-        )
+    private fun initState(task: Task?) {
+        if (task != null) {
+            _state.value = state.value.copy(
+                id = task.id,
+                title = task.title,
+                description = task.description ?: "",
+                selectedDate = task.deadline,
+                selectedHour = Converter.formattedDate(task.deadline, "HH").toInt(),
+                selectedMinute = Converter.formattedDate(task.deadline, "mm").toInt(),
+                priorityType = task.priority,
+                isAddMode = false,
+                isReadOnly = true
+            )
+        } else {
+            _state.value = state.value.copy(
+                isAddMode = true,
+                isReadOnly = false
+            )
+        }
     }
 
     sealed class UiEvent {

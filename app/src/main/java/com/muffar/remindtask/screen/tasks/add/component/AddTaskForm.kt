@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.PriorityType
-import com.muffar.remindtask.ui.common.TaskDateButton
 import com.muffar.remindtask.ui.common.DescriptionTextField
+import com.muffar.remindtask.ui.common.TaskDateButton
 import com.muffar.remindtask.ui.common.TaskPriorityButton
 import com.muffar.remindtask.ui.common.TaskTimeButton
 import com.muffar.remindtask.ui.common.TitleTextField
@@ -26,6 +26,7 @@ fun AddTaskForm(
     selectedHour: Int?,
     selectedMinute: Int?,
     priorityType: PriorityType,
+    isReadOnly: Boolean,
     onTitleChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
     onPrioritySelect: (PriorityType) -> Unit,
@@ -39,6 +40,7 @@ fun AddTaskForm(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
             value = title,
             hint = stringResource(R.string.add_title),
+            readOnly = isReadOnly,
             onValueChange = { onTitleChange(it) }
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
@@ -46,6 +48,7 @@ fun AddTaskForm(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
             value = description,
             hint = stringResource(R.string.add_description),
+            readOnly = isReadOnly,
             onValueChange = { onDescriptionChange(it) }
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))

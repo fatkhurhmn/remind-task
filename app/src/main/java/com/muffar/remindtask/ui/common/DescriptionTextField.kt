@@ -13,7 +13,7 @@ fun DescriptionTextField(
     modifier: Modifier = Modifier,
     value: String,
     hint: String,
-    readOnly : Boolean = false,
+    readOnly : Boolean,
     onValueChange: (String) -> Unit,
 ) {
     Box(

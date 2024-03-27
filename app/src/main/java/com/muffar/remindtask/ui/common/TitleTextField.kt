@@ -18,7 +18,7 @@ fun TitleTextField(
     modifier: Modifier = Modifier,
     value: String,
     hint: String,
-    readOnly: Boolean = true,
+    readOnly: Boolean,
     onValueChange: (String) -> Unit,
 ) {
     val focusRequester = FocusRequester()

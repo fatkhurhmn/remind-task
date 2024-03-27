@@ -23,10 +23,8 @@ fun NavGraphBuilder.addTaskScreen(
         val task =
             navController.previousBackStackEntry?.savedStateHandle?.get<Task>(Screens.AddTask.TASK)
 
-        LaunchedEffect(task) {
-            if (task != null) {
-                event(AddTaskEvent.OnInitState(task))
-            }
+        LaunchedEffect(Unit) {
+            event(AddTaskEvent.OnInitState(task))
         }
 
         AddTaskScreen(

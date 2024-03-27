@@ -12,5 +12,5 @@ sealed class AddTaskEvent {
     data class OnTimeSelected(val hour: Int, val minute: Int) : AddTaskEvent()
     data class OnPrioritySelect(val priority: PriorityType) : AddTaskEvent()
     data object OnSaveClick : AddTaskEvent()
-    data class OnInitState(val task: Task) : AddTaskEvent()
+    data class OnInitState(val task: Task?) : AddTaskEvent()
 }

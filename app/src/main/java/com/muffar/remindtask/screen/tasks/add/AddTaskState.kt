@@ -12,5 +12,7 @@ data class AddTaskState(
     val selectedDate : Long? = null,
     val selectedHour: Int? = null,
     val selectedMinute: Int? = null,
-    val priorityType: PriorityType = PriorityType.LOW
+    val priorityType: PriorityType = PriorityType.LOW,
+    val isAddMode: Boolean = id == null,
+    val isReadOnly: Boolean = true,
 )

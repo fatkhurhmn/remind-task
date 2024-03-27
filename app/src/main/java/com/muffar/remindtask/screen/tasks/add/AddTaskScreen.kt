@@ -73,6 +73,7 @@ fun AddTaskScreen(
                 selectedHour = state.selectedHour,
                 selectedMinute = state.selectedMinute,
                 priorityType = state.priorityType,
+                isReadOnly = state.isReadOnly,
                 onTitleChange = { value -> onTitleChange(value) },
                 onDescriptionChange = { value -> onDescriptionChange(value) },
                 onDatePickerOpen = { onDatePickerClick(!state.isDatePickerOpen) },
