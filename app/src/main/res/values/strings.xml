@@ -19,4 +19,6 @@
     <string name="delete_task_title">Delete Task</string>
     <string name="delete">Delete</string>
     <string name="new_note">New Note</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="edit">Edit</string>
 </resources>

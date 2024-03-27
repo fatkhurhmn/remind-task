@@ -18,6 +18,7 @@ fun AddNoteForm(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
+    readOnly: Boolean,
     onTitleChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
 ) {
@@ -27,6 +28,7 @@ fun AddNoteForm(
         TitleTextField(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
             value = title,
+            readOnly = readOnly,
             hint = stringResource(R.string.add_title),
             onValueChange = { onTitleChange(it) }
         )
@@ -34,6 +36,7 @@ fun AddNoteForm(
         DescriptionTextField(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.small),
             value = description,
+            readOnly = readOnly,
             hint = stringResource(R.string.add_description),
             onValueChange = { onDescriptionChange(it) }
         )

@@ -123,3 +123,9 @@ Kapp/src/main/java/com/muffar/remindtask/domain/repository/TaskRepository.kt,f\
 Mapp/src/main/java/com/muffar/remindtask/data/repository/TaskRepositoryImpl.kt,b\3\b36a4989077815a8b54eed33a7bd34cd71d1c6bd
 |
 Lapp/src/main/java/com/muffar/remindtask/data/repository/mapper/NoteMapper.kt,6\6\66813233ea28064f5dc4dea9b7a7751b6b18387e
+w
+Gapp/src/main/java/com/muffar/remindtask/ui/navigation/TaskNavigation.kt,1\b\1b3d910776382abf5d46f1c723342ea8da935df5
+y
+Iapp/src/main/java/com/muffar/remindtask/domain/usecase/note/DeleteNote.kt,3\b\3b15d224138e44a03e9f62575e54c1ef0f0399e1
+w
+Gapp/src/main/java/com/muffar/remindtask/screen/tasks/list/TasksState.kt,6\5\655ddc66c4ff1c5cfa7602b4d24f2ea060a99e72

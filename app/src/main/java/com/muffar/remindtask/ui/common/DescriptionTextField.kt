@@ -10,9 +10,10 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun DescriptionTextField(
+    modifier: Modifier = Modifier,
     value: String,
     hint: String,
-    modifier: Modifier = Modifier,
+    readOnly : Boolean = false,
     onValueChange: (String) -> Unit,
 ) {
     Box(
@@ -21,6 +22,7 @@ fun DescriptionTextField(
         BasicTextField(
             value = value,
             onValueChange = onValueChange,
+            readOnly = readOnly,
             textStyle = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )

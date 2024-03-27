@@ -27,6 +27,9 @@ fun AddNoteScreen(
     onDescriptionChange: (String) -> Unit,
     onSaveNoteClick: () -> Unit,
     onNavigateBack: () -> Unit,
+    onEditNoteClick: () -> Unit,
+    onDeleteNoteClick: () -> Unit,
+    onRestoreNoteClick: () -> Unit,
 ) {
     val snackbarHost = remember { SnackbarHostState() }
 
@@ -46,8 +49,18 @@ fun AddNoteScreen(
         snackbarHost = { SnackbarHost(hostState = snackbarHost) },
         topBar = {
             AddNoteTopBar(
-                onCloseClick = { onNavigateBack() },
-                onSaveClick = { onSaveNoteClick() }
+                isAddMode = state.isAddMode,
+                isReadOnly = state.isReadOnly,
+                onCloseClick = {
+                    if (state.isAddMode) {
+                        onNavigateBack()
+                    } else {
+                        onRestoreNoteClick()
+                    }
+                },
+                onDeleteClick = { onDeleteNoteClick() },
+                onSaveClick = { onSaveNoteClick() },
+                onEditClick = { onEditNoteClick() }
             )
         }
     ) {
@@ -60,8 +73,9 @@ fun AddNoteScreen(
             AddNoteForm(
                 title = state.title,
                 description = state.description,
+                readOnly = state.isReadOnly,
                 onTitleChange = onTitleChange,
-                onDescriptionChange = onDescriptionChange,
+                onDescriptionChange = onDescriptionChange
             )
         }
     }

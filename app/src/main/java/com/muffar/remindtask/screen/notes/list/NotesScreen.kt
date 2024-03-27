@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.muffar.remindtask.domain.model.Note
 import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.screen.notes.list.component.NoteItem
 import com.muffar.remindtask.screen.notes.list.component.NotesHeader
@@ -23,7 +24,8 @@ fun NotesScreen(
     state: NotesState,
     onNotesTypeChange: (NotesType) -> Unit,
     onSearchQueryChange: (String) -> Unit,
-    onShowSearchBar: (Boolean) -> Unit
+    onShowSearchBar: (Boolean) -> Unit,
+    onNoteClick : (Note) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -58,7 +60,7 @@ fun NotesScreen(
                         title = note.title,
                         description = note.description,
                         notesType = state.notesType,
-                        onClick = { }
+                        onClick = { onNoteClick(note) }
                     )
                 }
             }

@@ -25,12 +25,17 @@ class AddNoteViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    var currentNote: Note? = null
+
     fun onEvent(event: AddNoteEvent) {
         when (event) {
             is AddNoteEvent.OnTitleChange -> onTitleChange(event.title)
             is AddNoteEvent.OnDescriptionChange -> onDescriptionChange(event.description)
             is AddNoteEvent.OnSaveNoteClick -> onSaveNoteClick()
             is AddNoteEvent.OnInitState -> onInitState(event.note)
+            is AddNoteEvent.OnEditNoteClick -> onEditNoteClick()
+            is AddNoteEvent.OnDeleteNoteClick -> onDeleteNoteClick()
+            is AddNoteEvent.OnRestoreNote -> onRestoreNote()
         }
     }
 
@@ -52,7 +57,11 @@ class AddNoteViewModel @Inject constructor(
                     description = state.value.description
                 )
                 noteUseCases.addNote(note)
-                _eventFlow.emit(UiEvent.SaveNote(note))
+                if (_state.value.isAddMode) {
+                    _eventFlow.emit(UiEvent.SaveNote(note))
+                } else {
+                    _state.value = state.value.copy(isReadOnly = true)
+                }
             } catch (e: InvalidNoteException) {
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message ?: "Couldn't save note"))
             }
@@ -60,11 +69,30 @@ class AddNoteViewModel @Inject constructor(
     }
 
     private fun onInitState(note: Note) {
+        currentNote = note
         _state.value = AddNoteState(
             id = note.id,
             title = note.title,
-            description = note.description
+            description = note.description,
+            isReadOnly = true
         )
+    }
+
+    private fun onEditNoteClick() {
+        _state.value = state.value.copy(isReadOnly = false)
+    }
+
+    private fun onDeleteNoteClick() {}
+
+    private fun onRestoreNote() {
+        currentNote?.let { note ->
+            _state.value = AddNoteState(
+                id = note.id,
+                title = note.title,
+                description = note.description,
+                isReadOnly = true
+            )
+        }
     }
 
     sealed class UiEvent {

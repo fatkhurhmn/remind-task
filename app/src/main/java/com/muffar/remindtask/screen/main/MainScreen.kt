@@ -40,9 +40,11 @@ fun MainScreen(
         Box(modifier = modifier.padding(it)) {
             NavHost(navController = localNavController, startDestination = Screens.Tasks.route) {
                 tasksScreen(
-                    toAddTask = { task -> navController.toAddTask(task) }
+                    navigateToEditTask = { task -> navController.toAddTask(task) }
                 )
-                notesScreen()
+                notesScreen(
+                    navigateToEditNote = { note -> navController.toAddNote(note) }
+                )
             }
         }
     }

@@ -3,11 +3,14 @@ package com.muffar.remindtask.ui.navigation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.muffar.remindtask.domain.model.Note
 import com.muffar.remindtask.screen.notes.list.NotesEvent
 import com.muffar.remindtask.screen.notes.list.NotesScreen
 import com.muffar.remindtask.screen.notes.list.NotesViewModel
 
-fun NavGraphBuilder.notesScreen() {
+fun NavGraphBuilder.notesScreen(
+    navigateToEditNote: (Note) -> Unit,
+) {
     composable(route = Screens.Notes.route) {
         val viewModel = hiltViewModel<NotesViewModel>()
         val state = viewModel.state.value
@@ -17,7 +20,8 @@ fun NavGraphBuilder.notesScreen() {
             state = state,
             onNotesTypeChange = { event(NotesEvent.OnNotesTypeChange(it)) },
             onSearchQueryChange = { event(NotesEvent.OnSearchQueryChange(it)) },
-            onShowSearchBar = { event(NotesEvent.OnShowSearchBarChange(it)) }
+            onShowSearchBar = { event(NotesEvent.OnShowSearchBarChange(it)) },
+            onNoteClick = { navigateToEditNote(it) }
         )
     }
 }

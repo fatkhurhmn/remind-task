@@ -35,7 +35,10 @@ fun NavGraphBuilder.addNoteScreen(
             onTitleChange = { event(AddNoteEvent.OnTitleChange(it)) },
             onDescriptionChange = { event(AddNoteEvent.OnDescriptionChange(it)) },
             onSaveNoteClick = { event(AddNoteEvent.OnSaveNoteClick) },
-            onNavigateBack = { onNavigationBack() }
+            onNavigateBack = { onNavigationBack() },
+            onEditNoteClick = { event(AddNoteEvent.OnEditNoteClick) },
+            onDeleteNoteClick = { event(AddNoteEvent.OnDeleteNoteClick) },
+            onRestoreNoteClick = { event(AddNoteEvent.OnRestoreNote) }
         )
     }
 }

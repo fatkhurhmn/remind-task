@@ -15,15 +15,18 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun TitleTextField(
+    modifier: Modifier = Modifier,
     value: String,
     hint: String,
-    modifier: Modifier = Modifier,
+    readOnly: Boolean = false,
     onValueChange: (String) -> Unit,
 ) {
     val focusRequester = FocusRequester()
 
     LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
+        if (readOnly) {
+            focusRequester.requestFocus()
+        }
     }
 
     Box(
@@ -32,6 +35,7 @@ fun TitleTextField(
         BasicTextField(
             value = value,
             onValueChange = onValueChange,
+            readOnly = readOnly,
             textStyle = MaterialTheme.typography.titleLarge.copy(
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Medium
