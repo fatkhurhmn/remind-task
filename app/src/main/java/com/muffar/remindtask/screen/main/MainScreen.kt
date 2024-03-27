@@ -21,12 +21,13 @@ fun MainScreen(
     navController: NavHostController,
 ) {
     val localNavController = rememberNavController()
-    val currentRoute = navController.currentBackStackEntry?.destination?.route
+
     Scaffold(
         bottomBar = {
             MainBottomBar(
                 navController = localNavController,
                 onAddClick = {
+                    val currentRoute = localNavController.currentBackStackEntry?.destination?.route
                     if (currentRoute == Screens.Tasks.route) {
                         navController.toAddTask()
                     } else {

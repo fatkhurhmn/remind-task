@@ -1,6 +1,5 @@
 package com.muffar.remindtask.data.repository
 
-import android.util.Log
 import com.muffar.remindtask.data.local.db.dao.TaskDao
 import com.muffar.remindtask.data.repository.mapper.TaskMapper.toDomain
 import com.muffar.remindtask.data.repository.mapper.TaskMapper.toEntity
@@ -22,7 +21,6 @@ class TaskRepositoryImpl @Inject constructor(
     }
 
     override suspend fun save(task: Task) {
-        Log.d("TaskRepo", "save: id: ${task.id}")
         taskDao.save(task.toEntity())
     }
 
