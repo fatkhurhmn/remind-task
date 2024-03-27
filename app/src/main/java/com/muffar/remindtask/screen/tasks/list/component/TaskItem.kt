@@ -16,8 +16,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CalendarToday
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -32,8 +34,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.domain.model.PriorityType.Companion.toColor
@@ -104,10 +104,11 @@ fun TaskItem(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
                     ) {
-                        FaIcon(
-                            faIcon = FaIcons.CalendarRegular,
-                            size = 16.dp,
-                            tint = MaterialTheme.colorScheme.outline
+                        Icon(
+                            imageVector = Icons.Rounded.CalendarToday,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.outline,
+                            modifier = Modifier.size(14.dp)
                         )
                         Text(
                             text = Converter.formattedDate(deadline, "dd MMM yyyy"),
@@ -122,10 +123,11 @@ fun TaskItem(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
                     ) {
-                        FaIcon(
-                            faIcon = FaIcons.ClockRegular,
-                            size = 16.dp,
-                            tint = MaterialTheme.colorScheme.outline
+                        Icon(
+                            imageVector = Icons.Rounded.Schedule,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.outline,
+                            modifier = Modifier.size(14.dp)
                         )
                         Text(
                             text = Converter.formattedDate(deadline, "hh:mm a"),
