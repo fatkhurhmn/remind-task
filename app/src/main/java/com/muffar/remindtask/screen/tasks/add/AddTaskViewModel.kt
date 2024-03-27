@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.InvalidTaskException
+import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
@@ -26,44 +27,49 @@ class AddTaskViewModel @Inject constructor(
     private val _state = mutableStateOf(AddTaskState())
     val state: State<AddTaskState> = _state
 
-        private val _eventFlow = MutableSharedFlow<UiEvent>()
-        val eventFlow = _eventFlow.asSharedFlow()
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: AddTaskEvent) {
         when (event) {
-            is AddTaskEvent.OnTitleChange -> {
-                _state.value = state.value.copy(title = event.title)
-            }
-
-            is AddTaskEvent.OnDescriptionChange -> {
-                _state.value = state.value.copy(description = event.description)
-            }
-
-            is AddTaskEvent.OnDatePickerClick -> {
-                _state.value = state.value.copy(isDatePickerOpen = event.show)
-            }
-
-            is AddTaskEvent.OnTimePickerClick -> {
-                _state.value = state.value.copy(isTimePickerOpen = event.show)
-            }
-
-            is AddTaskEvent.OnDateSelected -> {
-                _state.value = state.value.copy(selectedDate = event.date)
-            }
-
-            is AddTaskEvent.OnTimeSelected -> {
-                _state.value =
-                    state.value.copy(selectedHour = event.hour, selectedMinute = event.minute)
-            }
-
-            is AddTaskEvent.OnPrioritySelect -> {
-                _state.value = state.value.copy(priorityType = event.priority)
-            }
-
+            is AddTaskEvent.OnTitleChange -> onTitleChange(event.title)
+            is AddTaskEvent.OnDescriptionChange -> onDescriptionChange(event.description)
+            is AddTaskEvent.OnDatePickerClick -> onDatePickerClick(event.show)
+            is AddTaskEvent.OnTimePickerClick -> onTimePickerClick(event.show)
+            is AddTaskEvent.OnDateSelected -> onDateSelected(event.date)
+            is AddTaskEvent.OnTimeSelected -> onTimeSelected(event.hour, event.minute)
+            is AddTaskEvent.OnPrioritySelect -> onPriorityChange(event.priority)
             is AddTaskEvent.OnSaveClick -> saveTask()
-
             is AddTaskEvent.OnInitState -> initState(event.task)
         }
+    }
+
+    private fun onTitleChange(title: String) {
+        _state.value = state.value.copy(title = title)
+    }
+
+    private fun onDescriptionChange(description: String) {
+        _state.value = state.value.copy(description = description)
+    }
+
+    private fun onDatePickerClick(show: Boolean) {
+        _state.value = state.value.copy(isDatePickerOpen = show)
+    }
+
+    private fun onTimePickerClick(show: Boolean) {
+        _state.value = state.value.copy(isTimePickerOpen = show)
+    }
+
+    private fun onDateSelected(date: Long?) {
+        _state.value = state.value.copy(selectedDate = date)
+    }
+
+    private fun onTimeSelected(hour: Int, minute: Int) {
+        _state.value = state.value.copy(selectedHour = hour, selectedMinute = minute)
+    }
+
+    private fun onPriorityChange(priority: PriorityType) {
+        _state.value = state.value.copy(priorityType = priority)
     }
 
     private fun saveTask() {
@@ -86,7 +92,7 @@ class AddTaskViewModel @Inject constructor(
                 )
                 taskUseCases.addTask(task)
                 taskScheduler.setTask(task)
-                _eventFlow.emit(UiEvent.SaveTask(task))
+                _eventFlow.emit(UiEvent.SaveTask)
             } catch (e: InvalidTaskException) {
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message.toString()))
             }
@@ -107,6 +113,6 @@ class AddTaskViewModel @Inject constructor(
 
     sealed class UiEvent {
         data class ShowSnackbar(val message: String) : UiEvent()
-        data class SaveTask(val task: Task) : UiEvent()
+        data object SaveTask : UiEvent()
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
+import com.muffar.remindtask.domain.model.TimeType
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import com.muffar.remindtask.service.TaskNotification
@@ -14,6 +15,7 @@ import com.muffar.remindtask.service.scheduler.TaskScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.util.UUID
 import javax.inject.Inject
 
@@ -37,34 +39,15 @@ class TasksViewModel @Inject constructor(
 
     fun onEvent(event: TasksEvent) {
         when (event) {
-            is TasksEvent.OnStatusSelected -> {
-                _state.value = _state.value.copy(status = event.status)
-                filterTasks()
-            }
-
-            is TasksEvent.OnDateSelected -> {
-                _state.value = _state.value.copy(selectedDate = event.date)
-                filterTasks()
-            }
-
-            is TasksEvent.OnTimeSelected -> {
-                _state.value = _state.value.copy(selectedTime = event.timeType)
-                filterTasks()
-            }
-
+            is TasksEvent.OnStatusSelected -> onStatusSelected(event.status)
+            is TasksEvent.OnDateSelected -> onDateSelected(event.date)
+            is TasksEvent.OnTimeSelected -> onTimeSelected(event.timeType)
             is TasksEvent.OnHeaderTypeChanged -> onHeaderTypeChanged(event.headerType)
             is TasksEvent.OnTaskClick -> checkTask(event.task)
             is TasksEvent.OnTaskDelete -> deleteTask(event.id)
-            is TasksEvent.OnShowDialog -> _state.value =
-                _state.value.copy(showDialog = event.show, selectedTask = event.task)
-
-            is TasksEvent.OnShowSearchBar -> _state.value =
-                _state.value.copy(showSearchBar = event.show)
-
-            is TasksEvent.OnQueryChange -> {
-                _state.value = _state.value.copy(searchQuery = event.query)
-                filterTasks()
-            }
+            is TasksEvent.OnShowDialog -> onShowDialog(event.show, event.task)
+            is TasksEvent.OnShowSearchBar -> onShowSearchBar(event.show)
+            is TasksEvent.OnQueryChange -> onQueryChange(event.query)
         }
     }
 
@@ -78,6 +61,34 @@ class TasksViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun onStatusSelected(status: StatusType?) {
+        _state.value = _state.value.copy(status = status)
+        filterTasks()
+    }
+
+    private fun onDateSelected(date: LocalDate) {
+        _state.value = _state.value.copy(selectedDate = date)
+        filterTasks()
+    }
+
+    private fun onTimeSelected(time: TimeType) {
+        _state.value = _state.value.copy(selectedTime = time)
+        filterTasks()
+    }
+
+    private fun onShowDialog(show: Boolean, task: Task?) {
+        _state.value = _state.value.copy(showDialog = show, selectedTask = task)
+    }
+
+    private fun onShowSearchBar(show: Boolean) {
+        _state.value = _state.value.copy(showSearchBar = show)
+    }
+
+    private fun onQueryChange(query: String) {
+        _state.value = _state.value.copy(searchQuery = query)
+        filterTasks()
     }
 
     private fun filterTasks() {
