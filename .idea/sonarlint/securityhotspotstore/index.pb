@@ -129,3 +129,13 @@ y
 Iapp/src/main/java/com/muffar/remindtask/domain/usecase/note/DeleteNote.kt,3\b\3b15d224138e44a03e9f62575e54c1ef0f0399e1
 w
 Gapp/src/main/java/com/muffar/remindtask/screen/tasks/list/TasksState.kt,6\5\655ddc66c4ff1c5cfa7602b4d24f2ea060a99e72
+x
+Happ/src/main/java/com/muffar/remindtask/screen/tasks/list/TasksScreen.kt,2\0\208f58206f989dd95aa6ca720100b7ad28807af4
+‡
+Wapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/DeleteTaskDialog.kt,7\a\7a4a0dbf78fd1f8e067f7deb5a61376f5a1d905d
+‚
+Rapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/AlertDialog.kt,7\f\7f2976c6f695da687669d43106f2856e3567ba1b
+p
+@app/src/main/java/com/muffar/remindtask/ui/common/AlertDialog.kt,f\4\f413c969f12c2a3abd7082c8d05cb7a58f5c130b
+w
+Gapp/src/main/java/com/muffar/remindtask/screen/tasks/list/TasksEvent.kt,8\5\85ebed8b64868477e6d258c04710c28fab924e40

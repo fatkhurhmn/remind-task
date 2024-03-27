@@ -36,6 +36,7 @@ class AddNoteViewModel @Inject constructor(
             is AddNoteEvent.OnEditNoteClick -> onEditNoteClick()
             is AddNoteEvent.OnDeleteNoteClick -> onDeleteNoteClick()
             is AddNoteEvent.OnRestoreNote -> onRestoreNote()
+            is AddNoteEvent.OnShowDialog -> onShowDialog(event.show)
         }
     }
 
@@ -58,7 +59,7 @@ class AddNoteViewModel @Inject constructor(
                 )
                 noteUseCases.addNote(note)
                 if (_state.value.isAddMode) {
-                    _eventFlow.emit(UiEvent.SaveNote(note))
+                    _eventFlow.emit(UiEvent.SaveNote)
                 } else {
                     _state.value = state.value.copy(isReadOnly = true)
                 }
@@ -82,7 +83,15 @@ class AddNoteViewModel @Inject constructor(
         _state.value = state.value.copy(isReadOnly = false)
     }
 
-    private fun onDeleteNoteClick() {}
+    private fun onDeleteNoteClick() {
+        _state.value.id?.let {
+            viewModelScope.launch {
+                noteUseCases.deleteNote(it)
+                _eventFlow.emit(UiEvent.DeleteNote)
+            }
+        }
+
+    }
 
     private fun onRestoreNote() {
         currentNote?.let { note ->
@@ -95,8 +104,13 @@ class AddNoteViewModel @Inject constructor(
         }
     }
 
+    private fun onShowDialog(show: Boolean) {
+        _state.value = state.value.copy(showDialog = show)
+    }
+
     sealed class UiEvent {
         data class ShowSnackbar(val message: String) : UiEvent()
-        data class SaveNote(val note: Note) : UiEvent()
+        data object SaveNote : UiEvent()
+        data object DeleteNote : UiEvent()
     }
 }

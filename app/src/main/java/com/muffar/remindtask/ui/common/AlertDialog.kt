@@ -1,4 +1,4 @@
-package com.muffar.remindtask.screen.tasks.list.component
+package com.muffar.remindtask.ui.common
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -8,12 +8,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.muffar.remindtask.R
 
 @Composable
-fun DeleteTaskDialog(
+fun AlertDialog(
+    title: String,
+    message: String,
+    positiveButtonText: String,
+    negativeButtonText: String,
     onConfirm: () -> Unit,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
@@ -29,23 +31,23 @@ fun DeleteTaskDialog(
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
             ) {
-                Text(text = stringResource(R.string.delete))
+                Text(text = positiveButtonText)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismissRequest) {
-                Text(text = stringResource(R.string.cancel))
+                Text(text = negativeButtonText)
             }
         },
         title = {
             Text(
-                text = stringResource(R.string.delete_task_title),
+                text = title,
                 style = MaterialTheme.typography.titleMedium
             )
         },
         text = {
             Text(
-                text = stringResource(R.string.delete_task_message),
+                text = message,
                 style = MaterialTheme.typography.bodyMedium
             )
         },

@@ -12,8 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.muffar.remindtask.R
 import com.muffar.remindtask.screen.notes.add.component.AddNoteForm
 import com.muffar.remindtask.screen.notes.add.component.AddNoteTopBar
+import com.muffar.remindtask.ui.common.AlertDialog
 import com.muffar.remindtask.ui.theme.spacing
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -30,6 +33,7 @@ fun AddNoteScreen(
     onEditNoteClick: () -> Unit,
     onDeleteNoteClick: () -> Unit,
     onRestoreNoteClick: () -> Unit,
+    onShowDialog: (Boolean) -> Unit,
 ) {
     val snackbarHost = remember { SnackbarHostState() }
 
@@ -37,6 +41,7 @@ fun AddNoteScreen(
         eventFlow.collectLatest {
             when (it) {
                 is AddNoteViewModel.UiEvent.SaveNote -> onNavigateBack()
+                is AddNoteViewModel.UiEvent.DeleteNote -> onNavigateBack()
                 is AddNoteViewModel.UiEvent.ShowSnackbar -> {
                     snackbarHost.showSnackbar(message = it.message)
                 }
@@ -58,7 +63,7 @@ fun AddNoteScreen(
                         onRestoreNoteClick()
                     }
                 },
-                onDeleteClick = { onDeleteNoteClick() },
+                onDeleteClick = { onShowDialog(true) },
                 onSaveClick = { onSaveNoteClick() },
                 onEditClick = { onEditNoteClick() }
             )
@@ -78,5 +83,16 @@ fun AddNoteScreen(
                 onDescriptionChange = onDescriptionChange
             )
         }
+    }
+
+    if (state.showDialog) {
+        AlertDialog(
+            title = stringResource(R.string.delete_note_title),
+            message = stringResource(R.string.delete_note_message),
+            positiveButtonText = stringResource(R.string.delete),
+            negativeButtonText = stringResource(R.string.cancel),
+            onConfirm = { onDeleteNoteClick() },
+            onDismissRequest = { onShowDialog(false) }
+        )
     }
 }

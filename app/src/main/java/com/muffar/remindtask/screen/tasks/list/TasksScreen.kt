@@ -10,13 +10,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.model.TimeType
-import com.muffar.remindtask.screen.tasks.list.component.DeleteTaskDialog
 import com.muffar.remindtask.screen.tasks.list.component.TaskHeader
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
+import com.muffar.remindtask.ui.common.AlertDialog
 import com.muffar.remindtask.ui.common.EmptyResult
 import com.muffar.remindtask.ui.theme.spacing
 import java.time.LocalDate
@@ -86,7 +88,11 @@ fun TasksScreen(
     }
 
     if (state.showDialog) {
-        DeleteTaskDialog(
+        AlertDialog(
+            title = stringResource(R.string.delete_task_title),
+            message = stringResource(R.string.delete_task_message),
+            positiveButtonText = stringResource(R.string.delete),
+            negativeButtonText = stringResource(R.string.cancel),
             onConfirm = { onTaskDelete(state.selectedTask?.id) },
             onDismissRequest = { onShowDialog(false, null) }
         )
