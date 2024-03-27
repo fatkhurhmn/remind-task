@@ -25,7 +25,7 @@ class AddNoteViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    var currentNote: Note? = null
+    private var currentNote: Note? = null
 
     fun onEvent(event: AddNoteEvent) {
         when (event) {
@@ -62,6 +62,10 @@ class AddNoteViewModel @Inject constructor(
                     _eventFlow.emit(UiEvent.SaveNote)
                 } else {
                     _state.value = state.value.copy(isReadOnly = true)
+                    currentNote = currentNote?.copy(
+                        title = state.value.title,
+                        description = state.value.description
+                    )
                 }
             } catch (e: InvalidNoteException) {
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message ?: "Couldn't save note"))
@@ -69,14 +73,22 @@ class AddNoteViewModel @Inject constructor(
         }
     }
 
-    private fun onInitState(note: Note) {
+    private fun onInitState(note: Note?) {
         currentNote = note
-        _state.value = AddNoteState(
-            id = note.id,
-            title = note.title,
-            description = note.description,
-            isReadOnly = true
-        )
+        if (note != null) {
+            _state.value = state.value.copy(
+                id = note.id,
+                title = note.title,
+                description = note.description,
+                isAddMode = false,
+                isReadOnly = true
+            )
+        } else {
+            _state.value = state.value.copy(
+                isAddMode = true,
+                isReadOnly = false
+            )
+        }
     }
 
     private fun onEditNoteClick() {

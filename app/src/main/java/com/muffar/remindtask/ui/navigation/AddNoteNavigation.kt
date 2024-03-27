@@ -23,10 +23,8 @@ fun NavGraphBuilder.addNoteScreen(
         val note =
             navController.previousBackStackEntry?.savedStateHandle?.get<Note>(Screens.AddNote.NOTE)
 
-        LaunchedEffect(note) {
-            if (note != null) {
-                event(AddNoteEvent.OnInitState(note))
-            }
+        LaunchedEffect(Unit) {
+            event(AddNoteEvent.OnInitState(note))
         }
 
         AddNoteScreen(

@@ -20,7 +20,7 @@ fun NoteItem(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
-    notesType : NotesType,
+    notesType: NotesType,
     onClick: () -> Unit,
 ) {
 
@@ -48,7 +48,7 @@ fun NoteItem(
         Text(
             text = description,
             style = MaterialTheme.typography.bodyMedium,
-            maxLines = if (notesType == NotesType.GRID) 7 else 3,
+            maxLines = if (notesType == NotesType.GRID) 5 else 2,
             overflow = TextOverflow.Ellipsis,
         )
     }

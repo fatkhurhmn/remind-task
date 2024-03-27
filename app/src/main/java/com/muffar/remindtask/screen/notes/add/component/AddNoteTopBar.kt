@@ -36,7 +36,7 @@ fun AddNoteTopBar(
     val title = if (isAddMode) {
         stringResource(R.string.new_note)
     } else if (isReadOnly) {
-        stringResource(R.string.notes_menu)
+        stringResource(R.string.note)
     } else {
         stringResource(R.string.edit_note)
     }

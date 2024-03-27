@@ -18,14 +18,16 @@ fun TitleTextField(
     modifier: Modifier = Modifier,
     value: String,
     hint: String,
-    readOnly: Boolean = false,
+    readOnly: Boolean = true,
     onValueChange: (String) -> Unit,
 ) {
     val focusRequester = FocusRequester()
 
-    LaunchedEffect(Unit) {
-        if (readOnly) {
+    LaunchedEffect(readOnly) {
+        if (!readOnly) {
             focusRequester.requestFocus()
+        } else {
+            focusRequester.freeFocus()
         }
     }
 

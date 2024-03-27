@@ -7,6 +7,6 @@ data class AddNoteState(
     val title: String = "",
     val description: String = "",
     val isAddMode: Boolean = id == null,
-    val isReadOnly: Boolean = false,
+    val isReadOnly: Boolean = true,
     val showDialog: Boolean = false,
 )

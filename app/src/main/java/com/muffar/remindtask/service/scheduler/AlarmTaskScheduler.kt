@@ -4,10 +4,8 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.service.AlarmTaskReceiver
-import com.muffar.remindtask.utils.Converter
 import java.util.UUID
 import javax.inject.Inject
 
@@ -34,7 +32,6 @@ class AlarmTaskScheduler @Inject constructor(
             task.deadline,
             pendingIntent
         )
-        Log.d("TaskAlarm", "setTask: ${Converter.formattedDate(task.deadline, "HH:mm")} ${task.id.hashCode()}")
     }
 
     override fun cancelTask(id: UUID) {
@@ -47,6 +44,5 @@ class AlarmTaskScheduler @Inject constructor(
         )
 
         alarmManager.cancel(pendingIntent)
-        Log.d("TaskAlarm", "cancelTask: ${id.hashCode()}")
     }
 }

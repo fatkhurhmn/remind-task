@@ -10,6 +10,6 @@ sealed class AddNoteEvent {
     data object OnSaveNoteClick : AddNoteEvent()
     data object OnEditNoteClick : AddNoteEvent()
     data object OnDeleteNoteClick : AddNoteEvent()
-    data class OnInitState(val note: Note) : AddNoteEvent()
+    data class OnInitState(val note: Note?) : AddNoteEvent()
     data object OnRestoreNote : AddNoteEvent()
 }

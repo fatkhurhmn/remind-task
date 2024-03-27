@@ -139,3 +139,7 @@ p
 @app/src/main/java/com/muffar/remindtask/ui/common/AlertDialog.kt,f\4\f413c969f12c2a3abd7082c8d05cb7a58f5c130b
 w
 Gapp/src/main/java/com/muffar/remindtask/screen/tasks/list/TasksEvent.kt,8\5\85ebed8b64868477e6d258c04710c28fab924e40
+
+Oapp/src/main/java/com/muffar/remindtask/screen/notes/list/component/NoteItem.kt,2\4\24ab727217631c6e470b8bd6d5cd144e2deeedf0
+
+Oapp/src/main/java/com/muffar/remindtask/service/scheduler/AlarmTaskScheduler.kt,c\3\c3a869b1afc1823ab11e9466d86967a541557dfd
