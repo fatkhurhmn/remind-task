@@ -151,3 +151,11 @@ j
 :app/src/main/java/com/muffar/remindtask/utils/DummyData.kt,2\4\242718fc27213345db9a0adec45192188a973a78
 {
 Kapp/src/main/java/com/muffar/remindtask/data/local/db/RemindTaskDatabase.kt,a\6\a6cc163d31935f9aa53a670204cb46ef267626c8
+ƒ
+Sapp/src/main/java/com/muffar/remindtask/screen/tasks/add/component/AddTaskTopBar.kt,3\a\3a101ee2fc0b6bfe890c104aec8125b0b2501ff2
+s
+Capp/src/main/java/com/muffar/remindtask/ui/common/TaskTimeButton.kt,0\8\08642ccfd0e5b1c55bf7c650760c374ea4ac8dc5
+s
+Capp/src/main/java/com/muffar/remindtask/ui/common/TaskDateButton.kt,3\d\3d2991c28373bab0809b3ae272fedb2dc951d652
+w
+Gapp/src/main/java/com/muffar/remindtask/ui/common/TaskPriorityButton.kt,f\c\fc9c2d5bcd228f4752efebfd3e2b8537f3101a81

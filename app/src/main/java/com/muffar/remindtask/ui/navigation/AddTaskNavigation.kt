@@ -30,7 +30,8 @@ fun NavGraphBuilder.addTaskScreen(
         AddTaskScreen(
             state = state,
             eventFlow = eventFlow,
-            onSaveClick = { event(AddTaskEvent.OnSaveClick) },
+            onSaveTaskClick = { event(AddTaskEvent.OnSaveTaskClick) },
+            onEditNoteClick = { event(AddTaskEvent.OnEditTaskClick) },
             onTitleChange = { event(AddTaskEvent.OnTitleChange(it)) },
             onDescriptionChange = { event(AddTaskEvent.OnDescriptionChange(it)) },
             onDatePickerClick = { event(AddTaskEvent.OnDatePickerClick(it)) },

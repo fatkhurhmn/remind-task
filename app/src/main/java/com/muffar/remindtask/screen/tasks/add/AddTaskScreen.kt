@@ -26,7 +26,8 @@ fun AddTaskScreen(
     modifier: Modifier = Modifier,
     state: AddTaskState,
     eventFlow: SharedFlow<AddTaskViewModel.UiEvent>,
-    onSaveClick: () -> Unit,
+    onSaveTaskClick: () -> Unit,
+    onEditNoteClick: () -> Unit,
     onTitleChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
     onDatePickerClick: (Boolean) -> Unit,
@@ -55,8 +56,16 @@ fun AddTaskScreen(
         snackbarHost = { SnackbarHost(hostState = snackbarHost) },
         topBar = {
             AddTaskTopBar(
-                onCloseClick = { onNavigationBack() },
-                onSaveClick = { onSaveClick() }
+                isAddMode = state.isAddMode,
+                isReadOnly = state.isReadOnly,
+                onCloseClick = {
+                    if (state.isAddMode) {
+                        onNavigationBack()
+                    }
+                },
+                onDeleteClick = { },
+                onSaveClick = { onSaveTaskClick() },
+                onEditClick = { onEditNoteClick() }
             )
         }
     ) {

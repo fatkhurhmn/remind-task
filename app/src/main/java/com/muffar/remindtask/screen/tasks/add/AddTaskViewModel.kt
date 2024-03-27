@@ -39,7 +39,8 @@ class AddTaskViewModel @Inject constructor(
             is AddTaskEvent.OnDateSelected -> onDateSelected(event.date)
             is AddTaskEvent.OnTimeSelected -> onTimeSelected(event.hour, event.minute)
             is AddTaskEvent.OnPrioritySelect -> onPriorityChange(event.priority)
-            is AddTaskEvent.OnSaveClick -> saveTask()
+            is AddTaskEvent.OnSaveTaskClick -> onSaveTaskClick()
+            is AddTaskEvent.OnEditTaskClick -> onEditTaskClick()
             is AddTaskEvent.OnInitState -> initState(event.task)
         }
     }
@@ -72,7 +73,7 @@ class AddTaskViewModel @Inject constructor(
         _state.value = state.value.copy(priorityType = priority)
     }
 
-    private fun saveTask() {
+    private fun onSaveTaskClick() {
         viewModelScope.launch {
             try {
                 val id = UUID.randomUUID()
@@ -92,11 +93,19 @@ class AddTaskViewModel @Inject constructor(
                 )
                 taskUseCases.addTask(task)
                 taskScheduler.setTask(task)
-                _eventFlow.emit(UiEvent.SaveTask)
+                if (_state.value.isAddMode) {
+                    _eventFlow.emit(UiEvent.SaveTask)
+                } else {
+                    _state.value = state.value.copy(isReadOnly = true)
+                }
             } catch (e: InvalidTaskException) {
                 _eventFlow.emit(UiEvent.ShowSnackbar(e.message.toString()))
             }
         }
+    }
+
+    private fun onEditTaskClick() {
+        _state.value = state.value.copy(isReadOnly = false)
     }
 
     private fun initState(task: Task?) {

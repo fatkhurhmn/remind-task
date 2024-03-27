@@ -27,6 +27,7 @@ fun TaskPriorityButton(
     selected: PriorityType,
     items: List<PriorityType>,
     cornerRadius: Int = 24,
+    readOnly: Boolean,
     onItemSelection: (PriorityType) -> Unit,
 ) {
     var selectedItem = selected.ordinal
@@ -57,8 +58,10 @@ fun TaskPriorityButton(
                         .weight(1f)
                         .padding(2.dp),
                     onClick = {
-                        selectedItem = index
-                        onItemSelection(item)
+                        if (!readOnly) {
+                            selectedItem = index
+                            onItemSelection(item)
+                        }
                     },
                     colors = CardDefaults.cardColors(
                         containerColor = containerButton,

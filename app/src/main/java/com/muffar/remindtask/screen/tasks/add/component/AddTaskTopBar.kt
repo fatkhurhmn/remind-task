@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,9 +26,21 @@ import com.muffar.remindtask.ui.theme.spacing
 @Composable
 fun AddTaskTopBar(
     modifier: Modifier = Modifier,
+    isAddMode: Boolean,
+    isReadOnly: Boolean,
     onCloseClick: () -> Unit,
+    onDeleteClick: () -> Unit,
     onSaveClick: () -> Unit,
+    onEditClick: () -> Unit,
 ) {
+    val title = if (isAddMode) {
+        stringResource(R.string.new_note)
+    } else if (isReadOnly) {
+        stringResource(R.string.task)
+    } else {
+        stringResource(R.string.edit_note)
+    }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -35,23 +49,46 @@ fun AddTaskTopBar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        IconButton(onClick = { onCloseClick() }) {
-            Icon(
-                imageVector = Icons.Rounded.Close,
-                contentDescription = stringResource(R.string.close),
-                tint = MainColor.Red.primary
-            )
+
+        if (isReadOnly) {
+            IconButton(onClick = { onDeleteClick() }) {
+                Icon(
+                    imageVector = Icons.Rounded.Delete,
+                    contentDescription = stringResource(R.string.delete),
+                    tint = MainColor.Red.primary
+                )
+            }
+        } else {
+            IconButton(onClick = { onCloseClick() }) {
+                Icon(
+                    imageVector = Icons.Rounded.Close,
+                    contentDescription = stringResource(R.string.close),
+                    tint = MainColor.Red.primary
+                )
+            }
         }
+
         Text(
-            text = stringResource(R.string.new_task),
+            text = title,
             style = MaterialTheme.typography.labelLarge.copy(fontSize = 20.sp)
         )
-        IconButton(onClick = { onSaveClick() }) {
-            Icon(
-                imageVector = Icons.Rounded.Check,
-                contentDescription = stringResource(R.string.save),
-                tint = MainColor.Green.primary
-            )
+
+        if (isReadOnly) {
+            IconButton(onClick = { onEditClick() }) {
+                Icon(
+                    imageVector = Icons.Rounded.Edit,
+                    contentDescription = stringResource(R.string.edit),
+                    tint = MainColor.Green.primary
+                )
+            }
+        } else {
+            IconButton(onClick = { onSaveClick() }) {
+                Icon(
+                    imageVector = Icons.Rounded.Check,
+                    contentDescription = stringResource(R.string.save),
+                    tint = MainColor.Green.primary
+                )
+            }
         }
     }
 }

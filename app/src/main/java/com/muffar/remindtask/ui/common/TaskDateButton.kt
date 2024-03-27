@@ -27,13 +27,14 @@ import com.muffar.remindtask.utils.Converter
 fun TaskDateButton(
     modifier: Modifier = Modifier,
     selectedDate: Long?,
+    readOnly: Boolean,
     onClick: () -> Unit,
 ) {
     Column(
         modifier = modifier
             .clip(MaterialTheme.shapes.small)
             .fillMaxWidth()
-            .clickable { onClick() }
+            .then(if (readOnly) Modifier else Modifier.clickable { onClick() })
             .padding(MaterialTheme.spacing.small)
     ) {
         Row(
@@ -70,7 +71,10 @@ fun TaskDateButton(
                     fontWeight = FontWeight.Medium
                 ),
             )
-            FaIcon(faIcon = FaIcons.ChevronRight, size = 16.dp)
+
+            if (!readOnly){
+                FaIcon(faIcon = FaIcons.ChevronRight, size = 16.dp)
+            }
         }
     }
 }

@@ -52,17 +52,23 @@ fun AddTaskForm(
             onValueChange = { onDescriptionChange(it) }
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-        TaskDateButton(selectedDate = selectedDate, onClick = onDatePickerOpen)
+        TaskDateButton(
+            selectedDate = selectedDate,
+            readOnly = isReadOnly,
+            onClick = onDatePickerOpen
+        )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         TaskTimeButton(
             selectedHour = selectedHour,
             selectedMinute = selectedMinute,
+            readOnly = isReadOnly,
             onClick = onTimePickerOpen
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
         TaskPriorityButton(
             selected = priorityType,
             items = PriorityType.getList(),
+            readOnly = isReadOnly,
             onItemSelection = {
                 onPrioritySelect(it)
             }
