@@ -8,6 +8,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CalendarToday
+import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,8 +22,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.R
 import com.muffar.remindtask.ui.theme.spacing
 import com.muffar.remindtask.utils.Converter
@@ -41,10 +44,11 @@ fun TaskDateButton(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
         ) {
-            FaIcon(
-                faIcon = FaIcons.CalendarRegular,
-                size = 16.dp,
-                tint = MaterialTheme.colorScheme.outline
+            Icon(
+                imageVector = Icons.Rounded.CalendarToday,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.outline,
+                modifier = Modifier.size(14.dp)
             )
             Text(
                 text = stringResource(R.string.date),
@@ -72,8 +76,12 @@ fun TaskDateButton(
                 ),
             )
 
-            if (!readOnly){
-                FaIcon(faIcon = FaIcons.ChevronRight, size = 16.dp)
+            if (!readOnly) {
+                Icon(
+                    imageVector = Icons.Rounded.ChevronRight,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp)
+                )
             }
         }
     }

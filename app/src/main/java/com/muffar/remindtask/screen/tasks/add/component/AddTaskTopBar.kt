@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.Delete
-import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -53,7 +53,7 @@ fun AddTaskTopBar(
         if (isReadOnly) {
             IconButton(onClick = { onDeleteClick() }) {
                 Icon(
-                    imageVector = Icons.Rounded.Delete,
+                    imageVector = Icons.Outlined.Delete,
                     contentDescription = stringResource(R.string.delete),
                     tint = MainColor.Red.primary
                 )
@@ -76,7 +76,7 @@ fun AddTaskTopBar(
         if (isReadOnly) {
             IconButton(onClick = { onEditClick() }) {
                 Icon(
-                    imageVector = Icons.Rounded.Edit,
+                    imageVector = Icons.Outlined.Edit,
                     contentDescription = stringResource(R.string.edit),
                     tint = MainColor.Green.primary
                 )
