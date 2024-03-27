@@ -9,6 +9,7 @@ import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.domain.usecase.note.NoteUseCases
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,9 +38,9 @@ class NotesViewModel @Inject constructor(
 
     private fun initNotes() {
         viewModelScope.launch {
-            noteUseCases.getNotes().collect { notesList ->
+            noteUseCases.getNotes().collectLatest { notesList ->
                 notes = notesList
-                userUseCase.getNotesType().collect { notesType ->
+                userUseCase.getNotesType().collectLatest { notesType ->
                     _state.value = state.value.copy(notesType = notesType)
                     filterNotes()
                 }

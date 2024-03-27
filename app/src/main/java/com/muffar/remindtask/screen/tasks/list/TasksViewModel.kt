@@ -12,6 +12,7 @@ import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import com.muffar.remindtask.service.TaskNotification
 import com.muffar.remindtask.service.scheduler.TaskScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
@@ -69,9 +70,9 @@ class TasksViewModel @Inject constructor(
 
     private fun initTasks() {
         viewModelScope.launch {
-            taskUseCases.getTasks().collect { tasksList ->
+            taskUseCases.getTasks().collectLatest { tasksList ->
                 tasks = tasksList
-                userUseCase.getHeaderType().collect {
+                userUseCase.getHeaderType().collectLatest {
                     _state.value = _state.value.copy(headerType = it)
                     filterTasks()
                 }
