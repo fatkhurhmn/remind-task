@@ -39,17 +39,22 @@ fun NoteItem(
                 vertical = MaterialTheme.spacing.small
             )
     ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
-        Text(
-            text = description,
-            style = MaterialTheme.typography.bodyMedium,
-            maxLines = if (notesType == NotesType.GRID) 5 else 2,
-            overflow = TextOverflow.Ellipsis,
-        )
+        if (title.isNotEmpty()) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+
+        if (description.isNotEmpty()) {
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = if (notesType == NotesType.GRID) 5 else 2,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
     }
 }
