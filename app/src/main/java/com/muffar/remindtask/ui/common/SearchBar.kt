@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import com.muffar.remindtask.R
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -39,7 +41,7 @@ fun SearchBar(
         onValueChange = onQueryChange,
         placeholder = {
             Text(
-                text = "Search",
+                text = stringResource(R.string.search),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.3f)
             )

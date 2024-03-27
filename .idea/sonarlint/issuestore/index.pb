@@ -159,3 +159,13 @@ s
 Capp/src/main/java/com/muffar/remindtask/ui/common/TaskDateButton.kt,3\d\3d2991c28373bab0809b3ae272fedb2dc951d652
 w
 Gapp/src/main/java/com/muffar/remindtask/ui/common/TaskPriorityButton.kt,f\c\fc9c2d5bcd228f4752efebfd3e2b8537f3101a81
+Å
+Qapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/TaskHeader.kt,1\4\14d08e76791b95815a8647b6d941b77a89e93b61
+I
+gradle/libs.versions.toml,d\7\d7595319a0658be6f1ed500ad590d42e4b28bc4f
+D
+app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
+á
+Wapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/StatusFilterMenu.kt,f\2\f26c67eace6b2037c71d7ed8b0bbd2ace3d4b10d
+
+Oapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/TaskItem.kt,f\f\ff61a647b76cca15bda62d648f1c420d98ec5f43

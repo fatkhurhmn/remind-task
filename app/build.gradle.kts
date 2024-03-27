@@ -95,6 +95,9 @@ dependencies {
     //lottie
     implementation(libs.lottie)
 
+    //material icon
+    implementation(libs.material.icon)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

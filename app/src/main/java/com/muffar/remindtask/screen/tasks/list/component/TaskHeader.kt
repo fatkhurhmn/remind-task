@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CalendarToday
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.MoreHoriz
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -17,14 +20,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIcons
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.yearMonth
+import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.HeaderType
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.TimeType
@@ -90,13 +93,15 @@ fun TaskHeader(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Close,
-                            contentDescription = "Close",
-                            modifier = Modifier.size(20.dp)
+                            contentDescription = stringResource(R.string.close)
                         )
                     }
                 } else {
                     IconButton(onClick = { onShowSearchBar(true) }) {
-                        FaIcon(faIcon = FaIcons.Search, size = 20.dp)
+                        Icon(
+                            imageVector = Icons.Rounded.Search,
+                            contentDescription = stringResource(R.string.search)
+                        )
                     }
                 }
 
@@ -104,13 +109,21 @@ fun TaskHeader(
                     currentStatus = status,
                     onStatusSelected = { onStatusSelected(it) }
                 )
+
                 IconButton(
                     onClick = { onHeaderTypeChange(headerType) }
                 ) {
                     if (headerType == HeaderType.CALENDAR) {
-                        FaIcon(faIcon = FaIcons.EllipsisH, size = 20.dp)
+                        Icon(
+                            imageVector = Icons.Rounded.MoreHoriz,
+                            contentDescription = null
+                        )
                     } else {
-                        FaIcon(faIcon = FaIcons.Calendar, size = 20.dp)
+                        Icon(
+                            imageVector = Icons.Rounded.CalendarToday,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
                     }
                 }
             }

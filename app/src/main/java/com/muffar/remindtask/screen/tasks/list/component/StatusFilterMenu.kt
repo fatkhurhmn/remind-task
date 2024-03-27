@@ -3,9 +3,15 @@ package com.muffar.remindtask.screen.tasks.list.component
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.FilterAlt
+import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.rounded.Circle
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,9 +22,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIcons
+import com.muffar.remindtask.R
 import com.muffar.remindtask.domain.model.StatusType
 import com.muffar.remindtask.domain.model.StatusType.Companion.toValue
 import com.muffar.remindtask.ui.theme.color.MainColor
@@ -36,16 +42,21 @@ fun StatusFilterMenu(
             onClick = { showMenu = !showMenu },
             modifier = Modifier.align(Alignment.Center)
         ) {
-            FaIcon(faIcon = FaIcons.Filter, size = 20.dp)
+            Icon(
+                imageVector = Icons.Outlined.FilterAlt,
+                contentDescription = stringResource(R.string.filter),
+                modifier = Modifier.size(20.dp)
+            )
         }
         if (currentStatus != null) {
-            FaIcon(
-                faIcon = FaIcons.Circle,
-                size = 10.dp,
+            Icon(
+                imageVector = Icons.Rounded.Circle,
+                contentDescription = null,
                 tint = MainColor.Red.primary,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(8.dp)
+                    .size(10.dp)
             )
         }
     }
@@ -68,7 +79,11 @@ fun StatusFilterMenu(
                         )
 
                         if (currentStatus == status) {
-                            FaIcon(faIcon = FaIcons.Check, size = 16.dp)
+                            Icon(
+                                imageVector = Icons.Rounded.Check,
+                                contentDescription = stringResource(R.string.check),
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
                     }
                 }

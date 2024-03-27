@@ -30,4 +30,6 @@
     <string name="note">Note</string>
     <string name="discard">Discard</string>
     <string name="task">Task</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
 </resources>
