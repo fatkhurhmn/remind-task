@@ -56,7 +56,8 @@ class AddNoteViewModel @Inject constructor(
                 val note = Note(
                     id = state.value.id ?: id,
                     title = state.value.title,
-                    description = state.value.description
+                    description = state.value.description,
+                    createdAt = System.currentTimeMillis()
                 )
                 noteUseCases.addNote(note)
                 if (_state.value.isAddMode) {

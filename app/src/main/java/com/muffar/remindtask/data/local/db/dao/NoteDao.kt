@@ -13,7 +13,7 @@ interface NoteDao {
     @Upsert
     suspend fun save(noteEntity: NoteEntity)
 
-    @Query("SELECT * FROM note")
+    @Query("SELECT * FROM note ORDER BY createdAt DESC")
     fun getAll(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM note WHERE id = :id")

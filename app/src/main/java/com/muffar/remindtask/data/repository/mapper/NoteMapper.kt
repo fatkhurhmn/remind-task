@@ -9,7 +9,8 @@ object NoteMapper {
         return Note(
             id = id,
             title = title,
-            description = description
+            description = description,
+            createdAt = createdAt
         )
     }
 
@@ -17,13 +18,15 @@ object NoteMapper {
         return if (this.id == null) {
             NoteEntity(
                 title = title,
-                description = description
+                description = description,
+                createdAt = createdAt
             )
         } else {
             NoteEntity(
                 id = this.id,
                 title = title,
-                description = description
+                description = description,
+                createdAt = createdAt
             )
         }
     }

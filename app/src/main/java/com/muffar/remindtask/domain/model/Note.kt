@@ -8,7 +8,8 @@ import java.util.UUID
 data class Note(
     val id: UUID? = null,
     val title: String,
-    val description: String
-): Parcelable
+    val description: String,
+    val createdAt: Long,
+) : Parcelable
 
 class InvalidNoteException(message: String) : Exception(message)

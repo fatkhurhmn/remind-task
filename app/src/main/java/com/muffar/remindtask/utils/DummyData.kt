@@ -84,7 +84,8 @@ object DummyData {
                 Note(
                     UUID.randomUUID(),
                     titles[i],
-                    descriptions[i]
+                    descriptions[i],
+                    System.currentTimeMillis()
                 )
             )
         }

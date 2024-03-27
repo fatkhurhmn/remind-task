@@ -143,3 +143,11 @@ Gapp/src/main/java/com/muffar/remindtask/screen/tasks/list/TasksEvent.kt,8\5\85
 Oapp/src/main/java/com/muffar/remindtask/screen/notes/list/component/NoteItem.kt,2\4\24ab727217631c6e470b8bd6d5cd144e2deeedf0
 
 Oapp/src/main/java/com/muffar/remindtask/service/scheduler/AlarmTaskScheduler.kt,c\3\c3a869b1afc1823ab11e9466d86967a541557dfd
+{
+Kapp/src/main/java/com/muffar/remindtask/domain/usecase/note/NoteUseCases.kt,5\5\55735ac6757d7ea71dbbc37ab357bd72659265b8
+t
+Dapp/src/main/java/com/muffar/remindtask/screen/main/MainViewModel.kt,5\b\5b84e41772f038eebf3d4e48e53c93e6a4d67e49
+j
+:app/src/main/java/com/muffar/remindtask/utils/DummyData.kt,2\4\242718fc27213345db9a0adec45192188a973a78
+{
+Kapp/src/main/java/com/muffar/remindtask/data/local/db/RemindTaskDatabase.kt,a\6\a6cc163d31935f9aa53a670204cb46ef267626c8

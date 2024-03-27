@@ -10,4 +10,5 @@ data class NoteEntity(
     val id: UUID = UUID.randomUUID(),
     val title: String,
     val description: String,
+    val createdAt: Long
 )

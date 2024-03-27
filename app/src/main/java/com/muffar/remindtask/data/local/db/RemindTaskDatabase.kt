@@ -10,7 +10,7 @@ import com.muffar.remindtask.data.local.db.dao.TaskDao
 import com.muffar.remindtask.data.local.db.entity.NoteEntity
 import com.muffar.remindtask.data.local.db.entity.TaskEntity
 
-@Database(entities = [TaskEntity::class, NoteEntity::class], version = 2)
+@Database(entities = [TaskEntity::class, NoteEntity::class], version = 3)
 @TypeConverters(RoomTypeConverters::class)
 abstract class RemindTaskDatabase : RoomDatabase() {
     abstract val taskDao: TaskDao
