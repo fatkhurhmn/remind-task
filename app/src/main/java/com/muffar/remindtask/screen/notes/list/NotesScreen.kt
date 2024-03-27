@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -43,15 +45,15 @@ fun NotesScreen(
 
         if (state.notes.isNotEmpty()) {
             val grid = if (state.notesType == NotesType.GRID) 2 else 1
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(grid),
+            LazyVerticalStaggeredGrid(
+                columns = StaggeredGridCells.Fixed(grid),
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(
                     horizontal = MaterialTheme.spacing.medium,
                     vertical = MaterialTheme.spacing.small
                 ),
-                verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+                verticalItemSpacing = MaterialTheme.spacing.small
             ) {
                 val notes = state.notes
                 items(notes.size, key = { notes[it].id.toString() }) {
