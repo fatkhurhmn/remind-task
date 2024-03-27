@@ -12,7 +12,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.StickyNote2
+import androidx.compose.material.icons.rounded.TaskAlt
 import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.contentColorFor
@@ -27,8 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIcons
 import com.muffar.remindtask.R
 import com.muffar.remindtask.ui.navigation.Screens
 import com.muffar.remindtask.ui.theme.RemindTaskTheme
@@ -64,7 +67,7 @@ fun MainBottomBar(
             val activeColor = MaterialTheme.colorScheme.primary
             BottomBarItem(
                 navController = navController,
-                icon = FaIcons.Tasks,
+                icon = Icons.Rounded.TaskAlt,
                 label = stringResource(R.string.tasks_menu),
                 activeColor = activeColor,
                 route = Screens.Tasks.route,
@@ -85,16 +88,17 @@ fun MainBottomBar(
                     .clickable { onAddClick() },
                 contentAlignment = Alignment.Center
             ) {
-                FaIcon(
-                    faIcon = FaIcons.Plus,
-                    tint = activeColor,
-                    size = 20.dp
+                Icon(
+                    imageVector = Icons.Rounded.Add,
+                    contentDescription = null,
+                    modifier = Modifier.size(28.dp),
+                    tint = activeColor
                 )
             }
 
             BottomBarItem(
                 navController = navController,
-                icon = FaIcons.StickyNote,
+                icon = Icons.Rounded.StickyNote2,
                 label = stringResource(R.string.notes_menu),
                 activeColor = activeColor,
                 route = Screens.Notes.route,

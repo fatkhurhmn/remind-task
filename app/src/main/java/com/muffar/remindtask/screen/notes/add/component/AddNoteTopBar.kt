@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Delete
-import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -76,7 +76,7 @@ fun AddNoteTopBar(
         if (isReadOnly) {
             IconButton(onClick = { onEditClick() }) {
                 Icon(
-                    imageVector = Icons.Rounded.Edit,
+                    imageVector = Icons.Outlined.Edit,
                     contentDescription = stringResource(R.string.edit),
                     tint = MainColor.Green.primary
                 )
@@ -84,7 +84,7 @@ fun AddNoteTopBar(
         } else {
             IconButton(onClick = { onSaveClick() }) {
                 Icon(
-                    imageVector = Icons.Rounded.Check,
+                    imageVector = Icons.Outlined.Delete,
                     contentDescription = stringResource(R.string.save),
                     tint = MainColor.Green.primary
                 )

@@ -169,3 +169,9 @@ D
 Wapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/StatusFilterMenu.kt,f\2\f26c67eace6b2037c71d7ed8b0bbd2ace3d4b10d
 
 Oapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/TaskItem.kt,f\f\ff61a647b76cca15bda62d648f1c420d98ec5f43
+Å
+Qapp/src/main/java/com/muffar/remindtask/screen/tasks/list/component/EmptyTasks.kt,5\7\57ac6e68700c338e283b04a8650ba4dc4d466770
+~
+Napp/src/main/java/com/muffar/remindtask/screen/main/component/MainBottomBar.kt,a\b\abe7a16610b8b2f718c7741b889616a892045afd
+~
+Napp/src/main/java/com/muffar/remindtask/screen/main/component/BottomBarItem.kt,5\9\59be43773449e8474aec6437ed22c4acc3f30a59

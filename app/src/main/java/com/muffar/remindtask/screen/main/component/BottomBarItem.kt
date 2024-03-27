@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.guru.fontawesomecomposelib.FaIcon
@@ -25,7 +27,7 @@ import com.muffar.remindtask.ui.theme.spacing
 @Composable
 fun BottomBarItem(
     navController: NavHostController,
-    icon: FaIconType,
+    icon: ImageVector,
     label: String,
     activeColor: Color,
     route : String,
@@ -57,8 +59,9 @@ fun BottomBarItem(
             }
             .padding(vertical = MaterialTheme.spacing.kindaSmall)
     ) {
-        FaIcon(
-            faIcon = icon,
+        Icon(
+            imageVector = icon,
+            contentDescription = label,
             tint = color
         )
 
