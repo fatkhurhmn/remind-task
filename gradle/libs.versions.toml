@@ -8,7 +8,6 @@ espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.7.0"
 activity-compose = "1.8.2"
 compose-bom = "2023.08.00"
-awesome-compose = "1.0.0"
 compose-navigation = "2.5.3"
 room = "2.6.1"
 dagger-hilt = "2.50"
@@ -17,7 +16,7 @@ calendar = "2.4.1"
 data-store = "1.0.0"
 desugar-jdk = "2.0.4"
 lottie = "5.2.0"
-material-icon = "1.0.0"
+material-icon = "1.6.4"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -34,7 +33,6 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
-gurupreet-fontawesmecompose = { group = "com.github.gurupreet", name = "FontAwesomeCompose", version.ref = "awesome-compose" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }

@@ -18,8 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.guru.fontawesomecomposelib.FaIcon
-import com.guru.fontawesomecomposelib.FaIconType
 import com.muffar.remindtask.ui.navigation.Screens
 import com.muffar.remindtask.ui.theme.color.MainColor
 import com.muffar.remindtask.ui.theme.spacing

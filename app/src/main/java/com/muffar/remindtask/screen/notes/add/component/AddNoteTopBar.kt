@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -53,7 +53,7 @@ fun AddNoteTopBar(
         if (isReadOnly) {
             IconButton(onClick = { onDeleteClick() }) {
                 Icon(
-                    imageVector = Icons.Rounded.Delete,
+                    imageVector = Icons.Outlined.Delete,
                     contentDescription = stringResource(R.string.delete),
                     tint = MainColor.Red.primary
                 )
@@ -84,7 +84,7 @@ fun AddNoteTopBar(
         } else {
             IconButton(onClick = { onSaveClick() }) {
                 Icon(
-                    imageVector = Icons.Outlined.Delete,
+                    imageVector = Icons.Rounded.Check,
                     contentDescription = stringResource(R.string.save),
                     tint = MainColor.Green.primary
                 )

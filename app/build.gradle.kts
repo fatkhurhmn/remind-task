@@ -66,8 +66,6 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
 
-    implementation(libs.gurupreet.fontawesmecompose)
-
     implementation(libs.compose.navigation)
 
     //room
