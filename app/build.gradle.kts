@@ -57,6 +57,12 @@ android {
 
 dependencies {
 
+    implementation(projects.common.ui)
+    implementation(projects.common.resources)
+    implementation(projects.common.utils)
+    implementation(projects.common.theme)
+    implementation(projects.domain)
+
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)

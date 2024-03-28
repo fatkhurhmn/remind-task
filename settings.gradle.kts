@@ -1,3 +1,4 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
         google()
@@ -17,4 +18,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "RemindTask"
 include(":app")
- 
+include(":common:ui")
+include(":common:resources")
+include(":common:utils")
+include(":common:theme")
+include(":domain")

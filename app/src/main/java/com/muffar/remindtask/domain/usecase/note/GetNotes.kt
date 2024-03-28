@@ -1,6 +1,6 @@
 package com.muffar.remindtask.domain.usecase.note
 
-import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.model.Note
 import com.muffar.remindtask.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 

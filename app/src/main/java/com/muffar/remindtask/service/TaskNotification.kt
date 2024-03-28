@@ -7,7 +7,7 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.muffar.remindtask.R
+import com.muffar.remindtask.resources.R
 import javax.inject.Inject
 
 class TaskNotification @Inject constructor(private val context: Context) {

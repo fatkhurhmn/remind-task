@@ -8,10 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.muffar.remindtask.R
-import com.muffar.remindtask.ui.common.DescriptionTextField
-import com.muffar.remindtask.ui.common.TitleTextField
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.resources.R
+import com.muffar.remindtask.ui.DescriptionTextField
+import com.muffar.remindtask.ui.TitleTextField
+import com.muffar.remindtask.theme.spacing
 
 @Composable
 fun AddNoteForm(

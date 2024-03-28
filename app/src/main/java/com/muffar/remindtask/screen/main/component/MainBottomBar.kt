@@ -32,10 +32,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.muffar.remindtask.R
+import com.muffar.remindtask.resources.R
 import com.muffar.remindtask.ui.navigation.Screens
-import com.muffar.remindtask.ui.theme.RemindTaskTheme
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.theme.RemindTaskTheme
+import com.muffar.remindtask.theme.spacing
 
 @Composable
 fun MainBottomBar(

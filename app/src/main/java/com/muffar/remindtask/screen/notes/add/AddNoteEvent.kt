@@ -1,6 +1,6 @@
 package com.muffar.remindtask.screen.notes.add
 
-import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.model.Note
 
 
 sealed class AddNoteEvent {

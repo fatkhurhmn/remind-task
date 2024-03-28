@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.muffar.remindtask.ui.navigation.Screens
-import com.muffar.remindtask.ui.theme.color.MainColor
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.theme.color.MainColor
+import com.muffar.remindtask.theme.spacing
 
 @Composable
 fun BottomBarItem(

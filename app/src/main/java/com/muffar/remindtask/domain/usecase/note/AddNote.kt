@@ -1,7 +1,7 @@
 package com.muffar.remindtask.domain.usecase.note
 
-import com.muffar.remindtask.domain.model.InvalidNoteException
-import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.model.InvalidNoteException
+import com.muffar.remindtask.model.Note
 import com.muffar.remindtask.domain.repository.NoteRepository
 
 class AddNote(

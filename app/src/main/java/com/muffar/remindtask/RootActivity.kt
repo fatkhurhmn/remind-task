@@ -3,7 +3,6 @@ package com.muffar.remindtask
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -19,7 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
 import com.muffar.remindtask.screen.main.MainViewModel
 import com.muffar.remindtask.ui.navigation.MainNavigation
-import com.muffar.remindtask.ui.theme.RemindTaskTheme
+import com.muffar.remindtask.theme.RemindTaskTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

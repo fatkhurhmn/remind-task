@@ -24,11 +24,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.muffar.remindtask.R
-import com.muffar.remindtask.domain.model.StatusType
-import com.muffar.remindtask.domain.model.StatusType.Companion.toValue
-import com.muffar.remindtask.ui.theme.color.MainColor
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.resources.R
+import com.muffar.remindtask.model.StatusType
+import com.muffar.remindtask.model.StatusType.Companion.toValue
+import com.muffar.remindtask.theme.color.MainColor
+import com.muffar.remindtask.theme.spacing
 
 @Composable
 fun StatusFilterMenu(

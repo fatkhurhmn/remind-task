@@ -1,6 +1,6 @@
 package com.muffar.remindtask.domain.repository
 
-import com.muffar.remindtask.domain.model.Task
+import com.muffar.remindtask.model.Task
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 

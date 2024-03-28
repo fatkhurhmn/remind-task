@@ -14,16 +14,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.muffar.remindtask.R
-import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.model.PriorityType
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskForm
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskTopBar
-import com.muffar.remindtask.ui.common.AlertDialog
-import com.muffar.remindtask.ui.common.PopUpDatePicker
-import com.muffar.remindtask.ui.common.PopUpTimePicker
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.ui.AlertDialog
+import com.muffar.remindtask.ui.PopUpDatePicker
+import com.muffar.remindtask.ui.PopUpTimePicker
+import com.muffar.remindtask.theme.spacing
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
+import com.muffar.remindtask.resources.R
 
 @Composable
 fun AddTaskScreen(

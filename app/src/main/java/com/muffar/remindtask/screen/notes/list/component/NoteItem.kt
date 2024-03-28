@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.muffar.remindtask.domain.model.NotesType
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.model.NotesType
+import com.muffar.remindtask.theme.spacing
 
 @Composable
 fun NoteItem(

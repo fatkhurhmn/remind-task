@@ -1,7 +1,7 @@
 package com.muffar.remindtask.data.repository.mapper
 
 import com.muffar.remindtask.data.local.db.entity.NoteEntity
-import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.model.Note
 
 object NoteMapper {
 
@@ -15,19 +15,21 @@ object NoteMapper {
     }
 
     fun Note.toEntity(): NoteEntity {
-        return if (this.id == null) {
-            NoteEntity(
-                title = title,
-                description = description,
-                createdAt = createdAt
-            )
-        } else {
-            NoteEntity(
-                id = this.id,
-                title = title,
-                description = description,
-                createdAt = createdAt
-            )
+        return this.id.let {
+            if (it == null) {
+                NoteEntity(
+                    title = title,
+                    description = description,
+                    createdAt = createdAt
+                )
+            } else {
+                NoteEntity(
+                    id = it,
+                    title = title,
+                    description = description,
+                    createdAt = createdAt
+                )
+            }
         }
     }
 

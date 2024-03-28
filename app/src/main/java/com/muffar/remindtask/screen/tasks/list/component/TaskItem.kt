@@ -34,12 +34,12 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muffar.remindtask.R
-import com.muffar.remindtask.domain.model.PriorityType
-import com.muffar.remindtask.domain.model.PriorityType.Companion.toColor
-import com.muffar.remindtask.domain.model.StatusType
-import com.muffar.remindtask.ui.theme.color.MainColor
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.resources.R
+import com.muffar.remindtask.model.PriorityType
+import com.muffar.remindtask.model.PriorityType.Companion.toColor
+import com.muffar.remindtask.model.StatusType
+import com.muffar.remindtask.theme.color.MainColor
+import com.muffar.remindtask.theme.spacing
 import com.muffar.remindtask.utils.Converter
 
 @Composable

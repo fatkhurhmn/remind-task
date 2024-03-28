@@ -20,8 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muffar.remindtask.ui.theme.color.MainColor
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.theme.color.MainColor
+import com.muffar.remindtask.theme.spacing
 import com.muffar.remindtask.utils.CalendarUtils.displayText
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

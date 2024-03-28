@@ -1,6 +1,6 @@
 package com.muffar.remindtask.domain.usecase.user
 
-import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.model.HeaderType
 import com.muffar.remindtask.domain.repository.UserRepository
 
 class SaveHeaderType(

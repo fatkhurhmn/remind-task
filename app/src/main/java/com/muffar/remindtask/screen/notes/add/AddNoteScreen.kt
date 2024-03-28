@@ -14,11 +14,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.muffar.remindtask.R
+import com.muffar.remindtask.resources.R
 import com.muffar.remindtask.screen.notes.add.component.AddNoteForm
 import com.muffar.remindtask.screen.notes.add.component.AddNoteTopBar
-import com.muffar.remindtask.ui.common.AlertDialog
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.ui.AlertDialog
+import com.muffar.remindtask.theme.spacing
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 

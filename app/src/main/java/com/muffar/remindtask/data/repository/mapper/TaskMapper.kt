@@ -1,7 +1,7 @@
 package com.muffar.remindtask.data.repository.mapper
 
 import com.muffar.remindtask.data.local.db.entity.TaskEntity
-import com.muffar.remindtask.domain.model.Task
+import com.muffar.remindtask.model.Task
 
 object TaskMapper {
     fun TaskEntity.toDomain(): Task {
@@ -16,23 +16,25 @@ object TaskMapper {
     }
 
     fun Task.toEntity(): TaskEntity {
-        return if (this.id == null) {
-            TaskEntity(
-                title = title,
-                description = description,
-                deadline = deadline,
-                priority = priority,
-                status = status
-            )
-        } else {
-            TaskEntity(
-                id = this.id,
-                title = title,
-                description = description,
-                deadline = deadline,
-                priority = priority,
-                status = status
-            )
+        return this.id.let {
+            if (it == null) {
+                TaskEntity(
+                    title = title,
+                    description = description,
+                    deadline = deadline,
+                    priority = priority,
+                    status = status
+                )
+            } else {
+                TaskEntity(
+                    id = it,
+                    title = title,
+                    description = description,
+                    deadline = deadline,
+                    priority = priority,
+                    status = status
+                )
+            }
         }
     }
 

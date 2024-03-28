@@ -19,9 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
-import com.muffar.remindtask.R
-import com.muffar.remindtask.ui.theme.color.MainColor
-import com.muffar.remindtask.ui.theme.spacing
+import com.muffar.remindtask.resources.R
+import com.muffar.remindtask.theme.color.MainColor
+import com.muffar.remindtask.theme.spacing
 
 @Composable
 fun AddTaskTopBar(

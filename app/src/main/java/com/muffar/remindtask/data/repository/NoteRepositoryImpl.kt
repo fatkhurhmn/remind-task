@@ -3,7 +3,7 @@ package com.muffar.remindtask.data.repository
 import com.muffar.remindtask.data.local.db.dao.NoteDao
 import com.muffar.remindtask.data.repository.mapper.NoteMapper.toDomain
 import com.muffar.remindtask.data.repository.mapper.NoteMapper.toEntity
-import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.model.Note
 import com.muffar.remindtask.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

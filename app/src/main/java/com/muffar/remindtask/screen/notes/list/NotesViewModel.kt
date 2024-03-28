@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.muffar.remindtask.domain.model.Note
-import com.muffar.remindtask.domain.model.NotesType
+import com.muffar.remindtask.model.Note
+import com.muffar.remindtask.model.NotesType
 import com.muffar.remindtask.domain.usecase.note.NoteUseCases
 import com.muffar.remindtask.domain.usecase.user.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
