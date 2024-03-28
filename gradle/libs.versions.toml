@@ -17,6 +17,7 @@ data-store = "1.0.0"
 desugar-jdk = "2.0.4"
 lottie = "5.2.0"
 material-icon = "1.6.4"
+multidex = "2.0.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -47,6 +48,7 @@ calendar = { group = "com.kizitonwose.calendar", name = "compose", version.ref =
 datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "data-store" }
 desugar-jdk = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk" }
 lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
+multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
 
 #test
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
