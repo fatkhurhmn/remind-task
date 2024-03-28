@@ -28,9 +28,9 @@ import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.yearMonth
 import com.muffar.remindtask.resources.R
-import com.muffar.remindtask.model.HeaderType
-import com.muffar.remindtask.model.StatusType
-import com.muffar.remindtask.model.TimeType
+import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.StatusType
+import com.muffar.remindtask.domain.model.TimeType
 import com.muffar.remindtask.ui.SearchBar
 import com.muffar.remindtask.theme.spacing
 import com.muffar.remindtask.utils.CalendarUtils.displayText

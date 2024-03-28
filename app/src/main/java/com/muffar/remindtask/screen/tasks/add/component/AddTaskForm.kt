@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.muffar.remindtask.resources.R
-import com.muffar.remindtask.model.PriorityType
+import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.ui.DescriptionTextField
 import com.muffar.remindtask.ui.TaskDateButton
 import com.muffar.remindtask.ui.TaskPriorityButton

@@ -1,4 +1,4 @@
-package com.muffar.remindtask.model
+package com.muffar.remindtask.domain.model
 
 enum class HeaderType {
     CALENDAR,

@@ -2,8 +2,8 @@ package com.muffar.remindtask.data.local.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.muffar.remindtask.model.PriorityType
-import com.muffar.remindtask.model.StatusType
+import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.StatusType
 import java.util.UUID
 
 @Entity(tableName = "task")

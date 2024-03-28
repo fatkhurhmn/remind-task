@@ -4,10 +4,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.muffar.remindtask.model.InvalidTaskException
-import com.muffar.remindtask.model.PriorityType
-import com.muffar.remindtask.model.StatusType
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.InvalidTaskException
+import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.StatusType
+import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.usecase.task.TaskUseCases
 import com.muffar.remindtask.service.scheduler.TaskScheduler
 import com.muffar.remindtask.utils.Converter

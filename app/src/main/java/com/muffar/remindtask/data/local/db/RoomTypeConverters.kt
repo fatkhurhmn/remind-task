@@ -1,10 +1,10 @@
 package com.muffar.remindtask.data.local.db
 
 import androidx.room.TypeConverter
-import com.muffar.remindtask.model.PriorityType
-import com.muffar.remindtask.model.StatusType
-import com.muffar.remindtask.model.StatusType.Companion.toStatusType
-import com.muffar.remindtask.model.StatusType.Companion.toValue
+import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.StatusType
+import com.muffar.remindtask.domain.model.StatusType.Companion.toStatusType
+import com.muffar.remindtask.domain.model.StatusType.Companion.toValue
 import java.util.UUID
 
 class RoomTypeConverters {

@@ -1,9 +1,9 @@
 package com.muffar.remindtask.utils
 
-import com.muffar.remindtask.model.Note
-import com.muffar.remindtask.model.PriorityType
-import com.muffar.remindtask.model.StatusType
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.StatusType
+import com.muffar.remindtask.domain.model.Task
 import java.util.UUID
 import kotlin.random.Random
 

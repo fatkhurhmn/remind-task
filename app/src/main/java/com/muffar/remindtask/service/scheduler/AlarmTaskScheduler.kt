@@ -4,7 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.service.AlarmTaskReceiver
 import java.util.UUID
 import javax.inject.Inject

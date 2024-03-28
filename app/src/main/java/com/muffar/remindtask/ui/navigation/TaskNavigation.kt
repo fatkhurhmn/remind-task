@@ -3,7 +3,7 @@ package com.muffar.remindtask.ui.navigation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.screen.tasks.list.TasksEvent
 import com.muffar.remindtask.screen.tasks.list.TasksScreen
 import com.muffar.remindtask.screen.tasks.list.TasksViewModel

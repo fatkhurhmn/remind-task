@@ -1,4 +1,4 @@
-package com.muffar.remindtask.model
+package com.muffar.remindtask.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

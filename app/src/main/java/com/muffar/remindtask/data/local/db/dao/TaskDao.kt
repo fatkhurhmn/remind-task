@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.muffar.remindtask.data.local.db.entity.TaskEntity
-import com.muffar.remindtask.model.StatusType
+import com.muffar.remindtask.domain.model.StatusType
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 

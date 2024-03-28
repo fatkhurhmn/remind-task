@@ -5,7 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.screen.tasks.add.AddTaskEvent
 import com.muffar.remindtask.screen.tasks.add.AddTaskScreen
 import com.muffar.remindtask.screen.tasks.add.AddTaskViewModel

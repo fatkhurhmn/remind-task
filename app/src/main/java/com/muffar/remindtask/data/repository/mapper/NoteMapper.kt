@@ -1,7 +1,7 @@
 package com.muffar.remindtask.data.repository.mapper
 
 import com.muffar.remindtask.data.local.db.entity.NoteEntity
-import com.muffar.remindtask.model.Note
+import com.muffar.remindtask.domain.model.Note
 
 object NoteMapper {
 

@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muffar.remindtask.resources.R
-import com.muffar.remindtask.model.NotesType
+import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.ui.SearchBar
 
 @Composable

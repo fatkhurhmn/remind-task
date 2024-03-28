@@ -1,7 +1,7 @@
 package com.muffar.remindtask.domain.repository
 
-import com.muffar.remindtask.model.HeaderType
-import com.muffar.remindtask.model.NotesType
+import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.NotesType
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {

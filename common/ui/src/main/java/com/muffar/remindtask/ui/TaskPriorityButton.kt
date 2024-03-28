@@ -18,8 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.muffar.remindtask.model.PriorityType
-import com.muffar.remindtask.model.PriorityType.Companion.toColor
+import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.domain.model.PriorityType.Companion.toColor
 
 @Composable
 fun TaskPriorityButton(

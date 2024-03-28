@@ -11,8 +11,8 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.muffar.remindtask.model.Note
-import com.muffar.remindtask.model.NotesType
+import com.muffar.remindtask.domain.model.Note
+import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.screen.notes.list.component.NoteItem
 import com.muffar.remindtask.screen.notes.list.component.NotesHeader
 import com.muffar.remindtask.ui.EmptyResult

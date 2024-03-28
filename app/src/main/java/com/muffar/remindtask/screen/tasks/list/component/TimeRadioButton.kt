@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.muffar.remindtask.model.TimeType
-import com.muffar.remindtask.model.TimeType.Companion.toValue
+import com.muffar.remindtask.domain.model.TimeType
+import com.muffar.remindtask.domain.model.TimeType.Companion.toValue
 import com.muffar.remindtask.theme.spacing
 
 @Composable

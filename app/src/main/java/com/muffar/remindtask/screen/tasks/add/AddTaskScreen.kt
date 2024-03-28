@@ -14,7 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.muffar.remindtask.model.PriorityType
+import com.muffar.remindtask.domain.model.PriorityType
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskForm
 import com.muffar.remindtask.screen.tasks.add.component.AddTaskTopBar
 import com.muffar.remindtask.ui.AlertDialog

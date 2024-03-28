@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.muffar.remindtask.resources.R
-import com.muffar.remindtask.model.HeaderType
-import com.muffar.remindtask.model.StatusType
-import com.muffar.remindtask.model.Task
-import com.muffar.remindtask.model.TimeType
+import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.StatusType
+import com.muffar.remindtask.domain.model.Task
+import com.muffar.remindtask.domain.model.TimeType
 import com.muffar.remindtask.screen.tasks.list.component.TaskHeader
 import com.muffar.remindtask.screen.tasks.list.component.TaskItem
 import com.muffar.remindtask.ui.AlertDialog

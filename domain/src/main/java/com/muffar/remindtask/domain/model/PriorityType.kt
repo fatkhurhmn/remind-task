@@ -1,4 +1,4 @@
-package com.muffar.remindtask.model
+package com.muffar.remindtask.domain.model
 
 import androidx.compose.ui.graphics.Color
 import com.muffar.remindtask.theme.color.MainColor

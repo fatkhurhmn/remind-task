@@ -1,7 +1,7 @@
 package com.muffar.remindtask.data.repository.mapper
 
 import com.muffar.remindtask.data.local.db.entity.TaskEntity
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.Task
 
 object TaskMapper {
     fun TaskEntity.toDomain(): Task {

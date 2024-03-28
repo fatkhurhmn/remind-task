@@ -1,8 +1,8 @@
 package com.muffar.remindtask.data.repository
 
 import com.muffar.remindtask.data.local.preferences.UserPreferences
-import com.muffar.remindtask.model.HeaderType
-import com.muffar.remindtask.model.NotesType
+import com.muffar.remindtask.domain.model.HeaderType
+import com.muffar.remindtask.domain.model.NotesType
 import com.muffar.remindtask.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

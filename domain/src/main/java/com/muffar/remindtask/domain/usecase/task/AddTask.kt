@@ -1,7 +1,7 @@
 package com.muffar.remindtask.domain.usecase.task
 
-import com.muffar.remindtask.model.InvalidTaskException
-import com.muffar.remindtask.model.Task
+import com.muffar.remindtask.domain.model.InvalidTaskException
+import com.muffar.remindtask.domain.model.Task
 import com.muffar.remindtask.domain.repository.TaskRepository
 
 class AddTask(
