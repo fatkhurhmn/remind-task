@@ -60,26 +60,19 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
 
-    implementation(libs.compose.navigation)
+    //compose
+    implementation(libs.bundles.compose)
+    implementation(platform(libs.compose.bom))
 
     //room
-    implementation(libs.room.runtime)
+    implementation(libs.bundles.room)
     kapt(libs.room.compiler)
     annotationProcessor(libs.room.compiler)
-    implementation(libs.room.ktx)
 
     //dagger hilt
-    implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.compiler)
-
-    //hilt navigation compose
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     //calendar
     implementation(libs.calendar)
@@ -93,15 +86,10 @@ dependencies {
     //lottie
     implementation(libs.lottie)
 
-    //material icon
-    implementation(libs.material.icon)
-
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.bundles.test)
     androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 }
 

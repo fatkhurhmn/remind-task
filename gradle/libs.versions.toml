@@ -20,31 +20,40 @@ material-icon = "1.6.4"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+
+#compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-ui = { group = "androidx.compose.ui", name = "ui" }
-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material-icon = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "material-icon" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-nav-compose" }
+
+#room
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger-hilt" }
-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-nav-compose" }
+
+#hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger-hilt" }
+
 calendar = { group = "com.kizitonwose.calendar", name = "compose", version.ref = "calendar" }
 datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "data-store" }
 desugar-jdk = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk" }
 lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
-material-icon = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "material-icon" }
+
+#test
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -52,3 +61,25 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+
+[bundles]
+compose = [
+    "compose-ui",
+    "compose-ui-graphics",
+    "compose-ui-tooling-preview",
+    "compose-material3",
+    "compose-material-icon",
+    "compose-navigation",
+    "compose-hilt-navigation"
+]
+
+room = [
+    "room-runtime",
+    "room-ktx"
+]
+
+test = [
+    "androidx-test-ext-junit",
+    "espresso-core",
+    "ui-test-junit4",
+]
