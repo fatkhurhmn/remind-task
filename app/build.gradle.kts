@@ -62,6 +62,7 @@ dependencies {
     implementation(projects.common.utils)
     implementation(projects.common.theme)
     implementation(projects.domain)
+    implementation(projects.data)
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
