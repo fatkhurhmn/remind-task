@@ -11,6 +11,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        minSdk = 24
         multiDexEnabled = true
     }
 
