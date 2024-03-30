@@ -61,8 +61,13 @@ dependencies {
     implementation(projects.common.resources)
     implementation(projects.common.utils)
     implementation(projects.common.theme)
+    implementation(projects.common.navigation)
     implementation(projects.domain)
     implementation(projects.data)
+    implementation(projects.screens.notes)
+    implementation(projects.screens.tasks)
+    implementation(projects.screens.main)
+    implementation(projects.service)
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)

@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -16,14 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
-import com.muffar.remindtask.screen.main.MainViewModel
-import com.muffar.remindtask.ui.navigation.MainNavigation
 import com.muffar.remindtask.theme.RemindTaskTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RootActivity : ComponentActivity() {
-    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,7 +27,6 @@ class RootActivity : ComponentActivity() {
             checkPermissions()
         }
 
-        viewModel.init()
         setContent {
             val mainNavController = rememberNavController()
             RemindTaskTheme {

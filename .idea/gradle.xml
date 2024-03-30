@@ -11,12 +11,18 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common/navigation" />
             <option value="$PROJECT_DIR$/common/resources" />
             <option value="$PROJECT_DIR$/common/theme" />
             <option value="$PROJECT_DIR$/common/ui" />
             <option value="$PROJECT_DIR$/common/utils" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/screens" />
+            <option value="$PROJECT_DIR$/screens/main" />
+            <option value="$PROJECT_DIR$/screens/notes" />
+            <option value="$PROJECT_DIR$/screens/tasks" />
+            <option value="$PROJECT_DIR$/service" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

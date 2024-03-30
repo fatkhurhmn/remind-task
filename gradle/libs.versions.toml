@@ -18,6 +18,8 @@ desugar-jdk = "2.0.4"
 lottie = "5.2.0"
 material-icon = "1.6.4"
 multidex = "2.0.1"
+appcompat = "1.6.1"
+material = "1.11.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -56,6 +58,8 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
