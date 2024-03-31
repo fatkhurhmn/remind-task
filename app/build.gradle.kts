@@ -57,12 +57,8 @@ android {
 
 dependencies {
 
-    implementation(projects.common.ui)
-    implementation(projects.common.resources)
-    implementation(projects.common.utils)
     implementation(projects.common.theme)
     implementation(projects.common.navigation)
-    implementation(projects.domain)
     implementation(projects.data)
     implementation(projects.screens.notes)
     implementation(projects.screens.tasks)
@@ -77,26 +73,12 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(platform(libs.compose.bom))
 
-    //room
-    implementation(libs.bundles.room)
-    kapt(libs.room.compiler)
-    annotationProcessor(libs.room.compiler)
-
     //dagger hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-    //calendar
-    implementation(libs.calendar)
-
-    //data store
-    implementation(libs.datastore.preferences)
-
     //desugar
     coreLibraryDesugaring(libs.desugar.jdk)
-
-    //lottie
-    implementation(libs.lottie)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.test)
