@@ -40,7 +40,8 @@ fun TitleTextField(
             readOnly = readOnly,
             textStyle = MaterialTheme.typography.titleLarge.copy(
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.onBackground
             ),
             modifier = Modifier
                 .fillMaxWidth()

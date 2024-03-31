@@ -23,7 +23,9 @@ fun DescriptionTextField(
             value = value,
             onValueChange = onValueChange,
             readOnly = readOnly,
-            textStyle = MaterialTheme.typography.bodyLarge,
+            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                color = MaterialTheme.colorScheme.onBackground
+            ),
             modifier = Modifier.fillMaxWidth()
         )
         if (value.isEmpty()) {
