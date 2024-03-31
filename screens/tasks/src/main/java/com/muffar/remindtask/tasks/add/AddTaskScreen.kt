@@ -2,7 +2,9 @@ package com.muffar.remindtask.tasks.add
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -15,15 +17,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.muffar.remindtask.domain.model.PriorityType
+import com.muffar.remindtask.resources.R
 import com.muffar.remindtask.tasks.add.component.AddTaskForm
 import com.muffar.remindtask.tasks.add.component.AddTaskTopBar
+import com.muffar.remindtask.theme.spacing
 import com.muffar.remindtask.ui.AlertDialog
 import com.muffar.remindtask.ui.PopUpDatePicker
 import com.muffar.remindtask.ui.PopUpTimePicker
-import com.muffar.remindtask.theme.spacing
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
-import com.muffar.remindtask.resources.R
 
 @Composable
 fun AddTaskScreen(
@@ -60,7 +62,9 @@ fun AddTaskScreen(
     }
 
     Scaffold(
-        modifier = modifier,
+        modifier = modifier
+            .navigationBarsPadding()
+            .statusBarsPadding(),
         snackbarHost = { SnackbarHost(hostState = snackbarHost) },
         topBar = {
             AddTaskTopBar(
