@@ -1,7 +1,7 @@
 <h1 align="center" style="font-size:28px; line-height:1"><b>RemindTask</b></h1>
 
 <div align="center">
-  <img alt="Routine Tracker logo" src="images/app_logo.png" height="150px">
+  <img alt="Routine Tracker logo" src="images/app_logo.png" height="80px">
 </div>
 
 <p>
@@ -9,10 +9,10 @@
 </p>
 
 ## Screenshots
-|                      |                      |                      |                      |
-|----------------------|----------------------|----------------------|----------------------|
-| ![](images/img1.png) | ![](images/img2.png) | ![](images/img3.png) | ![](images/img4.png) |
-| ![](images/img5.png) | ![](images/img6.png) | ![](images/img7.png) | ![](images/img8.png) |
+|                      |                      |                      |
+|----------------------|----------------------|----------------------|
+| ![](images/img1.png) | ![](images/img2.png) | ![](images/img3.png) |
+| ![](images/img5.png) | ![](images/img6.png) | ![](images/img7.png) |
 
 ## Key Features
 
