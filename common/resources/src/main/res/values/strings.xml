@@ -4,6 +4,7 @@
     <string name="notes_menu">Notes</string>
     <string name="no_tasks">No tasks</string>
     <string name="new_task">New Task</string>
+    <string name="edit_task">Edit Task</string>
     <string name="close">Close</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>

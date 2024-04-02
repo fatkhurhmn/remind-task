@@ -31,7 +31,7 @@ fun MainScreen(
                     if (currentRoute == Screens.Tasks.route) {
                         navController.toAddTask()
                     } else {
-                        navController.toAddTask()
+                        navController.toAddNote()
                     }
                 }
             )

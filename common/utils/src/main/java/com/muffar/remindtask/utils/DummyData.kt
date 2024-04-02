@@ -11,29 +11,29 @@ object DummyData {
     fun generateTasks(): List<Task> {
         val tasks = mutableListOf<Task>()
         val titles = listOf(
-            "Mengerjakan Tugas Akhir",
-            "Belanja Bulanan",
-            "Janjian dengan Klien",
-            "Mengurus Surat-surat",
-            "Berolahraga",
-            "Membaca Buku",
-            "Menonton Film",
-            "Mengikuti Workshop",
-            "Berkebun",
-            "Mendengarkan Musik"
+            "Working on Final Project",
+            "Monthly Grocery Shopping",
+            "Meeting with Client",
+            "Handling Documents",
+            "Exercising",
+            "Reading Books",
+            "Watching Movies",
+            "Attending Workshop",
+            "Gardening",
+            "Listening to Music"
         )
 
         val descriptions = listOf(
-            "Menyelesaikan implementasi fitur-fitur utama aplikasi",
-            "Membeli keperluan makanan dan barang-barang rumah tangga",
-            "Bertemu dengan klien untuk presentasi proyek",
-            "Mengurus berkas administrasi",
-            "Melakukan latihan fisik rutin",
-            "Membaca buku tentang sejarah",
-            "Menonton film komedi terbaru",
-            "Mengikuti workshop pemrograman",
-            "Merawat tanaman-tanaman di kebun",
-            "Mendengarkan musik klasik"
+            "Completing implementation of main features of the application",
+            "Buying monthly groceries and household items",
+            "Meeting with client for project presentation",
+            "Managing administrative documents",
+            "Doing routine physical exercises",
+            "Reading a book about history",
+            "Watching the latest comedy movie",
+            "Attending programming workshop",
+            "Taking care of plants in the garden",
+            "Listening to classical music"
         )
 
         for (i in titles.indices) {
@@ -52,29 +52,29 @@ object DummyData {
 
     fun generateNotes(): List<Note> {
         val titles = listOf(
-            "Rencana Rapat Bulanan",
-            "Catatan Presentasi Proyek Baru",
-            "Ide-ide Pengembangan Produk",
-            "Pertemuan dengan Klien XYZ",
-            "Ringkasan Diskusi Tim",
-            "Perencanaan Acara Workshop",
-            "Review Kinerja Karyawan",
-            "Pembaruan Jadwal Proyek",
-            "Hasil Riset Pasar Terbaru",
-            "Catatan Pelatihan Manajemen Waktu"
+            "Monthly Meeting Agenda",
+            "Notes on New Project Presentation",
+            "Product Development Ideas",
+            "Meeting with Client XYZ",
+            "Team Discussion Summary",
+            "Workshop Event Planning",
+            "Employee Performance Review",
+            "Project Schedule Update",
+            "Latest Market Research Findings",
+            "Time Management Training Notes"
         )
 
         val descriptions = listOf(
-            "Rencana untuk rapat bulanan yang akan datang, termasuk agenda yang akan dibahas dan daftar kehadiran yang telah dikonfirmasi. Diskusi akan difokuskan pada peninjauan kinerja bulan lalu, pembaruan proyek, dan rencana tindak lanjut.",
-            "Catatan rinci tentang presentasi proyek baru kepada stakeholder. Ini mencakup tinjauan singkat tentang latar belakang proyek, tujuan, ruang lingkup, dan rencana pelaksanaan. Juga termasuk pertanyaan dan umpan balik yang muncul selama presentasi.",
-            "Ide-ide kreatif untuk mengembangkan fitur baru pada produk kami. Ide-ide ini muncul dari analisis pasar terbaru dan umpan balik pelanggan. Beberapa ide yang disorot mungkin perlu diuji lebih lanjut sebelum diimplementasikan.",
-            "Ringkasan hasil pertemuan dengan klien XYZ, termasuk permintaan perubahan spesifikasi dan penjadwalan ulang. Dibahas pula solusi yang diusulkan untuk mengatasi tantangan yang dihadapi dan langkah-langkah selanjutnya dalam proyek.",
-            "Ringkasan diskusi tim dalam pertemuan terbaru. Ini termasuk pembahasan tentang progres proyek, hambatan yang dihadapi, dan langkah-langkah yang diambil untuk mengatasi masalah tersebut. Juga mencakup keputusan penting yang diambil dalam pertemuan.",
-            "Perencanaan detail untuk acara workshop yang akan datang, termasuk agenda acara, daftar pembicara, dan materi presentasi. Tujuan acara ini adalah untuk meningkatkan keterampilan dan pengetahuan tim dalam bidang tertentu.",
-            "Evaluasi kinerja karyawan dalam siklus penilaian bulan ini. Ini mencakup peninjauan kinerja individu, identifikasi kekuatan dan kelemahan, serta pembahasan tentang rencana pengembangan karier untuk setiap karyawan.",
-            "Pembaruan jadwal proyek berdasarkan perkembangan terkini, termasuk estimasi waktu tambahan yang mungkin diperlukan untuk menyelesaikan tugas tertentu. Ini memungkinkan manajemen untuk mengambil tindakan proaktif dalam mengelola risiko proyek.",
-            "Hasil dan analisis terbaru dari riset pasar yang dilakukan oleh tim riset kami. Ini mencakup temuan utama, tren pasar, dan implikasi potensialnya bagi strategi pemasaran dan pengembangan produk kami.",
-            "Catatan penting dari pelatihan manajemen waktu yang diikuti kemarin. Ini mencakup teknik produktivitas yang dipelajari, strategi pengelolaan waktu, dan langkah-langkah praktis untuk meningkatkan efisiensi kerja sehari-hari."
+            "Plan for upcoming monthly meeting, including agenda items and confirmed attendance list. Discussion will focus on reviewing last month's performance, project updates, and follow-up plans.",
+            "Detailed notes on the presentation of the new project to stakeholders. This includes a brief overview of project background, objectives, scope, and implementation plan. Also includes questions and feedback received during the presentation.",
+            "Creative ideas for developing new features for our product. These ideas stem from the latest market analysis and customer feedback. Some highlighted ideas may need further testing before implementation.",
+            "Summary of the meeting outcomes with client XYZ, including requests for specification changes and rescheduling. Also discussed are proposed solutions to address challenges faced and next steps in the project.",
+            "Summary of team discussions in the recent meeting. This includes discussions on project progress, encountered obstacles, and actions taken to address these issues. Also includes key decisions made in the meeting.",
+            "Detailed planning for an upcoming workshop event, including event agenda, speaker list, and presentation materials. The goal of this event is to enhance team skills and knowledge in a specific field.",
+            "Evaluation of employee performance in this month's appraisal cycle. This includes individual performance reviews, identification of strengths and weaknesses, and discussions on career development plans for each employee.",
+            "Project schedule update based on recent developments, including estimated additional time required to complete specific tasks. This allows management to take proactive actions in managing project risks.",
+            "Latest findings and analysis from market research conducted by our research team. This includes key findings, market trends, and potential implications for our marketing and product development strategies.",
+            "Important notes from time management training attended yesterday. This includes learned productivity techniques, time management strategies, and practical steps to improve daily work efficiency."
         )
 
         val notes = mutableListOf<Note>()

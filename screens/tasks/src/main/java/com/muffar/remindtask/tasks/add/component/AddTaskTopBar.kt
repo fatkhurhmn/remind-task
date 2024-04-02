@@ -34,11 +34,11 @@ fun AddTaskTopBar(
     onEditClick: () -> Unit,
 ) {
     val title = if (isAddMode) {
-        stringResource(R.string.new_note)
+        stringResource(R.string.new_task)
     } else if (isReadOnly) {
         stringResource(R.string.task)
     } else {
-        stringResource(R.string.edit_note)
+        stringResource(R.string.edit_task)
     }
 
     Row(
