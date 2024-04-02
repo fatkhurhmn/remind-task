@@ -17,11 +17,11 @@ class MainViewModel @Inject constructor(
     fun init() {
         viewModelScope.launch {
             DummyData.generateTasks().map {
-//                taskUseCases.addTask(it)
+                taskUseCases.addTask(it)
             }
 
             DummyData.generateNotes().map {
-//                notesUseCases.addNote(it)
+                notesUseCases.addNote(it)
             }
         }
     }
